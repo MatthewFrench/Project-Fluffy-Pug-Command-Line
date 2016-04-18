@@ -6,13 +6,12 @@
 //  Copyright © 2015 Matthew French. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "Position.hpp"
+//#import <Foundation/Foundation.h>
+#import "Position.h"
 
-@interface Tower : NSObject {
-    @public
+class Tower {
+public:
     Position topLeft, topRight, bottomLeft, bottomRight, towerCenter;
     bool detectedTopLeft, detectedBottomLeft, detectedTopRight, detectedBottomRight;
     float health;
-}
-@end
+};

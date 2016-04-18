@@ -1,5 +1,5 @@
 #import <Cocoa/Cocoa.h>
-#import "Utility.h"
+#import "../Utility.h"
 
 class DetectionManager {
     

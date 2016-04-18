@@ -9,29 +9,35 @@
 #ifndef __Fluffy_Pug__Utility__
 #define __Fluffy_Pug__Utility__
 
+/*
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
 #import <AppKit/AppKit.h>
 #include <mach/mach.h>
 #include <mach/mach_time.h>
 #include <unistd.h>
-#import "Minion.h"
-#import "Champion.h"
-#import "SelfHealth.h"
-#import "Tower.h"
-#import "GenericObject.h"
-#import "Position.hpp"
+ */
+#include <cstdint>
+#include <string>
+#import "Detection/Objects/Minion.h"
+#import "Detection/Objects/Champion.h"
+#import "Detection/Objects/SelfHealth.h"
+#import "Detection/Objects/Tower.h"
+#import "Detection/Objects/GenericObject.h"
+#import "Detection/Objects/Position.h"
+
+using namespace std;
 
 struct ImageData {
     //CFDataRef rawData;
-    UInt8 * imageData;
+    uint8_t * imageData;
     unsigned long imageByteLength;
     int imageWidth; int imageHeight;
 };
 
 struct Pixel {
     unsigned char r, g, b;
-    BOOL exist;
+    bool exist;
 };
 
 inline Position makePosition(int x, int y);
@@ -42,43 +48,43 @@ inline  uint8_t* getPixel2( ImageData imageData, int x, int y);
 inline  uint8_t* getPixel3( uint8_t *baseAddress, int x, int y, int width);
 inline void setPixel( ImageData imageData, int x, int y, int r, int g, int b);
 inline void drawRect( ImageData imageData, int left, int top, int width, int height, int r, int g, int b);
-inline BOOL isPixelColor( Pixel pixel, unsigned char r, unsigned char g, unsigned char b, int tolerance);
-inline BOOL isPixelPreciseColor( Pixel pixel, unsigned char r, unsigned char g, unsigned char b);
-inline BOOL isColor(const uint8_t *pixel, unsigned char r, unsigned char g, unsigned char b, int tolerance);
-inline BOOL isColor3(const uint8_t *pixel, unsigned char r, unsigned char g, unsigned char b);
-inline BOOL isColor2(const uint8_t *pixel, const uint8_t *pixel2, int tolerance);
+inline bool isPixelColor( Pixel pixel, unsigned char r, unsigned char g, unsigned char b, int tolerance);
+inline bool isPixelPreciseColor( Pixel pixel, unsigned char r, unsigned char g, unsigned char b);
+inline bool isColor(const uint8_t *pixel, unsigned char r, unsigned char g, unsigned char b, int tolerance);
+inline bool isColor3(const uint8_t *pixel, unsigned char r, unsigned char g, unsigned char b);
+inline bool isColor2(const uint8_t *pixel, const uint8_t *pixel2, int tolerance);
 inline  ImageData makeImageData(uint8_t * data, int imageWidth, int imageHeight);
-inline ImageData makeImageDataFrom(NSString* path);
-//inline BOOL detectImageAtPixel(const uint8_t *pixel, int x, int y, int width, int height, ImageData image, int tolerance);
-//inline BOOL detectImageAtPixelPercentage(const uint8_t *pixel, int x, int y, int width, int height, ImageData image, float percentage);
+inline ImageData makeImageDataFrom(string* path);
+//inline bool detectImageAtPixel(const uint8_t *pixel, int x, int y, int width, int height, ImageData image, int tolerance);
+//inline bool detectImageAtPixelPercentage(const uint8_t *pixel, int x, int y, int width, int height, ImageData image, float percentage);
 inline void normalizePoint(int &x, int &y, int length);
 //inline Position detectRelativeImageInImage(ImageData smallImage, ImageData largeImage, float percentageMatch, int xStart, int yStart, int xEnd, int yEnd);
 //inline Position detectRelativeImageInImagePercentage(ImageData smallImage, ImageData largeImage, float percentageMatch, int xStart, int yStart, int xEnd, int yEnd, float &returnPercentage);
 inline float getColorPercentage(const uint8_t *pixel, const uint8_t *pixel2);
 inline bool colorInPercentage(const uint8_t *pixel, const uint8_t *pixel2, float percentage);
 //inline float getImageAtPixelPercentage(const uint8_t *pixel, int x, int y, int width, int height, ImageData image);
-inline uint8 * copyImageBuffer(uint8 *baseAddress, int bufferWidth, int bufferHeight);
-inline uint8 * copyImageBufferSection(uint8 *baseAddress, int bufferWidth, int bufferHeight, int copyX, int copyY, int copyWidth, int copyHeight) ;
-inline uint8 * copyImageBufferFromBGRAtoRGBA(uint8 *baseAddress, int bufferWidth, int bufferHeight);
-inline NSImage* getImageFromBGRABuffer(uint8 *baseAddress, int bufferWidth, int bufferHeight);
-inline NSImage* getImageFromRGBABuffer(uint8 *baseAddress, int bufferWidth, int bufferHeight);
-inline NSImage* getImageFromBGRABufferImageData(ImageData* imageData);
-inline NSImage* getImageFromRGBABufferImageData(ImageData* imageData);
+inline uint8_t * copyImageBuffer(uint8_t *baseAddress, int bufferWidth, int bufferHeight);
+inline uint8_t * copyImageBufferSection(uint8_t *baseAddress, int bufferWidth, int bufferHeight, int copyX, int copyY, int copyWidth, int copyHeight) ;
+inline uint8_t * copyImageBufferFromBGRAtoRGBA(uint8_t *baseAddress, int bufferWidth, int bufferHeight);
+//inline NSImage* getImageFromBGRABuffer(uint8_t *baseAddress, int bufferWidth, int bufferHeight);
+//inline NSImage* getImageFromRGBABuffer(uint8_t *baseAddress, int bufferWidth, int bufferHeight);
+//inline NSImage* getImageFromBGRABufferImageData(ImageData* imageData);
+//inline NSImage* getImageFromRGBABufferImageData(ImageData* imageData);
 inline void detectSimilarImageToImage(ImageData smallImage, ImageData largeImage, int xStart, int yStart, int xEnd, int yEnd, float &returnPercentage, Position &returnPosition, float minimumPercentage, bool getFirstMatching);
 inline int getTimeInMilliseconds(int64_t absoluteTime);
 inline float getImageAtPixelPercentageOptimized(const uint8_t *pixel, int x, int y, int width, int height, ImageData image, float minimumPercentage);
 inline float getImageAtPixelPercentageOptimizedExact(const uint8_t *pixel, int x, int y, int width, int height, ImageData image, float minimumPercentage);
 inline void detectExactImageToImage(ImageData smallImage, ImageData largeImage, int xStart, int yStart, int xEnd, int yEnd, float &returnPercentage, Position &returnPosition, float minimumPercentage, bool getFirstMatching);
-inline void detectExactImageToImageToRectangles(ImageData smallImage, ImageData largeImage, CGRect* rects, size_t num_rects, float &returnPercentage, Position &returnPosition, float minimumPercentage, bool getFirstMatching);
-inline CGRect* getIntersectionRectangles(CGRect baseRect, const CGRect* rects, size_t num_rects, size_t &returnNumRects);
+//inline void detectExactImageToImageToRectangles(ImageData smallImage, ImageData largeImage, CGRect* rects, size_t num_rects, float &returnPercentage, Position &returnPosition, float minimumPercentage, bool getFirstMatching);
+//inline CGRect* getIntersectionRectangles(CGRect baseRect, const CGRect* rects, size_t num_rects, size_t &returnNumRects);
 
-inline void detectExactImageToImageToRectangle(ImageData smallImage, ImageData largeImage, CGRect rect, float &returnPercentage, Position &returnPosition, float minimumPercentage, bool getFirstMatching);
-inline void combineRectangles(NSMutableArray* rectangles, CGRect newRect);
-inline NSMutableArray* getCGRectDifference(CGRect sourceRect, CGRect minusRect);
-inline CGRect fitRectangleInRectangle(CGRect smallRect, CGRect bigRect);
-inline void MyLog(NSString *format, ...);
+//inline void detectExactImageToImageToRectangle(ImageData smallImage, ImageData largeImage, CGRect rect, float &returnPercentage, Position &returnPosition, float minimumPercentage, bool getFirstMatching);
+//inline void combineRectangles(NSMutableArray* rectangles, CGRect newRect);
+//inline NSMutableArray* getCGRectDifference(CGRect sourceRect, CGRect minusRect);
+//inline CGRect fitRectangleInRectangle(CGRect smallRect, CGRect bigRect);
+//inline void MyLog(string *format, ...);
 
-
+/*
 extern inline CGRect fitRectangleInRectangle(CGRect smallRect, CGRect bigRect) {
     if (CGRectIntersectsRect(smallRect, bigRect) == false) {
         smallRect.size.width = 0.0;
@@ -104,7 +110,8 @@ extern inline CGRect fitRectangleInRectangle(CGRect smallRect, CGRect bigRect) {
     }
     return smallRect;
 }
-
+*/
+/*
 ///Return all rectangles in source rect that don't contain minus rect.
 extern inline NSMutableArray* getCGRectDifference(CGRect sourceRect, CGRect minusRect) {
     NSMutableArray* rectArr = [NSMutableArray new];
@@ -154,7 +161,8 @@ extern inline NSMutableArray* getCGRectDifference(CGRect sourceRect, CGRect minu
     }
     return rectArr;
 }
-
+*/
+/*
 ///Combine rectangles adds a new rectangle without allowing it to overlap.
 extern inline void combineRectangles(NSMutableArray* rectangles, CGRect newRect) {
     if (newRect.size.width <= 0 || newRect.size.height <= 0 || CGRectIsNull(newRect)) return;
@@ -177,9 +185,10 @@ extern inline void combineRectangles(NSMutableArray* rectangles, CGRect newRect)
     }
     [rectangles addObjectsFromArray: addRectangles];
 }
-
+*/
 extern inline int getTimeInMilliseconds(int64_t absoluteTime)
 {
+    /*
     const int64_t kOneMillion = 1000 * 1000;
     static mach_timebase_info_data_t s_timebase_info;
     
@@ -190,7 +199,10 @@ extern inline int getTimeInMilliseconds(int64_t absoluteTime)
     // mach_absolute_time() returns billionth of seconds,
     // so divide by one million to get milliseconds
     return (int)((absoluteTime * s_timebase_info.numer) / (kOneMillion * s_timebase_info.denom));
+*/
+    return 0;
 }
+/*
 extern inline CGRect* getIntersectionRectangles(CGRect baseRect, const CGRect* rects, size_t num_rects, size_t &returnNumRects) {
     returnNumRects = 0;
     CGRect* newRects = (CGRect*) calloc (num_rects,sizeof(CGRect));
@@ -202,14 +214,14 @@ extern inline CGRect* getIntersectionRectangles(CGRect baseRect, const CGRect* r
         }
     }
     return newRects;
-}
+}*/
 
-extern inline uint8 * copyImageBufferSection(uint8 *baseAddress, int bufferWidth, int bufferHeight, int copyX, int copyY, int copyWidth, int copyHeight) {
-    uint8 * testImage = (UInt8*) calloc (copyWidth * copyHeight * 4,sizeof(UInt8));
+extern inline uint8_t * copyImageBufferSection(uint8_t *baseAddress, int bufferWidth, int bufferHeight, int copyX, int copyY, int copyWidth, int copyHeight) {
+    uint8_t * testImage = (uint8_t*) calloc (copyWidth * copyHeight * 4,sizeof(uint8_t));
     for (int x = copyX; x < copyX+copyWidth; x++) {
         for (int y = copyY; y < copyY+copyHeight; y++) {
-            uint8 *largePixel = getPixel3(baseAddress, x, y, bufferWidth);
-            uint8 *newPixel = getPixel3(testImage, x - copyX, y - copyY, copyWidth);
+            uint8_t *largePixel = getPixel3(baseAddress, x, y, bufferWidth);
+            uint8_t *newPixel = getPixel3(testImage, x - copyX, y - copyY, copyWidth);
             newPixel[0] = largePixel[0];
             newPixel[1] = largePixel[1];
             newPixel[2] = largePixel[2];
@@ -218,6 +230,7 @@ extern inline uint8 * copyImageBufferSection(uint8 *baseAddress, int bufferWidth
     }
     return testImage;
 }
+/*
 extern inline void detectExactImageToImageToRectangle(ImageData smallImage, ImageData largeImage, CGRect rect, float &returnPercentage, Position &returnPosition, float minimumPercentage, bool getFirstMatching) {
     Position position;
     float highestPercentage;
@@ -230,7 +243,8 @@ extern inline void detectExactImageToImageToRectangle(ImageData smallImage, Imag
                 return;
             }
         }
-}
+}*/
+/*
 extern inline void detectExactImageToImageToRectangles(ImageData smallImage, ImageData largeImage, CGRect* rects, size_t num_rects, float &returnPercentage, Position &returnPosition, float minimumPercentage, bool getFirstMatching) {
     Position position;
     float highestPercentage;
@@ -246,7 +260,7 @@ extern inline void detectExactImageToImageToRectangles(ImageData smallImage, Ima
             }
         }
     }
-}
+}*/
 extern inline void detectExactImageToImage(ImageData smallImage, ImageData largeImage, int xStart, int yStart, int xEnd, int yEnd, float &returnPercentage, Position &returnPosition, float minimumPercentage, bool getFirstMatching) {
     //Minimum percentage is so it matches faster
     float highestPercent = 0.0;
@@ -369,8 +383,8 @@ extern inline float getImageAtPixelPercentageOptimized(const uint8_t *pixel, int
     return percentage / pixels;
 }
 
-
-extern inline NSImage* getImageFromRGBABuffer(uint8 *baseAddress, int bufferWidth, int bufferHeight) {
+/*
+extern inline NSImage* getImageFromRGBABuffer(uint8_t *baseAddress, int bufferWidth, int bufferHeight) {
     CGContextRef context = CGBitmapContextCreate(baseAddress, bufferWidth, bufferHeight, 8,  bufferWidth * 4, CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB), kCGImageAlphaPremultipliedLast);
     CGImageRef imageRef = CGBitmapContextCreateImage(context);
     
@@ -378,15 +392,15 @@ extern inline NSImage* getImageFromRGBABuffer(uint8 *baseAddress, int bufferWidt
 }
 
 extern inline NSImage* getImageFromRGBABufferImageData(ImageData* imageData) {
-    uint8 *baseAddress = imageData->imageData; int bufferWidth = imageData->imageWidth; int bufferHeight = imageData->imageHeight;
+    uint8_t *baseAddress = imageData->imageData; int bufferWidth = imageData->imageWidth; int bufferHeight = imageData->imageHeight;
     CGContextRef context = CGBitmapContextCreate(baseAddress, bufferWidth, bufferHeight, 8,  bufferWidth * 4, CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB), kCGImageAlphaPremultipliedLast);
     CGImageRef imageRef = CGBitmapContextCreateImage(context);
     
     return [[NSImage alloc] initWithCGImage:imageRef size:NSMakeSize(bufferWidth, bufferHeight)];
 }
 
-extern inline NSImage* getImageFromBGRABuffer(uint8 *baseAddress, int bufferWidth, int bufferHeight) {
-    UInt8 *rgbaTestImage = copyImageBufferFromBGRAtoRGBA(baseAddress, bufferWidth, bufferHeight);
+extern inline NSImage* getImageFromBGRABuffer(uint8_t *baseAddress, int bufferWidth, int bufferHeight) {
+    uint8_t *rgbaTestImage = copyImageBufferFromBGRAtoRGBA(baseAddress, bufferWidth, bufferHeight);
     CGContextRef context = CGBitmapContextCreate(rgbaTestImage, bufferWidth, bufferHeight, 8,  bufferWidth * 4, CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB), kCGImageAlphaPremultipliedLast);
     CGImageRef imageRef = CGBitmapContextCreateImage(context);
     free(rgbaTestImage);
@@ -395,17 +409,17 @@ extern inline NSImage* getImageFromBGRABuffer(uint8 *baseAddress, int bufferWidt
 }
 
 extern inline NSImage* getImageFromBGRABufferImageData(ImageData* imageData) {
-    uint8 *baseAddress = imageData->imageData; int bufferWidth = imageData->imageWidth; int bufferHeight = imageData->imageHeight;
-    UInt8 *rgbaTestImage = copyImageBufferFromBGRAtoRGBA(baseAddress, bufferWidth, bufferHeight);
+    uint8_t *baseAddress = imageData->imageData; int bufferWidth = imageData->imageWidth; int bufferHeight = imageData->imageHeight;
+    uint8_t *rgbaTestImage = copyImageBufferFromBGRAtoRGBA(baseAddress, bufferWidth, bufferHeight);
     CGContextRef context = CGBitmapContextCreate(rgbaTestImage, bufferWidth, bufferHeight, 8,  bufferWidth * 4, CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB), kCGImageAlphaPremultipliedLast);
     CGImageRef imageRef = CGBitmapContextCreateImage(context);
     free(rgbaTestImage);
     
     return [[NSImage alloc] initWithCGImage:imageRef size:NSMakeSize(bufferWidth, bufferHeight)];
 }
-
-extern inline uint8 * copyImageBufferFromBGRAtoRGBA(uint8 *baseAddress, int bufferWidth, int bufferHeight) {
-    uint8 * testImage = (UInt8*) calloc (bufferWidth * bufferHeight * 4,sizeof(UInt8));
+*/
+extern inline uint8_t * copyImageBufferFromBGRAtoRGBA(uint8_t *baseAddress, int bufferWidth, int bufferHeight) {
+    uint8_t * testImage = (uint8_t*) calloc (bufferWidth * bufferHeight * 4,sizeof(uint8_t));
     for (int i = 0; i < bufferWidth * bufferHeight * 4; i+=4) {
         testImage[i] = baseAddress[i+2];
         testImage[i+1] = baseAddress[i+1];
@@ -414,8 +428,8 @@ extern inline uint8 * copyImageBufferFromBGRAtoRGBA(uint8 *baseAddress, int buff
     }
     return testImage;
 }
-extern inline uint8 * copyImageBuffer(uint8 *baseAddress, int bufferWidth, int bufferHeight) {
-    uint8 * testImage = (UInt8*) calloc (bufferWidth * bufferHeight * 4,sizeof(UInt8));
+extern inline uint8_t * copyImageBuffer(uint8_t *baseAddress, int bufferWidth, int bufferHeight) {
+    uint8_t * testImage = (uint8_t*) calloc (bufferWidth * bufferHeight * 4,sizeof(uint8_t));
     for (int i = 0; i < bufferWidth * bufferHeight * 4; i+=4) {
         testImage[i] = baseAddress[i];
         testImage[i+1] = baseAddress[i+1];
@@ -552,7 +566,7 @@ extern inline void normalizePoint(int &x, int &y, int length) {
     }
 }
 
-extern inline BOOL detectImageAtPixel(const uint8_t *pixel, int x, int y, int width, int height, ImageData image, int tolerance) {
+extern inline bool detectImageAtPixel(const uint8_t *pixel, int x, int y, int width, int height, ImageData image, int tolerance) {
     if (isColor2(pixel, image.imageData, tolerance) || image.imageData[3] == 0) {
         if (width - x > image.imageWidth &&
             height - y > image.imageHeight) {
@@ -573,7 +587,7 @@ extern inline BOOL detectImageAtPixel(const uint8_t *pixel, int x, int y, int wi
     return false;
 }
 
-extern inline BOOL detectImageAtPixelPercentage(const uint8_t *pixel, int x, int y, int width, int height, ImageData image, float percentage) {
+extern inline bool detectImageAtPixelPercentage(const uint8_t *pixel, int x, int y, int width, int height, ImageData image, float percentage) {
     if (getColorPercentage(pixel, image.imageData) >= percentage || image.imageData[3] == 0) {
         if (width - x > image.imageWidth &&
             height - y > image.imageHeight) {
@@ -607,7 +621,7 @@ extern int getRandomInteger(int minimum, int maximum) {
 }
 
 extern Minion* makeMinionBar( Position topLeft,  Position bottomLeft,  Position topRight,  Position bottomRight, float health) {
-    Minion* mb = [Minion new];
+    Minion* mb = new Minion();
     mb->topLeft = topLeft; mb->bottomLeft = bottomLeft; mb->topRight = topRight; mb->bottomRight = bottomRight;
     mb->health = health;
     return mb;
@@ -621,13 +635,13 @@ extern ImageData makeImageData(uint8_t * data, int width, int height) {
     imageData.imageHeight = height;
     return imageData;
 }
-
-extern ImageData makeImageDataFrom(NSString* path) {
+/*
+extern ImageData makeImageDataFrom(string* path) {
     NSImage *image = [[NSImage alloc] initWithContentsOfFile:path];
     NSBitmapImageRep* raw_img = [NSBitmapImageRep imageRepWithData:[image TIFFRepresentation]];
-    UInt8* data = (UInt8*) calloc (image.size.width* image.size.height*4,sizeof(UInt8));
-    UInt8* dataPointer = data;
-    UInt8* originalData = [raw_img bitmapData];
+    uint8_t* data = (uint8_t*) calloc (image.size.width* image.size.height*4,sizeof(uint8_t));
+    uint8_t* dataPointer = data;
+    uint8_t* originalData = [raw_img bitmapData];
     for (int i = 0; i < image.size.width * image.size.height; i++) {
         dataPointer[0] = originalData[2];
         dataPointer[1] = originalData[1];
@@ -642,37 +656,37 @@ extern ImageData makeImageDataFrom(NSString* path) {
     imageData.imageWidth = image.size.width;
     imageData.imageHeight = image.size.height;
     return imageData;
-}
+}*/
 
-extern BOOL isColor2(const uint8_t *pixel, const uint8_t *pixel2, int tolerance) {
+extern bool isColor2(const uint8_t *pixel, const uint8_t *pixel2, int tolerance) {
     if (abs(pixel[0] - pixel2[0]) > tolerance) return false;
     if (abs(pixel[1] - pixel2[1]) > tolerance) return false;
     if (abs(pixel[2] - pixel2[2]) > tolerance) return false;
     return true;
 }
 
-extern BOOL isColor3(const uint8_t *pixel, unsigned char r, unsigned char g, unsigned char b) {
+extern bool isColor3(const uint8_t *pixel, unsigned char r, unsigned char g, unsigned char b) {
     if (pixel[0] != b) return false;
     if (pixel[1] != g) return false;
     if (pixel[2] != r) return false;
     return true;
 }
 
-extern BOOL isColor(const uint8_t *pixel, unsigned char r, unsigned char g, unsigned char b, int tolerance) {
+extern bool isColor(const uint8_t *pixel, unsigned char r, unsigned char g, unsigned char b, int tolerance) {
     if (abs(pixel[0] - b) > tolerance) return false;
     if (abs(pixel[1] - g) > tolerance) return false;
     if (abs(pixel[2] - r) > tolerance) return false;
     return true;
 }
 
-extern BOOL isPixelColor( Pixel pixel, unsigned char r, unsigned char g, unsigned char b, int tolerance) {
+extern bool isPixelColor( Pixel pixel, unsigned char r, unsigned char g, unsigned char b, int tolerance) {
     if (abs(pixel.r - r) > tolerance) return false;
     if (abs(pixel.g - g) > tolerance) return false;
     if (abs(pixel.b - b) > tolerance) return false;
     return true;
 }
 
-extern BOOL isPixelPreciseColor( Pixel pixel, unsigned char r, unsigned char g, unsigned char b) {
+extern bool isPixelPreciseColor( Pixel pixel, unsigned char r, unsigned char g, unsigned char b) {
     if (pixel.r != r) return false;
     if (pixel.g != g) return false;
     if (pixel.b != b) return false;
@@ -726,15 +740,15 @@ extern void drawRect( ImageData imageData, int left, int top, int width, int hei
         setPixel(imageData, left+width, i, r, g, b);
     }
 }
-
-extern void MyLog(NSString *format, ...) {
+/*
+extern void MyLog(string *format, ...) {
     va_list args;
     va_start(args, format);
-    NSString *formattedString = [[NSString alloc] initWithFormat: format
+    string *formattedString = [[string alloc] initWithFormat: format
                                                        arguments: args];
     va_end(args);
     [[NSFileHandle fileHandleWithStandardOutput] writeData: [formattedString dataUsingEncoding: NSNEXTSTEPStringEncoding]];
      //[formattedString release];
-}
+}*/
 
 #endif /* defined(__Fluffy_Pug__Utility__) */

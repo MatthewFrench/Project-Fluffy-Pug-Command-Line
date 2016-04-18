@@ -6,13 +6,12 @@
 //  Copyright © 2015 Matthew French. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "Position.hpp"
+//#import <Foundation/Foundation.h>
+#import "Position.h"
 
-@interface Minion : NSObject {
-@public
+class Minion {
+public:
     Position topLeft, topRight, bottomLeft, bottomRight, characterCenter;
     bool detectedTopLeft, detectedBottomLeft, detectedTopRight, detectedBottomRight;
     float health;
-}
-@end
+};

@@ -6,13 +6,12 @@
 //  Copyright © 2015 Matthew French. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "Position.hpp"
+//#import <Foundation/Foundation.h>
+#import "Position.h"
 
-@interface SelfHealth : NSObject {
-@public
+class SelfHealth {
+public:
     Position topLeft, topRight, bottomLeft, bottomRight, characterCenter;
     bool detectedLeftSide, detectedRightSide;
     float health;
-}
-@end
+};

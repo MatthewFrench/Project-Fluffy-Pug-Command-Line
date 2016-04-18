@@ -6,11 +6,10 @@
 //  Copyright © 2015 Matthew French. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "Position.hpp"
+//#import <Foundation/Foundation.h>
+#import "Position.h"
 
-@interface GenericObject : NSObject {
-@public
+class GenericObject {
+public:
     Position topLeft, topRight, bottomLeft, bottomRight, center;
-}
-@end
+};
