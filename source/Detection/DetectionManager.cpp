@@ -2235,6 +2235,7 @@ void DetectionManager::processSelfChampionDetection(ImageData image/* , dispatch
     combineRectangles(scanRectangles, scanRect);
      */
     //Add previous Champions to scan
+    /*
     for (int i = 0; i < [selfChampions count]; i++) {
         Champion* Champion = [selfChampions objectAtIndex:i];
         CGRect rect = CGRectMake(Champion->topLeft.x - SelfChampionFrameMove*framesPassed,
@@ -2253,16 +2254,16 @@ void DetectionManager::processSelfChampionDetection(ImageData image/* , dispatch
     rect = CGRectIntegral(rect);
     rect = fitRectangleInRectangle(rect, leagueWindowRect);
     combineRectangles(scanRectangles, rect);
-    
+    */
     //dispatch_group_async(dispatchGroup, selfChampionThread, ^{
         //@autoreleasepool {
             //uint64_t startTime = mach_absolute_time();
-            std::vector<> ChampionBars = [NSMutableArray new];
+            std::vector<Champion> ChampionBars;// = [NSMutableArray new];
             //Loop through scan chunks
-            for (int i = 0; i < [scanRectangles count]; i++) {
-                CGRect rect = [[scanRectangles objectAtIndex:i] rectValue];
-                for (int x = rect.origin.x; x < rect.origin.x + rect.size.width; x++) {
-                    for (int y = rect.origin.y; y < rect.origin.y + rect.size.height; y++) {
+            //for (int i = 0; i < [scanRectangles count]; i++) {
+            //    CGRect rect = [[scanRectangles objectAtIndex:i] rectValue];
+                for (int x = 0; x < leagueGameWidth; x++) {
+                    for (int y = 0; y < leagueGameHeight; y++) {
                         uint8_t* pixel = getPixel2(image, x, y);
                         Champion* ChampionBar = SelfChampionManager::detectChampionBarAtPixel(image, pixel, x, y);
                         if (ChampionBar != NULL) {
@@ -2271,17 +2272,18 @@ void DetectionManager::processSelfChampionDetection(ImageData image/* , dispatch
                             //rect = CGRectIntegral(rect);
                             //rect = fitRectangleInRectangle(rect, leagueWindowRect);
                             //combineRectangles(scanRectangles, rect);
-                            [ChampionBars addObject: ChampionBar];
+                            //[ChampionBars addObject: ChampionBar];
                             ////NSLog(@"Adding self champ");
                         }
                     }
                 }
-            }
+            //}
             ChampionBars = SelfChampionManager::validateChampionBars(image, ChampionBars);
             
-            if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
+            //if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
                 //NSLog(@"Process self champs Processing detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
-            }/*
+            //}
+/*
             //dispatch_async(detectionThread, ^(void){
                 //@autoreleasepool {
                     while (selfChampionsDetectionObject.count > 0) {
@@ -2297,6 +2299,7 @@ void DetectionManager::processSelfChampionDetection(ImageData image/* , dispatch
             });*/
             //dispatch_async(detectionThread, ^(void) {
                 //@autoreleasepool {
+/*
                     while (selfChampions.count > 0) {
                         //Champion* champ = (Champion*)[selfChampions.lastObject;
                         //delete champ;
@@ -2304,10 +2307,11 @@ void DetectionManager::processSelfChampionDetection(ImageData image/* , dispatch
                     }
                     [selfChampions addObjectsFromArray:ChampionBars];
                     processSelfChampionLastTime = mach_absolute_time();
-                }
-            });
-        }
-    });
+                    */
+          //      }
+        //    });
+      //  }
+    //});
 }
 
 //const int selfHealthBarScanChunksX = 8; //36 frames until full scan. Full scan at 60fps is 0.6 seconds.
@@ -2357,7 +2361,7 @@ void DetectionManager::processSelfHealthBarDetection(ImageData image/* , dispatc
     //dispatch_group_async(dispatchGroup, selfHealthBarThread, ^{
         //@autoreleasepool {
             ////uint64_t startTime = mach_absolute_time();
-            std::vector<> HealthBarBars = [NSMutableArray new];
+            std::vector<SelfHealth> HealthBarBars;// = [NSMutableArray new];
             //Loop through scan chunks
             //for (int i = 0; i < [scanRectangles count]; i++) {
             //    CGRect rect = [[scanRectangles objectAtIndex:i] rectValue];
@@ -2372,7 +2376,7 @@ void DetectionManager::processSelfHealthBarDetection(ImageData image/* , dispatc
                         //rect = CGRectIntegral(rect);
                         //rect = fitRectangleInRectangle(rect, leagueWindowRect);
                         //combineRectangles(scanRectangles, rect);
-                        [HealthBarBars addObject: HealthBarBar];
+                        //[HealthBarBars addObject: HealthBarBar];
                         x = searchEnd.x;
                         y = searchEnd.y;
                     }
@@ -2386,6 +2390,7 @@ void DetectionManager::processSelfHealthBarDetection(ImageData image/* , dispatc
             //}
             //dispatch_async(detectionThread, ^(void) {
                 //@autoreleasepool {
+    /*
                     if ([HealthBarBars count] > 0) {
                         //if (selfHealthBar != NULL) delete selfHealthBar;
                         selfHealthBarVisible = true;
@@ -2393,10 +2398,11 @@ void DetectionManager::processSelfHealthBarDetection(ImageData image/* , dispatc
                     } else {
                         selfHealthBarVisible = false;
                     }
-                }
-            });
-        }
-    });
+                    */
+          //      }
+        //    });
+     ///   }
+   // });
     
 }
 
