@@ -1,0 +1,412 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGUID>{97A26C60-6875-3487-AB86-D64C88599368}</ProjectGUID>
+    <WindowsTargetPlatformVersion>10.0.10586.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>artificialIntelligenceBenchmark</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+    <PropertyGroup>
+      <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\buildWindows\Debug\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">artificialIntelligenceBenchmark.dir\Debug\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">artificialIntelligenceBenchmark</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\buildWindows\Release\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">artificialIntelligenceBenchmark.dir\Release\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">artificialIntelligenceBenchmark</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\buildWindows\MinSizeRel\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">artificialIntelligenceBenchmark.dir\MinSizeRel\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">artificialIntelligenceBenchmark</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">true</GenerateManifest>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\buildWindows\RelWithDebInfo\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">artificialIntelligenceBenchmark.dir\RelWithDebInfo\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">artificialIntelligenceBenchmark</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</GenerateManifest>
+    </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>\usr\local\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>\usr\local\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>\usr\local\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -E copy_directory "C:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/AnalysisImages" "C:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/buildWindows/Debug"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreBuildEvent>
+    <Link>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;png16.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>Debug</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/buildWindows/Debug/artificialIntelligenceBenchmark.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/buildWindows/Debug/artificialIntelligenceBenchmark.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>\usr\local\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat></DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>\usr\local\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>\usr\local\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -E copy_directory "C:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/AnalysisImages" "C:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/buildWindows/Release"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreBuildEvent>
+    <Link>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;png16.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>No</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/buildWindows/Release/artificialIntelligenceBenchmark.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/buildWindows/Release/artificialIntelligenceBenchmark.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>\usr\local\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat></DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>\usr\local\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>\usr\local\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -E copy_directory "C:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/AnalysisImages" "C:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/buildWindows/MinSizeRel"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreBuildEvent>
+    <Link>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;png16.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>No</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/buildWindows/MinSizeRel/artificialIntelligenceBenchmark.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/buildWindows/MinSizeRel/artificialIntelligenceBenchmark.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>\usr\local\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>\usr\local\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>\usr\local\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -E copy_directory "C:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/AnalysisImages" "C:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/buildWindows/RelWithDebInfo"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreBuildEvent>
+    <Link>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;png16.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>Debug</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/buildWindows/RelWithDebInfo/artificialIntelligenceBenchmark.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/buildWindows/RelWithDebInfo/artificialIntelligenceBenchmark.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule C:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" "-HC:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line" "-BC:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/buildWindows" --check-stamp-file "C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\buildWindows\CMakeFiles\generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/CMakeLists.txt;C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\CMakeLists.txt;C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\buildWindows\CMakeFiles\3.5.2\CMakeSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\buildWindows\CMakeFiles\3.5.2\CMakeCCompiler.cmake;C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\buildWindows\CMakeFiles\3.5.2\CMakeCXXCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeGenericSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\Platform\Windows.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\Platform\WindowsPaths.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeLanguageInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\Platform\Windows-MSVC.cmake;C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\buildWindows\CMakeFiles\3.5.2\CMakeRCCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeRCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeCXXInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeLanguageInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\Platform\Windows-MSVC.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\buildWindows\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule C:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" "-HC:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line" "-BC:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/buildWindows" --check-stamp-file "C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\buildWindows\CMakeFiles\generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/CMakeLists.txt;C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\CMakeLists.txt;C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\buildWindows\CMakeFiles\3.5.2\CMakeSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\buildWindows\CMakeFiles\3.5.2\CMakeCCompiler.cmake;C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\buildWindows\CMakeFiles\3.5.2\CMakeCXXCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeGenericSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\Platform\Windows.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\Platform\WindowsPaths.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeLanguageInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\Platform\Windows-MSVC.cmake;C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\buildWindows\CMakeFiles\3.5.2\CMakeRCCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeRCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeCXXInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeLanguageInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\Platform\Windows-MSVC.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\buildWindows\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule C:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" "-HC:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line" "-BC:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/buildWindows" --check-stamp-file "C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\buildWindows\CMakeFiles\generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/CMakeLists.txt;C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\CMakeLists.txt;C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\buildWindows\CMakeFiles\3.5.2\CMakeSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\buildWindows\CMakeFiles\3.5.2\CMakeCCompiler.cmake;C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\buildWindows\CMakeFiles\3.5.2\CMakeCXXCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeGenericSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\Platform\Windows.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\Platform\WindowsPaths.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeLanguageInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\Platform\Windows-MSVC.cmake;C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\buildWindows\CMakeFiles\3.5.2\CMakeRCCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeRCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeCXXInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeLanguageInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\Platform\Windows-MSVC.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\buildWindows\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule C:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" "-HC:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line" "-BC:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/buildWindows" --check-stamp-file "C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\buildWindows\CMakeFiles\generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/CMakeLists.txt;C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\CMakeLists.txt;C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\buildWindows\CMakeFiles\3.5.2\CMakeSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\buildWindows\CMakeFiles\3.5.2\CMakeCCompiler.cmake;C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\buildWindows\CMakeFiles\3.5.2\CMakeCXXCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeGenericSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\Platform\Windows.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\Platform\WindowsPaths.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeLanguageInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\Platform\Windows-MSVC.cmake;C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\buildWindows\CMakeFiles\3.5.2\CMakeRCCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeRCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeCXXInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeLanguageInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\Platform\Windows-MSVC.cmake;C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\buildWindows\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Ability Manager\AbilityManager.h" />
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Allies\AllyChampionManager.h" />
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Allies\AllyMinionManager.h" />
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Allies\SelfChampionManager.h" />
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\DetectionManager.h" />
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Enemies\EnemyChampionManager.h" />
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Enemies\EnemyMinionManager.h" />
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Enemies\EnemyTowerManager.h" />
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Item Manager\ItemManager.h" />
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Map Manager\MapManager.h" />
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Objects\Champion.h" />
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Objects\GenericObject.h" />
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Objects\Minion.h" />
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Objects\Position.h" />
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Objects\SelfHealth.h" />
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Objects\Tower.h" />
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Shop Manager\ShopManager.h" />
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Surrender Manager\SurrenderManager.h" />
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\lib\CImg.h" />
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Utility.h" />
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Ability Manager\AbilityManager.cpp"  />
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Allies\AllyChampionManager.cpp"  />
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Allies\AllyMinionManager.cpp"  />
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Allies\SelfChampionManager.cpp"  />
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\DetectionManager.cpp"  />
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Enemies\EnemyChampionManager.cpp"  />
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Enemies\EnemyMinionManager.cpp"  />
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Enemies\EnemyTowerManager.cpp"  />
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Item Manager\ItemManager.cpp"  />
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Map Manager\MapManager.cpp"  />
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Objects\Champion.cpp"  />
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Objects\GenericObject.cpp"  />
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Objects\Minion.cpp"  />
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Objects\SelfHealth.cpp"  />
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Objects\Tower.cpp"  />
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Shop Manager\ShopManager.cpp"  />
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Surrender Manager\SurrenderManager.cpp"  />
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\main.cpp"  />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/buildWindows/ZERO_CHECK.vcxproj">
+      <Project>95914E8C-39B0-3B96-8F67-EDED1DC35359</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -6,7 +6,7 @@
 //  Copyright © 2015 Matthew French. All rights reserved.
 //
 
-#import "SelfHealth.h"
+#include "SelfHealth.h"
 
 SelfHealth::SelfHealth () {
     detectedLeftSide = false;

@@ -6,7 +6,7 @@
 //  Copyright © 2015 Matthew French. All rights reserved.
 //
 
-#import "Champion.h"
+#include "Champion.h"
 
 Champion::Champion () {
     detectedTopLeft = false;

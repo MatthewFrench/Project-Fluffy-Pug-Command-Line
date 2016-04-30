@@ -6,8 +6,8 @@
 //  Copyright © 2015 Matthew French. All rights reserved.
 //
 
-#import "../../Utility.h"
-#import <vector>
+#include "../../Utility.h"
+#include <vector>
 
 class AbilityManager {
 public:

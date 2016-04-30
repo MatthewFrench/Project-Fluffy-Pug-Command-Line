@@ -6,7 +6,7 @@
 //  Copyright © 2015 Matthew French. All rights reserved.
 //
 
-#import "ItemManager.h"
+#include "ItemManager.h"
 
 ImageData ItemManager::trinketItemImageData = loadImage("Resources/Item Bar/Trinket Active.png");
 ImageData ItemManager::itemImageData = loadImage("Resources/Item Bar/Usable Item.png");

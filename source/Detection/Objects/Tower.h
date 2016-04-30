@@ -6,7 +6,7 @@
 //  Copyright © 2015 Matthew French. All rights reserved.
 //
 
-#import "Position.h"
+#include "Position.h"
 
 class Tower {
 public:

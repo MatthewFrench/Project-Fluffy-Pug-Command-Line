@@ -6,7 +6,7 @@
 //  Copyright © 2015 Matthew French. All rights reserved.
 //
 
-#import "MapManager.h"
+#include "MapManager.h"
 
 //
 //  MapManager.m

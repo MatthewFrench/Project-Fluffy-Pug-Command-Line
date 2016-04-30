@@ -1,0 +1,3 @@
+C:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/buildWindows/CMakeFiles/artificialIntelligenceBenchmark.dir
+C:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/buildWindows/CMakeFiles/ALL_BUILD.dir
+C:/Users/Cats 4 Christ/Documents/GitHub/Project-Fluffy-Pug-Command-Line/buildWindows/CMakeFiles/ZERO_CHECK.dir

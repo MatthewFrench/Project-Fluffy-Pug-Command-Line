@@ -6,7 +6,7 @@
 //  Copyright © 2015 Matthew French. All rights reserved.
 //
 
-#import "ShopManager.h"
+#include "ShopManager.h"
 
 //
 //  ShopManager.m

@@ -19,12 +19,12 @@
  */
 #include <cstdint>
 #include <string>
-#import "Detection/Objects/Minion.h"
-#import "Detection/Objects/Champion.h"
-#import "Detection/Objects/SelfHealth.h"
-#import "Detection/Objects/Tower.h"
-#import "Detection/Objects/GenericObject.h"
-#import "Detection/Objects/Position.h"
+#include "Detection/Objects/Minion.h"
+#include "Detection/Objects/Champion.h"
+#include "Detection/Objects/SelfHealth.h"
+#include "Detection/Objects/Tower.h"
+#include "Detection/Objects/GenericObject.h"
+#include "Detection/Objects/Position.h"
 
 #define cimg_display 0
 #define cimg_use_png

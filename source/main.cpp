@@ -3,8 +3,8 @@
 #define cimg_display 0
 //#define cimg_use_png
 #include "lib/CImg.h"
-#import "Utility.h"
-#import "Detection/DetectionManager.h"
+#include "Utility.h"
+#include "Detection/DetectionManager.h"
 
 using namespace cimg_library; 
 

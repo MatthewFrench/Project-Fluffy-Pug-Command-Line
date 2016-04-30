@@ -6,7 +6,7 @@
 //  Copyright © 2015 Matthew French. All rights reserved.
 //
 
-#import "SurrenderManager.h"
+#include "SurrenderManager.h"
 
 ImageData SurrenderManager::surrenderImageData = loadImage("Resources/Surrender/Surrender.png");
 

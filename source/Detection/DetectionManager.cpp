@@ -6,18 +6,18 @@
 //  Copyright © 2015 Matthew French. All rights reserved.
 //
 
-#import "DetectionManager.h"
-#import "Allies/SelfChampionManager.h"
-#import "Allies/AllyChampionManager.h"
-#import "Enemies/EnemyChampionManager.h"
-#import "Enemies/EnemyMinionManager.h"
-#import "Allies/AllyMinionManager.h"
-#import "Enemies/EnemyTowerManager.h"
-#import "Ability Manager/AbilityManager.h"
-#import "Item Manager/ItemManager.h"
-#import "Shop Manager/ShopManager.h"
-#import "Map Manager/MapManager.h"
-#import "Surrender Manager/SurrenderManager.h"
+#include "DetectionManager.h"
+#include "Allies/SelfChampionManager.h"
+#include "Allies/AllyChampionManager.h"
+#include "Enemies/EnemyChampionManager.h"
+#include "Enemies/EnemyMinionManager.h"
+#include "Allies/AllyMinionManager.h"
+#include "Enemies/EnemyTowerManager.h"
+#include "Ability Manager/AbilityManager.h"
+#include "Item Manager/ItemManager.h"
+#include "Shop Manager/ShopManager.h"
+#include "Map Manager/MapManager.h"
+#include "Surrender Manager/SurrenderManager.h"
 
 DetectionManager::DetectionManager() {
     allyMinions = new std::vector<Minion*>();

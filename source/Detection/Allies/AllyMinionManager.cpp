@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Matthew French. All rights reserved.
 //
 
-#import "AllyMinionManager.h"
+#include "AllyMinionManager.h"
 
 ImageData AllyMinionManager::wardImageData = loadImage("Resources/Ward/Pink Ward.png");
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Matthew French. All rights reserved.
 //
 
-#import "EnemyChampionManager.h"
+#include "EnemyChampionManager.h"
 
 //static int Debug_Draw_Red = 255, Debug_Draw_Green = 0, Debug_Draw_Blue = 255;
 //static int Health_Bar_Width = 104, Health_Bar_Height = 9;

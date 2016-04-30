@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Ability Manager\AbilityManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Allies\AllyChampionManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Allies\AllyMinionManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Allies\SelfChampionManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\DetectionManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Enemies\EnemyChampionManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Enemies\EnemyMinionManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Enemies\EnemyTowerManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Item Manager\ItemManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Map Manager\MapManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Objects\Champion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Objects\GenericObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Objects\Minion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Objects\SelfHealth.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Objects\Tower.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Shop Manager\ShopManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Surrender Manager\SurrenderManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Ability Manager\AbilityManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Allies\AllyChampionManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Allies\AllyMinionManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Allies\SelfChampionManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\DetectionManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Enemies\EnemyChampionManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Enemies\EnemyMinionManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Enemies\EnemyTowerManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Item Manager\ItemManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Map Manager\MapManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Objects\Champion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Objects\GenericObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Objects\Minion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Objects\Position.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Objects\SelfHealth.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Objects\Tower.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Shop Manager\ShopManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Detection\Surrender Manager\SurrenderManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\lib\CImg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\source\Utility.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Cats 4 Christ\Documents\GitHub\Project-Fluffy-Pug-Command-Line\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{D4DC6483-8368-3BC6-80EB-EC3858854999}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{DFD72AD3-5775-371C-9A80-D523642569BB}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

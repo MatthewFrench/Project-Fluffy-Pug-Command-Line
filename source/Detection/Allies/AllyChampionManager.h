@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 Matthew French. All rights reserved.
 //
 
-#import "../../Utility.h"
-#import <time.h>
-#import <vector>
+#include "../../Utility.h"
+#include <time.h>
+#include <vector>
 
 class AllyChampionManager {
 public:

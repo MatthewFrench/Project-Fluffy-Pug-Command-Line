@@ -6,7 +6,7 @@
 //  Copyright © 2015 Matthew French. All rights reserved.
 //
 
-#import "Tower.h"
+#include "Tower.h"
 
 Tower::Tower () {
     detectedTopLeft = false;

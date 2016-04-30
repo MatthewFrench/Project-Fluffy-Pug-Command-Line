@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Matthew French. All rights reserved.
 //
 
-#import "SelfChampionManager.h"
+#include "SelfChampionManager.h"
 
 ImageData SelfChampionManager::topLeftImageData = loadImage("Resources/Self Health Bar/Top Left Corner.png");
 

@@ -1,5 +1,5 @@
-#import "../Utility.h"
-#import <vector>
+#include "../Utility.h"
+#include <vector>
 
 class DetectionManager {
     std::vector<Minion*>  *allyMinions;

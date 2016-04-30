@@ -6,6 +6,6 @@
 //  Copyright © 2015 Matthew French. All rights reserved.
 //
 
-#import "GenericObject.h"
+#include "GenericObject.h"
 
 GenericObject::GenericObject () {}

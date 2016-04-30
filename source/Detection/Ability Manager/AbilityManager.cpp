@@ -6,7 +6,7 @@
 //  Copyright © 2015 Matthew French. All rights reserved.
 //
 
-#import "AbilityManager.h"
+#include "AbilityManager.h"
 
 ImageData AbilityManager::enabledSummonerSpellImageData = loadImage("Resources/Skill Bar/Enabled Summoner Spell.png");
 ImageData AbilityManager::levelDotImageData = loadImage("Resources/Skill Bar/Leveled Dot.png");

@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Matthew French. All rights reserved.
 //
 
-#import "AllyChampionManager.h"
+#include "AllyChampionManager.h"
 
 ImageData AllyChampionManager::topLeftImageData = loadImage("Resources/Ally Champion Health Bar/Top Left Corner.png");
 

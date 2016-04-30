@@ -1,0 +1,51 @@
+﻿  AbilityManager.cpp
+c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\lib/CImg.h(308): fatal error C1083: Cannot open include file: 'png.h': No such file or directory
+  AllyChampionManager.cpp
+c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\lib/CImg.h(308): fatal error C1083: Cannot open include file: 'png.h': No such file or directory
+  AllyMinionManager.cpp
+c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\lib/CImg.h(308): fatal error C1083: Cannot open include file: 'png.h': No such file or directory
+  SelfChampionManager.cpp
+c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\lib/CImg.h(308): fatal error C1083: Cannot open include file: 'png.h': No such file or directory
+  DetectionManager.cpp
+c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\lib/CImg.h(308): fatal error C1083: Cannot open include file: 'png.h': No such file or directory
+  EnemyChampionManager.cpp
+c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\lib/CImg.h(308): fatal error C1083: Cannot open include file: 'png.h': No such file or directory
+  EnemyMinionManager.cpp
+c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\lib/CImg.h(308): fatal error C1083: Cannot open include file: 'png.h': No such file or directory
+  EnemyTowerManager.cpp
+c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\lib/CImg.h(308): fatal error C1083: Cannot open include file: 'png.h': No such file or directory
+  ItemManager.cpp
+c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\lib/CImg.h(308): fatal error C1083: Cannot open include file: 'png.h': No such file or directory
+  MapManager.cpp
+c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\lib/CImg.h(308): fatal error C1083: Cannot open include file: 'png.h': No such file or directory
+  Champion.cpp
+  GenericObject.cpp
+  Minion.cpp
+  SelfHealth.cpp
+  Tower.cpp
+  ShopManager.cpp
+c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\lib/CImg.h(308): fatal error C1083: Cannot open include file: 'png.h': No such file or directory
+  SurrenderManager.cpp
+c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\lib/CImg.h(308): fatal error C1083: Cannot open include file: 'png.h': No such file or directory
+  main.cpp
+c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\Utility.h(45): error C2079: 'start' uses undefined struct 'read_timer::timeval'
+c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\Utility.h(46): error C2079: 'end' uses undefined struct 'read_timer::timeval'
+c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\Utility.h(49): error C3861: 'gettimeofday': identifier not found
+c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\Utility.h(52): error C3861: 'gettimeofday': identifier not found
+c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\Utility.h(53): error C2228: left of '.tv_sec' must have class/struct/union
+  c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\Utility.h(53): note: type is 'int'
+c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\Utility.h(53): error C2027: use of undefined type 'read_timer::timeval'
+  c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\Utility.h(45): note: see declaration of 'read_timer::timeval'
+c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\Utility.h(53): error C2228: left of '.tv_usec' must have class/struct/union
+  c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\Utility.h(53): note: type is 'int'
+c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\Utility.h(592): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\Utility.h(601): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\Utility.h(603): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\Utility.h(605): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\Utility.h(613): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\Utility.h(615): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\Utility.h(616): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\Utility.h(671): error C3861: 'arc4random_uniform': identifier not found
+c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\Utility.h(750): warning C4018: '<': signed/unsigned mismatch
+c:\users\cats 4 christ\documents\github\project-fluffy-pug-command-line\source\Utility.h(775): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...

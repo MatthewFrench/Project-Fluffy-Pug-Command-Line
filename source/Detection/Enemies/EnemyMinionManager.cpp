@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Matthew French. All rights reserved.
 //
 
-#import "EnemyMinionManager.h"
+#include "EnemyMinionManager.h"
 
 ImageData EnemyMinionManager::topLeftImageData = loadImage("Resources/Enemy Minion Health Bar/Top Left Corner.png");
 ImageData EnemyMinionManager::bottomLeftImageData = loadImage("Resources/Enemy Minion Health Bar/Bottom Left Corner.png");
