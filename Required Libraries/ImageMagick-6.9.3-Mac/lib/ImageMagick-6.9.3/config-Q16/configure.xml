@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuremap [
+<!ELEMENT configuremap (configure)+>
+<!ELEMENT configure (#PCDATA)>
+<!ATTLIST configure name CDATA #REQUIRED>
+<!ATTLIST configure value CDATA #REQUIRED>
+]>
+<configuremap>
+  <configure name="CC" value="gcc"/>
+  <configure name="CFLAGS" value="-I/usr/local/include/libpng16  -I/usr/local/include  -I/usr/local/include/freetype2    -g -O2 -Wall -mtune=westmere -fexceptions -D_FORTIFY_SOURCE=0 -D_THREAD_SAFE -pthread -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16"/>
+  <configure name="CODER_PATH" value="/ImageMagick-6.9.3/lib/ImageMagick-6.9.3/modules-Q16/coders"/>
+  <configure name="CONFIGURE_PATH" value="/ImageMagick-6.9.3/etc/ImageMagick-6/"/>
+  <configure name="CONFIGURE" value="./configure  '--disable-dependency-tracking' '--disable-installed' '--enable-delegate-build' '--enable-shared' '--disable-static' '--without-x' '--without-frozenpaths' '--prefix=/ImageMagick-6.9.3' 'PKG_CONFIG_PATH=/usr/local/lib/pkgconfig'"/>
+  <configure name="COPYRIGHT" value="Copyright (C) 1999-2016 ImageMagick Studio LLC"/>
+  <configure name="CPPFLAGS" value="-I/ImageMagick-6.9.3/include/ImageMagick-6"/>
+  <configure name="CXXFLAGS" value="-g -O2 -D_THREAD_SAFE -pthread"/>
+  <configure name="CXX" value="g++"/>
+  <configure name="DEFS" value="-DHAVE_CONFIG_H"/>
+  <configure name="DELEGATES" value="bzlib mpeg freetype jbig jng jpeg lcms png"/>
+  <configure name="DISTCHECK_CONFIG_FLAGS" value=" --disable-deprecated  --disable-installed  --with-quantum-depth=16  --with-jemalloc=no  --with-umem=no  --with-autotrace=no  --with-gslib=no  --with-fontpath=  --with-rsvg=no  --with-perl=no "/>
+  <configure name="DOCUMENTATION_PATH" value="/ImageMagick-6.9.3/share/doc/ImageMagick-6"/>
+  <configure name="EXEC-PREFIX" value="/ImageMagick-6.9.3"/>
+  <configure name="EXECUTABLE_PATH" value="/ImageMagick-6.9.3/bin"/>
+  <configure name="FEATURES" value="DPC Cipher"/>
+  <configure name="FILTER_PATH" value="/ImageMagick-6.9.3/lib/ImageMagick-6.9.3/modules-Q16/filters"/>
+  <configure name="GIT_REVISION" value="10458" />
+  <configure name="HOST" value="x86_64-apple-darwin15.2.0"/>
+  <configure name="INCLUDE_PATH" value="/ImageMagick-6.9.3/include/ImageMagick-6"/>
+  <configure name="LDFLAGS" value="-L/ImageMagick-6.9.3/lib  -L/Users/cristy/ImageMagick-6.9.3-1/jp2 -L/Users/cristy/ImageMagick-6.9.3-1/jbig/libjbig -L/Users/cristy/ImageMagick-6.9.3-1/jpeg/.libs -L/Users/cristy/ImageMagick-6.9.3-1/jpeg -L/Users/cristy/ImageMagick-6.9.3-1/lcms/src/.libs -L/Users/cristy/ImageMagick-6.9.3-1/lcms/src -L/Users/cristy/ImageMagick-6.9.3-1/magick -L/Users/cristy/ImageMagick-6.9.3-1/png/.libs -L/Users/cristy/ImageMagick-6.9.3-1/png -L/Users/cristy/ImageMagick-6.9.3-1/tiff/libtiff/.libs -L/Users/cristy/ImageMagick-6.9.3-1/tiff/libtiff -L/Users/cristy/ImageMagick-6.9.3-1/ttf/objs/.libs -L/Users/cristy/ImageMagick-6.9.3-1/ttf/objs -L/Users/cristy/ImageMagick-6.9.3-1/wand -L/Users/cristy/ImageMagick-6.9.3-1/webp -L/Users/cristy/ImageMagick-6.9.3-1/wmf/src -L/Users/cristy/ImageMagick-6.9.3-1/xml/.libs -L/Users/cristy/ImageMagick-6.9.3-1/xml -L/Users/cristy/ImageMagick-6.9.3-1/zlib"/>
+  <configure name="LIBRARY_PATH" value="/ImageMagick-6.9.3/lib/ImageMagick-6.9.3"/>
+  <configure name="LIBS" value=" -ljbig -L/usr/local/lib -llcms2   -L/usr/local/lib -lfreetype  -ljpeg   -L/usr/local/lib -lpng16               -lbz2         -lm     "/>
+  <configure name="LIB_VERSION_NUMBER" value="6,9,3,1"/>
+  <configure name="LIB_VERSION" value="0x693"/>
+  <configure name="NAME" value="ImageMagick"/>
+  <configure name="PCFLAGS" value="-DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16"/>
+  <configure name="PREFIX" value="/ImageMagick-6.9.3"/>
+  <configure name="QuantumDepth" value="16"/>
+  <configure name="RELEASE_DATE" value="2016-01-09"/>
+  <configure name="SHAREARCH_PATH" value="/ImageMagick-6.9.3/lib/ImageMagick-6.9.3/config-Q16"/>
+  <configure name="SHARE_PATH" value="/ImageMagick-6.9.3/share/ImageMagick-6"/>
+  <configure name="TARGET_CPU" value="x86_64"/>
+  <configure name="TARGET_OS" value="darwin15.2.0"/>
+  <configure name="TARGET_VENDOR" value="apple"/>
+  <configure name="VERSION" value="6.9.3"/>
+  <configure name="WEBSITE" value="http://www.imagemagick.org"/>
+</configuremap>
