@@ -6,44 +6,16 @@
 //  Copyright (c) 2015 Matthew French. All rights reserved.
 //
 
-//#import <Foundation/Foundation.h>
 #import "../../Utility.h"
-//#include "concurrentqueue.h"
 #import <time.h>
 #import <vector>
 
 class EnemyChampionManager {
-    /*
-    ImageData topLeftImageData, bottomLeftImageData,
-    bottomRightImageData, topRightImageData, healthSegmentImageData;
-    
-    
-    //moodycamel::ConcurrentQueue<Position> topLeftQueue, bottomLeftQueue, topRightQueue, bottomRightQueue;
-    
-    bool needsFullScreenUpdate;
-    
-    double fullScreenUpdateTime, lastUpdateTime;
-    
-    void scanSection(ImageData imageData, int xStart, int yStart, int xEnd, int yEnd);
-    void processChampionsLocations();
-    void processChampionsHealth(ImageData imageData);
-    void processPixel(ImageData imageData, uint8_t *pixel, int x, int y);
-    void processTopLeftDetect(); void processBottomLeftDetect(); void processTopRightDetect(); void processBottomRightDetect();
-    bool containsPosition(NSMutableArray* array, Position p);
-    
-    const double championSpeed = 1000; //100 pixels per second
-    */
 public:
     static ImageData topLeftImageData, bottomLeftImageData,
     bottomRightImageData, topRightImageData, healthSegmentImageData;
-    //NSMutableArray* championBars, *topRightDetect, *topLeftDetect, *bottomRightDetect, *bottomLeftDetect;
     
     EnemyChampionManager();
     static Champion* detectChampionBarAtPixel(ImageData imageData, uint8_t *pixel, int x, int y);
-    static std::vector<Champion> validateChampionBars(ImageData imageData, std::vector<Champion> detectedChampionBars);
-    //void processImage(ImageData imageData);
-    //ChampionBar getNearestChampion(int x, int y);
-    //ChampionBar getLowestHealthChampion(int x, int y);
-    
-    //void debugDraw(ImageData imageData);
+    static void validateChampionBars(ImageData imageData, std::vector<Champion*>* detectedChampionBars);
 };

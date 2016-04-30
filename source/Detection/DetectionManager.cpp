@@ -19,95 +19,902 @@
 #import "Map Manager/MapManager.h"
 #import "Surrender Manager/SurrenderManager.h"
 
-const int longAlert = 13;
-
-DetectionManager::DetectionManager(/*dispatch_queue_t _aiThread, dispatch_queue_t _detectionThread*/) {
-    //aiThread = _aiThread;
-    //detectionThread = _detectionThread;
-    
-    /*
-    itemActive1Thread = dispatch_queue_create("Item Active 1 Thread", DISPATCH_QUEUE_CONCURRENT);
-    itemActive2Thread = dispatch_queue_create("Item Active 2 Thread", DISPATCH_QUEUE_CONCURRENT);
-    itemActive3Thread = dispatch_queue_create("Item Active 3 Thread", DISPATCH_QUEUE_CONCURRENT);
-    itemActive4Thread = dispatch_queue_create("Item Active 4 Thread", DISPATCH_QUEUE_CONCURRENT);
-    itemActive5Thread = dispatch_queue_create("Item Active 5 Thread", DISPATCH_QUEUE_CONCURRENT);
-    itemActive6Thread = dispatch_queue_create("Item Active 6 Thread", DISPATCH_QUEUE_CONCURRENT);
-    
-    mapThread = dispatch_queue_create("Map Thread", DISPATCH_QUEUE_CONCURRENT);
-    shopThread = dispatch_queue_create("Shop Thread", DISPATCH_QUEUE_CONCURRENT);
-    shopAvailableThread = dispatch_queue_create("Shop Available Thread", DISPATCH_QUEUE_CONCURRENT);
-    usedPotionThread = dispatch_queue_create("Used Potion Thread", DISPATCH_QUEUE_CONCURRENT);
-    trinketActiveThread = dispatch_queue_create("Trinket Active Thread", DISPATCH_QUEUE_CONCURRENT);
-    spell1ActiveThread = dispatch_queue_create("Spell 1 Active Thread", DISPATCH_QUEUE_CONCURRENT);
-    spell2ActiveThread = dispatch_queue_create("Spell 2 Active Thread", DISPATCH_QUEUE_CONCURRENT);
-    spell3ActiveThread = dispatch_queue_create("Spell 3 Active Thread", DISPATCH_QUEUE_CONCURRENT);
-    spell4ActiveThread = dispatch_queue_create("Spell 4 Active Thread", DISPATCH_QUEUE_CONCURRENT);
-    summonerSpell1ActiveThread = dispatch_queue_create("Summoner Spell 1 Active Thread", DISPATCH_QUEUE_CONCURRENT);
-    summonerSpell2ActiveThread = dispatch_queue_create("Summoner Spell 2 Active Thread", DISPATCH_QUEUE_CONCURRENT);
-    levelUpDotsThread = dispatch_queue_create("Level Up Dots Thread", DISPATCH_QUEUE_CONCURRENT);
-    spell1LevelUpThread = dispatch_queue_create("Spell 1 Level Up Thread", DISPATCH_QUEUE_CONCURRENT);
-    spell2LevelUpThread = dispatch_queue_create("Spell 2 Level Up Thread", DISPATCH_QUEUE_CONCURRENT);
-    spell3LevelUpThread = dispatch_queue_create("Spell 3 Level Up Thread", DISPATCH_QUEUE_CONCURRENT);
-    spell4LevelUpThread = dispatch_queue_create("Spell 4 Level Up Thread", DISPATCH_QUEUE_CONCURRENT);
-    allyMinionThread = dispatch_queue_create("Ally Minion Thread", DISPATCH_QUEUE_CONCURRENT);
-    enemyMinionThread = dispatch_queue_create("Enemy Minion Thread", DISPATCH_QUEUE_CONCURRENT);
-    enemyChampionThread = dispatch_queue_create("Enemy Champion Thread", DISPATCH_QUEUE_CONCURRENT);
-    allyChampionThread = dispatch_queue_create("Ally Champion Thread", DISPATCH_QUEUE_CONCURRENT);
-    enemyTowerThread = dispatch_queue_create("Enemy Tower Thread", DISPATCH_QUEUE_CONCURRENT);
-    selfChampionThread = dispatch_queue_create("Self Champion Thread", DISPATCH_QUEUE_CONCURRENT);
-    selfHealthBarThread = dispatch_queue_create("Self Health Bar Thread", DISPATCH_QUEUE_CONCURRENT);
-    surrenderThread = dispatch_queue_create("Surrender Thread", DISPATCH_QUEUE_CONCURRENT);
-    */
-
-
-    /*
-    allyMinions = [NSMutableArray new];
-    enemyMinions = [NSMutableArray new];
-    allyChampions = [NSMutableArray new];
-    enemyChampions = [NSMutableArray new];
-    selfChampions = [NSMutableArray new];
-    enemyTowers = [NSMutableArray new];
-    buyableItems = [NSMutableArray new];
-    spell1LevelDots = [NSMutableArray new];
-    spell2LevelDots = [NSMutableArray new];
-    spell3LevelDots = [NSMutableArray new];
-    spell4LevelDots = [NSMutableArray new];
-
-    
-    processAllyMinionLastTime = mach_absolute_time();
-    processEnemyMinionLastTime = mach_absolute_time();
-    processAllyChampionLastTime = mach_absolute_time();
-    processEnemyChampionLastTime = mach_absolute_time();
-    processEnemyTowerLastTime = mach_absolute_time();
-    processSelfChampionLastTime = mach_absolute_time();
-    processSelfHealthBarLastTime = mach_absolute_time();
-    processShopLastTime = mach_absolute_time();
-    
-    surrenderAvailable = false;
-    surrenderActive = NULL;
-     */
+DetectionManager::DetectionManager() {
+    allyMinions = new std::vector<Minion*>();
+    enemyMinions = new std::vector<Minion*>();
+    allyChampions = new std::vector<Champion*>();
+    enemyChampions = new std::vector<Champion*>();
+    selfChampions = new std::vector<Champion*>();
+    enemyTowers = new std::vector<Tower*>();
+    buyableItems = new std::vector<GenericObject*>();
+    spell1LevelDots = new std::vector<GenericObject*>();
+    spell2LevelDots = new std::vector<GenericObject*>();
+    spell3LevelDots = new std::vector<GenericObject*>();
+    spell4LevelDots = new std::vector<GenericObject*>();
 }
 
-void DetectionManager::processDetection(ImageData image) {
-        processAllyMinionDetection(image);
-        processEnemyMinionDetection(image);
-        processAllyChampionDetection(image);
-        processEnemyChampionDetection(image);
-        processEnemyTowerDetection(image);
-        processSelfChampionDetection(image);
-        processSelfHealthBarDetection(image);
-        processSpellLevelUps(image);
-        processSpellLevelDots(image);
-        processSpellActives(image);
-        processSummonerSpellActives(image);
-        processItemActives(image);
-        processUsedPotion(image);
-        processShopAvailable(image);
-        processShop(image);
-        processMap(image);
-        processTrinketActive(image);
-        processSurrender(image);
+void DetectionManager::processDetection(ImageData *image) {
+    processAllyMinionDetection(image);
+    processEnemyMinionDetection(image);
+    processAllyChampionDetection(image);
+    processEnemyChampionDetection(image);
+    processEnemyTowerDetection(image);
+    processSelfChampionDetection(image);
+    processSelfHealthBarDetection(image);
+    processSpellLevelUps(image);
+    processSpellLevelDots(image);
+    processSpellActives(image);
+    processSummonerSpellActives(image);
+    processItemActives(image);
+    processUsedPotion(image);
+    processShopAvailable(image);
+    processShop(image);
+    processMap(image);
+    processTrinketActive(image);
+    processSurrender(image);
 }
+
+void DetectionManager::processMap(ImageData *image) {
+    //First we do an immediate map location search
+    //If the map is found them we search for shop and self location
+
+    Position searchStart = makePosition(image->imageWidth - 200, image->imageHeight - 201);
+    Position searchEnd = makePosition(image->imageWidth - 195, image->imageHeight - 197);
+
+    int oldMapX = -1;
+    int oldMapY = -1;
+    if (map != nullptr) {
+        oldMapX = map->topLeft.x;
+        oldMapY = map->topLeft.y;
+    }
+    GenericObject* foundMap = nullptr;
+    GenericObject* foundLocation = nullptr;
+    GenericObject* foundShop = nullptr;
+
+    if (oldMapX != -1) {
+        uint8_t* pixel = getPixel2(*image, oldMapX, oldMapY);
+        foundMap = MapManager::detectMap(*image, pixel, oldMapX, oldMapY);
+    }
+
+    if (foundMap == nullptr) {
+        for (int x = searchStart.x; x < searchEnd.x; x++) {
+            for (int y = searchStart.y; y < searchEnd.y; y++) {
+                uint8_t* pixel = getPixel2(*image, x, y);
+                foundMap = MapManager::detectMap(*image, pixel, x, y);
+                if (foundMap != NULL) {
+                    x = searchEnd.x;
+                    y = searchEnd.y;
+                }
+            }
+        }
+    }
+
+    if (foundMap != NULL) {
+                //Search for location
+        Position searchStart = makePosition(foundMap->topLeft.x, foundMap->topLeft.y);
+        Position searchEnd = makePosition(image->imageWidth, image->imageHeight);
+        for (int x = searchStart.x; x < searchEnd.x; x++) {
+            for (int y = searchStart.y; y < searchEnd.y; y++) {
+                uint8_t* pixel = getPixel2(*image, x, y);
+                foundLocation = MapManager::detectLocation(*image, pixel, x, y);
+                if (foundLocation != NULL) {
+                    x = searchEnd.x;
+                    y = searchEnd.y;
+                }
+            }
+        }
+                //Search for shop at the bottom left
+        searchStart = makePosition(image->imageWidth - 194, image->imageHeight - 34);
+        searchEnd = makePosition(image->imageWidth - 186, image->imageHeight - 25);
+        for (int x = searchStart.x; x < searchEnd.x; x++) {
+            for (int y = searchStart.y; y < searchEnd.y; y++) {
+                uint8_t* pixel = getPixel2(*image, x, y);
+                foundShop = MapManager::detectShop(*image, pixel, x, y);
+                if (foundShop != NULL) {
+                    x = searchEnd.x;
+                    y = searchEnd.y;
+                }
+            }
+        }
+        if (foundShop == NULL) {
+                    //Search for shop at top right
+            searchStart = makePosition(image->imageWidth - 32, image->imageHeight - 192);
+            searchEnd = makePosition(image->imageWidth - 16, image->imageHeight - 181);
+            for (int x = searchStart.x; x < searchEnd.x; x++) {
+                for (int y = searchStart.y; y < searchEnd.y; y++) {
+                    uint8_t* pixel = getPixel2(*image, x, y);
+                    foundShop = MapManager::detectShop(*image, pixel, x, y);
+                    if (foundShop != NULL) {
+                        x = searchEnd.x;
+                        y = searchEnd.y;
+                    }
+                }
+            }
+        }
+    }
+
+    if (foundMap != NULL) {
+                        //if (map != NULL) delete map;
+        mapVisible = true;
+        map = foundMap;
+    } else {
+        mapVisible = false;
+    }
+    if (foundLocation != NULL) {
+                        //if (mapSelfLocation != NULL) delete mapSelfLocation;
+        mapSelfLocationVisible = true;
+        mapSelfLocation = foundLocation;
+    } else {
+        mapSelfLocationVisible = false;
+    }
+    if (foundShop != NULL) {
+                        //if (mapShop != NULL) delete mapShop;
+        mapShopVisible = true;
+        mapShop = foundShop;
+    } else {
+        mapShopVisible = false;
+        if (mapShop == NULL) {
+            mapShop = mapSelfLocation;
+        }
+    }
+}
+void DetectionManager::processShop(ImageData *image) {
+    //First detect top left corner, but do it as a slow scan
+
+    //As soon as top left corner is confirmed, do a full scan for bottom left corner
+
+    //As soon as bottom left corner is confirmed, do a full scan for all items between
+
+    //Probably the most expensive search if shop is open
+    float leagueGameWidth = image->imageWidth;
+    float leagueGameHeight = image->imageHeight;
+
+    GenericObject* topLeftCorner = nullptr;
+    GenericObject* bottomLeftCorner = nullptr;
+
+    for (int x = 0; x < leagueGameWidth; x++) {
+        for (int y = 0; y < leagueGameHeight; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            topLeftCorner = ShopManager::detectShopTopLeftCorner(*image, pixel, x, y);
+            if (topLeftCorner != NULL) {
+                x = leagueGameWidth;
+                y = leagueGameHeight;
+            }
+        }
+    }
+    if (topLeftCorner != NULL) {
+        for (int x = topLeftCorner->topLeft.x - 5; x < topLeftCorner->topLeft.x + 5; x++) {
+            for (int y = topLeftCorner->topLeft.y + 500; y < leagueGameHeight; y++) {
+                uint8_t* pixel = getPixel2(*image, x, y);
+                bottomLeftCorner = ShopManager::detectShopBottomLeftCorner(*image, pixel, x, y);
+                if (bottomLeftCorner != NULL) {
+                    x = topLeftCorner->topLeft.x + 5;
+                    y = leagueGameHeight;
+                }
+            }
+        }
+        if (bottomLeftCorner != NULL) {
+            Position searchStart = makePosition(topLeftCorner->topLeft.x + 15, topLeftCorner->topLeft.y + 75);
+            Position searchEnd = makePosition(topLeftCorner->topLeft.x + 400, bottomLeftCorner->topLeft.y - 25 - 60);
+            for (int x = searchStart.x; x < searchEnd.x; x++) {
+                for (int y = searchStart.y; y < searchEnd.y; y++) {
+                    uint8_t* pixel = getPixel2(*image, x, y);
+                    GenericObject* item = ShopManager::detectBuyableItems(*image, pixel, x, y);
+                    if (item != NULL) {
+                        buyableItems->push_back(item);
+                    }
+                }
+            }
+                    //Remove duplicate items
+
+            for (int i = 0; i < buyableItems->size(); i++) {
+                GenericObject* item = (*buyableItems)[i];
+                for (int i2 = 0; i2 < buyableItems->size(); i2++) {
+                    if (i != i2) {
+                        GenericObject* item2 = (*buyableItems)[i2];
+                        if (std::abs(item2->topLeft.x - item->topLeft.x) <= 15.0 && std::abs(item2->topLeft.y - item->topLeft.y) <= 15.0) {
+                            buyableItems->erase(buyableItems->begin() + i);
+                            i--;
+                            break;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+    if (topLeftCorner != NULL) {
+        shopTopLeftCornerShown = true;
+        shopTopLeftCorner = topLeftCorner;
+    } else {
+        shopTopLeftCornerShown = false;
+    }
+    if (bottomLeftCorner != NULL) {
+        shopBottomLeftCornerShown = true;
+        shopBottomLeftCorner = bottomLeftCorner;
+    } else {
+        shopBottomLeftCornerShown = false;
+    }
+}
+void DetectionManager::processShopAvailable(ImageData *image) {
+    Position searchStart = makePosition(629, 739);
+    Position searchEnd = makePosition(637, 745);
+    GenericObject* shop = nullptr;
+    for (int x = searchStart.x; x < searchEnd.x; x++) {
+        for (int y = searchStart.y; y < searchEnd.y; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            shop = ShopManager::detectShopAvailable(*image, pixel, x, y);
+            if (shop != NULL) {
+                x = searchEnd.x;
+                y = searchEnd.y;
+            }
+        }
+    }
+    if (shop != NULL) {
+        shopAvailableShown = true;
+        shopAvailable = shop;
+    } else {
+        shopAvailableShown = false;
+    }
+}
+void DetectionManager::processUsedPotion(ImageData *image) {
+    //Potion being used
+    //from 400, 620
+    //to 560, 660
+    Position searchStart = makePosition(400, 620);
+    Position searchEnd = makePosition(560, 660);
+
+    GenericObject* potionUsed = nullptr;
+    for (int x = searchStart.x; x < searchEnd.x; x++) {
+        for (int y = searchStart.y; y < searchEnd.y; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            potionUsed = ItemManager::detectUsedPotionAtPixel(*image, pixel, x, y);
+            if (potionUsed != NULL) {
+                x = searchEnd.x;
+                y = searchEnd.y;
+            }
+        }
+    }
+    if (potionUsed != NULL) {
+        potionBeingUsedShown = true;
+        potionBeingUsed = potionUsed;
+    } else {
+        potionBeingUsedShown = false;
+    }
+}
+
+void DetectionManager::processItemActives(ImageData *image) {
+    int searchWidth = 6; int searchHeight = 6;
+    Position item1Pos = makePosition(632, 672);
+    Position item2Pos = makePosition(666, 672);
+    Position item3Pos = makePosition(700, 672);
+    Position item4Pos = makePosition(632, 705);
+    Position item5Pos = makePosition(667, 705);
+    Position item6Pos = makePosition(701, 705);
+
+    potionActiveAvailable = false;
+
+    GenericObject* item = nullptr;
+    GenericObject* potion = nullptr;
+    for (int x = item1Pos.x; x < item1Pos.x + searchWidth; x++) {
+        for (int y = item1Pos.y; y < item1Pos.y + searchHeight; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            if (item == NULL) {
+                item = ItemManager::detectItemActiveAtPixel(*image, pixel, x, y);
+            }
+            if (potion == NULL) {
+                potion = ItemManager::detectPotionActiveAtPixel(*image, pixel, x, y);
+            }
+            if (potion != NULL && item != NULL) {
+                x = image->imageWidth; y = image->imageHeight;
+            }
+        }
+    }
+
+    if (item != NULL) {
+        item1ActiveAvailable = true;
+        item1Active = item;
+    } else {
+        item1ActiveAvailable = false;
+    }
+    if (potion != NULL) {
+        potionActiveAvailable = true;
+        potionActive = potion;
+        potionOnActive = 1;
+    }
+
+    item = nullptr;
+    potion = nullptr;
+    for (int x = item2Pos.x; x < item2Pos.x + searchWidth; x++) {
+        for (int y = item2Pos.y; y < item2Pos.y + searchHeight; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            if (item == NULL) {
+                item = ItemManager::detectItemActiveAtPixel(*image, pixel, x, y);
+            }
+            if (potion == NULL) {
+                potion = ItemManager::detectPotionActiveAtPixel(*image, pixel, x, y);
+            }
+            if (potion != NULL && item != NULL) {
+                x = image->imageWidth; y = image->imageHeight;
+            }
+        }
+    }
+
+    if (item != NULL) {
+        item2ActiveAvailable = true;
+        item2Active = item;
+    } else {
+        item2ActiveAvailable = false;
+    }
+    if (potion != NULL) {
+        potionActiveAvailable = true;
+        potionActive = potion;
+        potionOnActive = 2;
+    }
+
+    item = nullptr;
+    potion = nullptr;
+    for (int x = item3Pos.x; x < item3Pos.x + searchWidth; x++) {
+        for (int y = item3Pos.y; y < item3Pos.y + searchHeight; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            if (item == NULL) {
+                item = ItemManager::detectItemActiveAtPixel(*image, pixel, x, y);
+            }
+            if (potion == NULL) {
+                potion = ItemManager::detectPotionActiveAtPixel(*image, pixel, x, y);
+            }
+            if (potion != NULL && item != NULL) {
+                x = image->imageWidth; y = image->imageHeight;
+            }
+        }
+    }
+
+
+    if (item != NULL) {
+        item3ActiveAvailable = true;
+        item3Active = item;
+    } else {
+        item3ActiveAvailable = false;
+    }
+    if (potion != NULL) {
+        potionActiveAvailable = true;
+        potionActive = potion;
+        potionOnActive = 3;
+    }
+
+    item = nullptr;
+    potion = nullptr;
+    for (int x = item4Pos.x; x < item4Pos.x + searchWidth; x++) {
+        for (int y = item4Pos.y; y < item4Pos.y + searchHeight; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            if (item == NULL) {
+                item = ItemManager::detectItemActiveAtPixel(*image, pixel, x, y);
+            }
+            if (potion == NULL) {
+                potion = ItemManager::detectPotionActiveAtPixel(*image, pixel, x, y);
+            }
+            if (potion != NULL && item != NULL) {
+                x = image->imageWidth; y = image->imageHeight;
+            }
+        }
+    }
+
+    if (item != NULL) {
+        item4ActiveAvailable = true;
+        item4Active = item;
+    } else {
+        item4ActiveAvailable = false;
+    }
+    if (potion != NULL) {
+        potionActiveAvailable = true;
+        potionActive = potion;
+        potionOnActive = 4;
+    }
+
+    item = nullptr;
+    potion = nullptr;
+    for (int x = item5Pos.x; x < item5Pos.x + searchWidth; x++) {
+        for (int y = item5Pos.y; y < item5Pos.y + searchHeight; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            if (item == NULL) {
+                item = ItemManager::detectItemActiveAtPixel(*image, pixel, x, y);
+            }
+            if (potion == NULL) {
+                potion = ItemManager::detectPotionActiveAtPixel(*image, pixel, x, y);
+            }
+            if (potion != NULL && item != NULL) {
+                x = image->imageWidth; y = image->imageHeight;
+            }
+        }
+    }
+
+    if (item != NULL) {
+        item5ActiveAvailable = true;
+        item5Active = item;
+    } else {
+        item5ActiveAvailable = false;
+    }
+    if (potion != NULL) {
+        potionActiveAvailable = true;
+        potionActive = potion;
+        potionOnActive = 5;
+    }
+
+    item = nullptr;
+    potion = nullptr;
+    for (int x = item6Pos.x; x < item6Pos.x + searchWidth; x++) {
+        for (int y = item6Pos.y; y < item6Pos.y + searchHeight; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            if (item == NULL) {
+                item = ItemManager::detectItemActiveAtPixel(*image, pixel, x, y);
+            }
+            if (potion == NULL) {
+                potion = ItemManager::detectPotionActiveAtPixel(*image, pixel, x, y);
+            }
+            if (potion != NULL && item != NULL) {
+                x = image->imageWidth; y = image->imageHeight;
+            }
+        }
+    }
+
+    if (item != NULL) {
+        item6ActiveAvailable = true;
+        item6Active = item;
+    } else {
+        item6ActiveAvailable = false;
+    }
+    if (potion != NULL) {
+        potionActiveAvailable = true;
+        potionActive = potion;
+        potionOnActive = 6;
+    }
+}
+void DetectionManager::processSurrender(ImageData *image) {
+
+    int searchWidth = 30; int searchHeight = 30;
+    Position surrenderPos = makePosition(image->imageWidth - 210, image->imageHeight - 370);
+
+    GenericObject* surrender = nullptr;
+    for (int x = surrenderPos.x; x < surrenderPos.x + searchWidth; x++) {
+        for (int y = surrenderPos.y; y < surrenderPos.y + searchHeight; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            surrender = SurrenderManager::detectSurrenderAtPixel(*image, pixel, x, y);
+            if (surrender != NULL) {
+                x = image->imageWidth;
+                y = image->imageHeight;
+            }
+        }
+    }
+
+    if (surrender != NULL) {
+        surrenderAvailable = true;
+        surrenderActive = surrender;
+    } else {
+        surrenderAvailable = false;
+    }
+}
+void DetectionManager::processTrinketActive(ImageData *image) {
+
+    int searchWidth = 10; int searchHeight = 10;
+    Position trinketPos = makePosition(738, 675);
+    //Search for trinket to use
+    GenericObject* trinket = nullptr;
+    for (int x = trinketPos.x; x < trinketPos.x + searchWidth; x++) {
+        for (int y = trinketPos.y; y < trinketPos.y + searchHeight; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            trinket = ItemManager::detectTrinketActiveAtPixel(*image, pixel, x, y);
+            if (trinket != NULL) {
+                x = image->imageWidth;
+                y = image->imageHeight;
+            }
+        }
+    }
+    if (trinket != NULL) {
+        trinketActiveAvailable = true;
+        trinketActive = trinket;
+    } else {
+        trinketActiveAvailable = false;
+    }
+}
+void DetectionManager::processSpellActives(ImageData *image) {
+    int searchWidth = 6; int searchHeight = 6;
+    Position level1Pos = makePosition(346, 672);
+    Position level2Pos = makePosition(393, 672);
+    Position level3Pos = makePosition(440, 672);
+    Position level4Pos = makePosition(488, 672);
+
+    //Search for first level up
+
+    GenericObject* ability = nullptr;
+    for (int x = level1Pos.x; x < level1Pos.x + searchWidth; x++) {
+        for (int y = level1Pos.y; y < level1Pos.y + searchHeight; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            ability = AbilityManager::detectEnabledAbilityAtPixel(*image, pixel, x, y);
+            if (ability != NULL) {
+                x = image->imageWidth;
+                y = image->imageHeight;
+            }
+        }
+    }
+    if (ability != NULL) {
+        spell1ActiveAvailable = true;
+        spell1Active = ability;
+    } else {
+        spell1ActiveAvailable = false;
+    }
+
+    ability = nullptr;
+    for (int x = level2Pos.x; x < level2Pos.x + searchWidth; x++) {
+        for (int y = level2Pos.y; y < level2Pos.y + searchHeight; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            ability = AbilityManager::detectEnabledAbilityAtPixel(*image, pixel, x, y);
+            if (ability != NULL) {
+                x = image->imageWidth;
+                y = image->imageHeight;
+            }
+        }
+    }
+    if (ability != NULL) {
+        spell2ActiveAvailable = true;
+        spell2Active = ability;
+    } else {
+        spell2ActiveAvailable = false;
+    }
+
+    ability = nullptr;
+    for (int x = level3Pos.x; x < level3Pos.x + searchWidth; x++) {
+        for (int y = level3Pos.y; y < level3Pos.y + searchHeight; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            ability = AbilityManager::detectEnabledAbilityAtPixel(*image, pixel, x, y);
+            if (ability != NULL) {
+                x = image->imageWidth;
+                y = image->imageHeight;
+            }
+        }
+    }
+
+    if (ability != NULL) {
+        spell3ActiveAvailable = true;
+        spell3Active = ability;
+    } else {
+        spell3ActiveAvailable = false;
+    }
+
+    ability = nullptr;
+    for (int x = level4Pos.x; x < level4Pos.x + searchWidth; x++) {
+        for (int y = level4Pos.y; y < level4Pos.y + searchHeight; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            ability = AbilityManager::detectEnabledAbilityAtPixel(*image, pixel, x, y);
+            if (ability != NULL) {
+                x = image->imageWidth;
+                y = image->imageHeight;
+            }
+        }
+    }
+
+    if (ability != NULL) {
+        spell4ActiveAvailable = true;
+        spell4Active = ability;
+    } else {
+        spell4ActiveAvailable = false;
+    }
+}
+
+void DetectionManager::processSummonerSpellActives(ImageData *image) {
+    int searchWidth = 6; int searchHeight = 6;
+    Position spell1Pos = makePosition(541, 671);
+    Position spell2Pos = makePosition(577, 671);
+
+    GenericObject* ability = nullptr;
+    for (int x = spell1Pos.x; x < spell1Pos.x + searchWidth; x++) {
+        for (int y = spell1Pos.y; y < spell1Pos.y + searchHeight; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            ability = AbilityManager::detectEnabledSummonerSpellAtPixel(*image, pixel, x, y);
+            if (ability != NULL) {
+                x = image->imageWidth;
+                y = image->imageHeight;
+            }
+        }
+    }
+    if (ability != NULL) {
+        summonerSpell1ActiveAvailable = true;
+        summonerSpell1Active = ability;
+    } else {
+        summonerSpell1ActiveAvailable = false;
+    }
+
+    ability = nullptr;
+    for (int x = spell2Pos.x; x < spell2Pos.x + searchWidth; x++) {
+        for (int y = spell2Pos.y; y < spell2Pos.y + searchHeight; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            ability = AbilityManager::detectEnabledSummonerSpellAtPixel(*image, pixel, x, y);
+            if (ability != NULL) {
+                x = image->imageWidth;
+                y = image->imageHeight;
+            }
+        }
+    }
+
+    if (ability != NULL) {
+        summonerSpell2ActiveAvailable = true;
+        summonerSpell2Active = ability;
+    } else {
+        summonerSpell2ActiveAvailable = false;
+    }
+
+}
+
+void DetectionManager::processSpellLevelDots(ImageData *image) {
+    int searchWidth = 40; int searchHeight = 5;
+    Position levelDot1Pos = makePosition(351, 719);
+    Position levelDot2Pos = makePosition(398, 719);
+    Position levelDot3Pos = makePosition(446, 719);
+    Position levelDot4Pos = makePosition(500, 719);
+
+    for (int x = levelDot1Pos.x; x < levelDot1Pos.x + searchWidth; x++) {
+        for (int y = levelDot1Pos.y; y < levelDot1Pos.y + searchHeight; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            GenericObject* leveldot = AbilityManager::detectLevelDotAtPixel(*image, pixel, x, y);
+            if (leveldot != NULL) {
+                spell1LevelDots->push_back(leveldot);
+                y = levelDot1Pos.y;
+                x += AbilityManager::levelDotImageData.imageWidth;
+            }
+        }
+    }
+
+    for (int x = levelDot2Pos.x; x < levelDot2Pos.x + searchWidth; x++) {
+        for (int y = levelDot2Pos.y; y < levelDot2Pos.y + searchHeight; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            GenericObject* leveldot = AbilityManager::detectLevelDotAtPixel(*image, pixel, x, y);
+            if (leveldot != NULL) {
+                spell2LevelDots->push_back(leveldot);
+                y = levelDot2Pos.y;
+                x += AbilityManager::levelDotImageData.imageWidth;
+            }
+        }
+    }
+
+    for (int x = levelDot3Pos.x; x < levelDot3Pos.x + searchWidth; x++) {
+        for (int y = levelDot3Pos.y; y < levelDot3Pos.y + searchHeight; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            GenericObject* leveldot = AbilityManager::detectLevelDotAtPixel(*image, pixel, x, y);
+            if (leveldot != NULL) {
+                spell3LevelDots->push_back(leveldot);
+                y = levelDot3Pos.y;
+                x += AbilityManager::levelDotImageData.imageWidth;
+            }
+        }
+    }
+
+    for (int x = levelDot4Pos.x; x < levelDot4Pos.x + searchWidth; x++) {
+        for (int y = levelDot4Pos.y; y < levelDot4Pos.y + searchHeight; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            GenericObject* leveldot = AbilityManager::detectLevelDotAtPixel(*image, pixel, x, y);
+            if (leveldot != NULL) {
+                spell4LevelDots->push_back(leveldot);
+                y = levelDot4Pos.y;
+                x += AbilityManager::levelDotImageData.imageWidth;
+            }
+        }
+    }
+    currentLevel = (int)(spell1LevelDots->size() + spell2LevelDots->size() + spell3LevelDots->size() + spell4LevelDots->size());
+}
+
+void DetectionManager::processSpellLevelUps(ImageData *image) {
+    int searchWidth = 10; int searchHeight = 5;
+    Position levelUp1Pos = makePosition(349, 634);
+    Position levelUp2Pos = makePosition(396, 634);
+    Position levelUp3Pos = makePosition(444, 634);
+    Position levelUp4Pos = makePosition(490, 634);
+    GenericObject* levelUp = nullptr;
+    for (int x = levelUp1Pos.x; x < levelUp1Pos.x + searchWidth; x++) {
+        for (int y = levelUp1Pos.y; y < levelUp1Pos.y + searchHeight; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            GenericObject* levelup = AbilityManager::detectLevelUpAtPixel(*image, pixel, x, y);
+            if (levelup != NULL) {
+                levelUp = levelup;
+                x = image->imageWidth;
+                y = image->imageHeight;
+            }
+        }
+    }
+
+    if (levelUp != NULL) {
+        spell1LevelUpAvailable = true;
+        spell1LevelUp = levelUp;
+    } else {
+        spell1LevelUpAvailable = false;
+    }
+
+    levelUp = nullptr;
+    for (int x = levelUp2Pos.x; x < levelUp2Pos.x + searchWidth; x++) {
+        for (int y = levelUp2Pos.y; y < levelUp2Pos.y + searchHeight; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            GenericObject* levelup = AbilityManager::detectLevelUpAtPixel(*image, pixel, x, y);
+            if (levelup != NULL) {
+                levelUp = levelup;
+                x = image->imageWidth;
+                y = image->imageHeight;
+            }
+        }
+    }
+    if (levelUp != NULL) {
+        spell2LevelUpAvailable = true;
+        spell2LevelUp = levelUp;
+    } else {
+        spell2LevelUpAvailable = false;
+    }
+
+    levelUp = nullptr;
+    for (int x = levelUp3Pos.x; x < levelUp3Pos.x + searchWidth; x++) {
+        for (int y = levelUp3Pos.y; y < levelUp3Pos.y + searchHeight; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            GenericObject* levelup = AbilityManager::detectLevelUpAtPixel(*image, pixel, x, y);
+            if (levelup != NULL) {
+                levelUp = levelup;
+                x = image->imageWidth;
+                y = image->imageHeight;
+            }
+        }
+    }
+
+    if (levelUp != NULL) {
+        spell3LevelUpAvailable = true;
+        spell3LevelUp = levelUp;
+    } else {
+        spell3LevelUpAvailable = false;
+    }
+
+    levelUp = nullptr;
+    for (int x = levelUp4Pos.x; x < levelUp4Pos.x + searchWidth; x++) {
+        for (int y = levelUp4Pos.y; y < levelUp4Pos.y + searchHeight; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            GenericObject* levelup = AbilityManager::detectLevelUpAtPixel(*image, pixel, x, y);
+            if (levelup != NULL) {
+                levelUp = levelup;
+                x = image->imageWidth;
+                y = image->imageHeight;
+            }
+        }
+    }
+
+    if (levelUp != NULL) {
+        spell4LevelUpAvailable = true;
+        spell4LevelUp = levelUp;
+    } else {
+        spell4LevelUpAvailable = false;
+    }
+
+}
+
+void DetectionManager::processAllyMinionDetection(ImageData *image) {
+    float leagueGameWidth = image->imageWidth;
+    float leagueGameHeight = image->imageHeight;
+
+    for (int x = 0; x < leagueGameWidth; x++) {
+        for (int y = 0; y < leagueGameHeight; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            Minion* minionBar = AllyMinionManager::detectMinionBarAtPixel(*image, pixel, x, y);
+            if (minionBar != NULL) {
+                allyMinions->push_back(minionBar);
+            }
+        }
+    }
+    AllyMinionManager::validateMinionBars(*image, allyMinions);
+}
+
+void DetectionManager::processEnemyMinionDetection(ImageData *image) {
+    float leagueGameWidth = image->imageWidth;
+    float leagueGameHeight = image->imageHeight;
+
+    for (int x = 0; x < leagueGameWidth; x++) {
+        for (int y = 0; y < leagueGameHeight; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            Minion* minionBar = EnemyMinionManager::detectMinionBarAtPixel(*image, pixel, x, y);
+            if (minionBar != NULL) {
+                enemyMinions->push_back(minionBar);
+            }
+        }
+    }
+    EnemyMinionManager::validateMinionBars(*image, enemyMinions);
+}
+
+void DetectionManager::processEnemyChampionDetection(ImageData *image) {
+    float leagueGameWidth = image->imageWidth;
+    float leagueGameHeight = image->imageHeight;
+
+    for (int x = 0; x < leagueGameWidth; x++) {
+        for (int y = 0; y < leagueGameHeight; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            Champion* championBar = EnemyChampionManager::detectChampionBarAtPixel(*image, pixel, x, y);
+            if (championBar != NULL) {
+                enemyChampions->push_back(championBar);
+            }
+        }
+    }
+    EnemyChampionManager::validateChampionBars(*image, enemyChampions);
+}
+
+void DetectionManager::processAllyChampionDetection(ImageData *image) {
+    float leagueGameWidth = image->imageWidth;
+    float leagueGameHeight = image->imageHeight;
+
+    for (int x = 0; x < leagueGameWidth; x++) {
+        for (int y = 0; y < leagueGameHeight; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            Champion* championBar = AllyChampionManager::detectChampionBarAtPixel(*image, pixel, x, y);
+            if (championBar != NULL) {
+                allyChampions->push_back(championBar);
+            }
+        }
+    }
+    AllyChampionManager::validateChampionBars(*image, allyChampions);
+}
+
+
+void DetectionManager::processEnemyTowerDetection(ImageData *image) {
+    float leagueGameWidth = image->imageWidth;
+    float leagueGameHeight = image->imageHeight;
+
+    for (int x = 0; x < leagueGameWidth; x++) {
+        for (int y = 0; y < leagueGameHeight; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            Tower* towerBar = EnemyTowerManager::detectTowerBarAtPixel(*image, pixel, x, y);
+            if (towerBar != NULL) {
+                enemyTowers->push_back(towerBar);
+            }
+        }
+    }
+    EnemyTowerManager::validateTowerBars(*image, enemyTowers);
+}
+
+void DetectionManager::processSelfChampionDetection(ImageData *image) {
+    float leagueGameWidth = image->imageWidth;
+    float leagueGameHeight = image->imageHeight;
+
+    for (int x = 0; x < leagueGameWidth; x++) {
+        for (int y = 0; y < leagueGameHeight; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            Champion* championBar = SelfChampionManager::detectChampionBarAtPixel(*image, pixel, x, y);
+            if (championBar != NULL) {
+                selfChampions->push_back(championBar);
+            }
+        }
+    }
+    SelfChampionManager::validateChampionBars(*image, selfChampions);
+}
+
+void DetectionManager::processSelfHealthBarDetection(ImageData *image) {
+    Position searchStart = makePosition(300, 728);
+    Position searchEnd = makePosition(320, 748);
+    std::vector<SelfHealth*>* healthBars = new std::vector<SelfHealth*>();
+
+    for (int x = searchStart.x; x < searchEnd.x; x++) {
+        for (int y = searchStart.y; y < searchEnd.y; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            SelfHealth* healthBar = SelfChampionManager::detectSelfHealthBarAtPixel(*image, pixel, x, y);
+            if (healthBar != NULL) {
+                healthBars->push_back(healthBar);
+                x = searchEnd.x;
+                y = searchEnd.y;
+            }
+        }
+    }
+    SelfChampionManager::validateSelfHealthBars(*image, healthBars);
+    if (healthBars->size() > 0) {
+        selfHealthBarVisible = true;
+        selfHealthBar = healthBars->front();
+    } else {
+        selfHealthBarVisible = false;
+    }
+
+}
+
+
+
+
 
 int DetectionManager::getPotionActiveItemSlot() {
     return potionOnActive;
@@ -118,23 +925,22 @@ bool DetectionManager::getSurrenderAvailable() {
 GenericObject* DetectionManager::getSurrender() {
     return surrenderActive;
 }
-//std::vector<Minion>
-std::vector<Minion> DetectionManager::getAllyMinions() {
+std::vector<Minion*>* DetectionManager::getAllyMinions() {
     return allyMinions;
 }
-std::vector<Minion> DetectionManager::getEnemyMinions() {
+std::vector<Minion*>* DetectionManager::getEnemyMinions() {
     return enemyMinions;
 }
-std::vector<Champion> DetectionManager::getAllyChampions() {
+std::vector<Champion*>* DetectionManager::getAllyChampions() {
     return allyChampions;
 }
-std::vector<Champion> DetectionManager::getEnemyChampions() {
+std::vector<Champion*>* DetectionManager::getEnemyChampions() {
     return enemyChampions;
 }
-std::vector<Tower> DetectionManager::getEnemyTowers() {
+std::vector<Tower*>* DetectionManager::getEnemyTowers() {
     return enemyTowers;
 }
-std::vector<Champion> DetectionManager::getSelfChampions() {
+std::vector<Champion*>* DetectionManager::getSelfChampions() {
     return selfChampions;
 }
 bool DetectionManager::getSelfHealthBarVisible() {
@@ -167,16 +973,16 @@ GenericObject* DetectionManager::getSpell3LevelUp() {
 GenericObject* DetectionManager::getSpell4LevelUp() {
     return spell4LevelUp;
 }
-std::vector<GenericObject> DetectionManager::getSpell1LevelDots() {
+std::vector<GenericObject*>* DetectionManager::getSpell1LevelDots() {
     return spell1LevelDots;
 }
-std::vector<GenericObject> DetectionManager::getSpell2LevelDots() {
+std::vector<GenericObject*>* DetectionManager::getSpell2LevelDots() {
     return spell2LevelDots;
 }
-std::vector<GenericObject> DetectionManager::getSpell3LevelDots() {
+std::vector<GenericObject*>* DetectionManager::getSpell3LevelDots() {
     return spell3LevelDots;
 }
-std::vector<GenericObject> DetectionManager::getSpell4LevelDots() {
+std::vector<GenericObject*>* DetectionManager::getSpell4LevelDots() {
     return spell4LevelDots;
 }
 int DetectionManager::getCurrentLevel() {
@@ -290,7 +1096,7 @@ bool DetectionManager::getShopBottomLeftCornerVisible() {
 GenericObject* DetectionManager::getShopBottomleftCorner() {
     return shopBottomLeftCorner;
 }
-std::vector<GenericObject> DetectionManager::getBuyableItems() {
+std::vector<GenericObject*>* DetectionManager::getBuyableItems() {
     return buyableItems;
 }
 bool DetectionManager::getMapVisible() {
@@ -311,2132 +1117,3 @@ bool DetectionManager::getMapLocationVisible() {
 GenericObject* DetectionManager::getMapLocation() {
     return mapSelfLocation;
 }
-
-void DetectionManager::processMap(ImageData image/* , dispatch_group_t dispatchGroup */) {
-    //First we do an immediate map location search
-    //If the map is found them we search for shop and self location
-    
-    Position searchStart = makePosition(image.imageWidth - 200, image.imageHeight - 201);
-    Position searchEnd = makePosition(image.imageWidth - 195, image.imageHeight - 197);
-    
-    int oldMapX = -1;
-    int oldMapY = -1;
-    if (map != nullptr) {
-        oldMapX = map->topLeft.x;
-        oldMapY = map->topLeft.y;
-    }
-    /*
-    //dispatch_group_async(dispatchGroup, mapThread, ^{
-        //@autoreleasepool {
-            //uint64_t startTime = mach_absolute_time();
-            
-            */
-            GenericObject* foundMap = nullptr;
-            GenericObject* foundLocation = nullptr;
-            GenericObject* foundShop = nullptr;
-            
-            if (oldMapX != -1) {
-                uint8_t* pixel = getPixel2(image, oldMapX, oldMapY);
-                foundMap = MapManager::detectMap(image, pixel, oldMapX, oldMapY);
-            }
-            
-            if (foundMap == nullptr) {
-                for (int x = searchStart.x; x < searchEnd.x; x++) {
-                    for (int y = searchStart.y; y < searchEnd.y; y++) {
-                        uint8_t* pixel = getPixel2(image, x, y);
-                        foundMap = MapManager::detectMap(image, pixel, x, y);
-                        if (foundMap != NULL) {
-                            x = searchEnd.x;
-                            y = searchEnd.y;
-                        }
-                    }
-                }
-            }
-            
-            //if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
-                //NSLog(@"Process Map Processing detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
-            //}
-            if (foundMap != NULL) {
-                //uint64_t startTime = mach_absolute_time();
-                //Search for location
-                Position searchStart = makePosition(foundMap->topLeft.x, foundMap->topLeft.y);
-                Position searchEnd = makePosition(image.imageWidth, image.imageHeight);
-                for (int x = searchStart.x; x < searchEnd.x; x++) {
-                    for (int y = searchStart.y; y < searchEnd.y; y++) {
-                        uint8_t* pixel = getPixel2(image, x, y);
-                        foundLocation = MapManager::detectLocation(image, pixel, x, y);
-                        if (foundLocation != NULL) {
-                            x = searchEnd.x;
-                            y = searchEnd.y;
-                        }
-                    }
-                }
-                //if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
-                    //NSLog(@"Process Map location Processing detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
-                //}
-                
-                
-                //startTime = mach_absolute_time();
-                //Search for shop at the bottom left
-                searchStart = makePosition(image.imageWidth - 194, image.imageHeight - 34);
-                searchEnd = makePosition(image.imageWidth - 186, image.imageHeight - 25);
-                for (int x = searchStart.x; x < searchEnd.x; x++) {
-                    for (int y = searchStart.y; y < searchEnd.y; y++) {
-                        uint8_t* pixel = getPixel2(image, x, y);
-                        foundShop = MapManager::detectShop(image, pixel, x, y);
-                        if (foundShop != NULL) {
-                            x = searchEnd.x;
-                            y = searchEnd.y;
-                        }
-                    }
-                }
-                if (foundShop == NULL) {
-                    //Search for shop at top right
-                    searchStart = makePosition(image.imageWidth - 32, image.imageHeight - 192);
-                    searchEnd = makePosition(image.imageWidth - 16, image.imageHeight - 181);
-                    for (int x = searchStart.x; x < searchEnd.x; x++) {
-                        for (int y = searchStart.y; y < searchEnd.y; y++) {
-                            uint8_t* pixel = getPixel2(image, x, y);
-                            foundShop = MapManager::detectShop(image, pixel, x, y);
-                            if (foundShop != NULL) {
-                                x = searchEnd.x;
-                                y = searchEnd.y;
-                            }
-                        }
-                    }
-                }
-                //if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
-                    //NSLog(@"Process Map shop location Processing detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
-                //}
-            }
-            /*
-            if (foundMap != NULL) {
-                //dispatch_async(detectionThread, ^(void){
-                    //@autoreleasepool {
-                        //if (mapDetectionObject != NULL) delete mapDetectionObject;
-                        map = foundMap;
-                    }
-                });
-            }*/
-            
-            ////dispatch_async(detectionThread, ^(void) {
-            //    //@autoreleasepool {
-                    if (foundMap != NULL) {
-                        //if (map != NULL) delete map;
-                        mapVisible = true;
-                        map = foundMap;
-                    } else {
-                        mapVisible = false;
-                    }
-                    if (foundLocation != NULL) {
-                        //if (mapSelfLocation != NULL) delete mapSelfLocation;
-                        mapSelfLocationVisible = true;
-                        mapSelfLocation = foundLocation;
-                    } else {
-                        mapSelfLocationVisible = false;
-                    }
-                    if (foundShop != NULL) {
-                        //if (mapShop != NULL) delete mapShop;
-                        mapShopVisible = true;
-                        mapShop = foundShop;
-                    } else {
-                        mapShopVisible = false;
-                        if (mapShop == NULL) {
-                            mapShop = mapSelfLocation;
-                        }
-                    }
-            //    }
-            //});
-    //    }
-    //});
-}
-//const int shopScanChunksX = 7;
-//const int shopScanChunksY = 7;
-void DetectionManager::processShop(ImageData image/* , dispatch_group_t dispatchGroup */) {
-    //First detect top left corner, but do it as a slow scan
-    
-    //As soon as top left corner is confirmed, do a full scan for bottom left corner
-    
-    //As soon as bottom left corner is confirmed, do a full scan for all items between
-    
-    //Probably the most expensive search if shop is open
-    float leagueGameWidth = image.imageWidth;
-    float leagueGameHeight = image.imageHeight;
-    //CGRect leagueWindowRect = CGRectMake(0, 0, leagueGameWidth, leagueGameHeight);
-    
-    //int scanStartX = 0; int scanStartY = 0;
-    //int scanEndX = leagueGameWidth/2; int scanEndY = leagueGameHeight/2;
-    //int scanWidth = (scanEndX - scanStartX) / shopScanChunksX;
-    //int scanHeight = (scanEndY - scanStartY) / shopScanChunksX;
-    
-    //int framesPassed = (getTimeInMilliseconds(mach_absolute_time() - processShopLastTime)) / 16;
-    //if (framesPassed <= 0) framesPassed = 1;
-    //if (framesPassed > shopScanChunksX * shopScanChunksY) framesPassed = shopScanChunksX * shopScanChunksY;
-    //processShopLastTime = mach_absolute_time();
-    
-    //std::vector<> scanRectangles = [NSMutableArray new];
-    //Increase the scan chunk by 1
-    /*
-    for (int i = 0; i < framesPassed; i++) {
-        shopScanCurrentChunkX += 1;
-        if (shopScanCurrentChunkX >= shopScanChunksX) {
-            shopScanCurrentChunkX = 0;
-            shopScanCurrentChunkY++;
-        }
-        if (shopScanCurrentChunkY >= shopScanChunksY) {
-            shopScanCurrentChunkY = 0;
-        }
-        //Add chunk to scan
-        CGRect scanRect = CGRectMake( scanWidth * shopScanCurrentChunkX + scanStartX ,
-                                     scanHeight * shopScanCurrentChunkY + scanStartY ,
-                                     scanWidth ,
-                                     scanHeight );
-        scanRect = CGRectIntegral(scanRect);
-        scanRect = fitRectangleInRectangle(scanRect, leagueWindowRect);
-        combineRectangles(scanRectangles, scanRect);
-    }
-    
-    //If last seen, add it to the scan
-    if (shopTopLeftCorner != NULL) {
-        CGRect rect = CGRectMake(shopTopLeftCorner->topLeft.x - 5,
-                                 shopTopLeftCorner->topLeft.y - 5,
-                                 10,
-                                 10);
-        rect = CGRectIntegral(rect);
-        rect = fitRectangleInRectangle(rect, leagueWindowRect);
-        combineRectangles(scanRectangles, rect);
-        
-    }
-    */
-    ////dispatch_group_async(dispatchGroup, shopThread, ^{
-    //    //@autoreleasepool {
-            ////uint64_t startTime = mach_absolute_time();
-            
-            
-            GenericObject* topLeftCorner = nullptr;
-            GenericObject* bottomLeftCorner = nullptr;
-            std::vector<GenericObject> itemsCanBuy;
-            //Loop through scan chunks
-            //for (int i = 0; i < [scanRectangles count]; i++) {
-            //    CGRect rect = [[scanRectangles objectAtIndex:i] rectValue];
-                for (int x = 0; x < leagueGameWidth; x++) {
-                    for (int y = 0; y < leagueGameHeight; y++) {
-                        uint8_t* pixel = getPixel2(image, x, y);
-                        topLeftCorner = ShopManager::detectShopTopLeftCorner(image, pixel, x, y);
-                        if (topLeftCorner != NULL) {
-                            //i = (int)[scanRectangles count];
-                            x = leagueGameWidth;
-                            y = leagueGameHeight;
-                        }
-                    }
-                }
-            //}
-            if (topLeftCorner != NULL) {
-                //Scan immediately for bottom left corner
-                for (int x = topLeftCorner->topLeft.x - 5; x < topLeftCorner->topLeft.x + 5; x++) {
-                    for (int y = topLeftCorner->topLeft.y + 500; y < leagueGameHeight; y++) {
-                        uint8_t* pixel = getPixel2(image, x, y);
-                        bottomLeftCorner = ShopManager::detectShopBottomLeftCorner(image, pixel, x, y);
-                        if (bottomLeftCorner != NULL) {
-                            x = topLeftCorner->topLeft.x + 5;
-                            y = leagueGameHeight;
-                        }
-                    }
-                }
-                if (bottomLeftCorner != NULL) {
-                    //Scan immediately for items
-                    Position searchStart = makePosition(topLeftCorner->topLeft.x + 15, topLeftCorner->topLeft.y + 75);
-                    Position searchEnd = makePosition(topLeftCorner->topLeft.x + 400, bottomLeftCorner->topLeft.y - 25 - 60);
-                    for (int x = searchStart.x; x < searchEnd.x; x++) {
-                        for (int y = searchStart.y; y < searchEnd.y; y++) {
-                            uint8_t* pixel = getPixel2(image, x, y);
-                            GenericObject* item = ShopManager::detectBuyableItems(image, pixel, x, y);
-                            if (item != NULL) {
-                                //[itemsCanBuy addObject: item];
-                            }
-                        }
-                    }
-                    //Remove duplicate items
-                    /*
-                    for (int i = 0; i < [itemsCanBuy count]; i++) {
-                        GenericObject* item = [itemsCanBuy objectAtIndex:i];
-                        for (int i2 = 0; i2 < [itemsCanBuy count]; i2++) {
-                            if (i != i2) {
-                                GenericObject* item2 = [itemsCanBuy objectAtIndex:i2];
-                                if (std::abs(item2->topLeft.x - item->topLeft.x) <= 15.0 && std::abs(item2->topLeft.y - item->topLeft.y) <= 15.0) {
-                                    [itemsCanBuy removeObjectAtIndex:i];
-                                    i--;
-                                    break;
-                                }
-                            }
-                        }
-                    }*/
-                }
-            }
-
-                    if (topLeftCorner != NULL) {
-                        shopTopLeftCornerShown = true;
-                        shopTopLeftCorner = topLeftCorner;
-                    } else {
-                        shopTopLeftCornerShown = false;
-                    }
-                    if (bottomLeftCorner != NULL) {
-                        shopBottomLeftCornerShown = true;
-                        shopBottomLeftCorner = bottomLeftCorner;
-                    } else {
-                        shopBottomLeftCornerShown = false;
-                    }
-                    //while (buyableItems.count > 0) {
-                    //    [buyableItems removeLastObject];
-                    //}
-                    buyableItems = itemsCanBuy;
-                //}
-            //});
-        //}
-    //});
-}
-void DetectionManager::processShopAvailable(ImageData image/* , dispatch_group_t dispatchGroup */) {
-    Position searchStart = makePosition(629, 739);
-    Position searchEnd = makePosition(637, 745);
-    ////dispatch_group_async(dispatchGroup, shopAvailableThread, ^{
-    //    //@autoreleasepool {
-            //uint64_t startTime = mach_absolute_time();
-            
-            
-            ////NSLog(@"Searching for shop");
-            GenericObject* shop = nullptr;
-            for (int x = searchStart.x; x < searchEnd.x; x++) {
-                for (int y = searchStart.y; y < searchEnd.y; y++) {
-                    uint8_t* pixel = getPixel2(image, x, y);
-                    shop = ShopManager::detectShopAvailable(image, pixel, x, y);
-                    if (shop != NULL) {
-                        x = searchEnd.x;
-                        y = searchEnd.y;
-                    }
-                }
-            }
-            //if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
-            //    //NSLog(@"Process shop available Processing detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
-            //}
-            ////dispatch_async(detectionThread, ^(void) {
-            //    //@autoreleasepool {
-                    if (shop != NULL) {
-                        //if (shopAvailable != NULL) delete shopAvailable;
-                        shopAvailableShown = true;
-                        shopAvailable = shop;
-                    } else {
-                        shopAvailableShown = false;
-                    }
-            //    }
-            //});
-        //}
-    //});
-}
-void DetectionManager::processUsedPotion(ImageData image/* , dispatch_group_t dispatchGroup */) {
-    //Potion being used
-    //from 400, 620
-    //to 560, 660
-    Position searchStart = makePosition(400, 620);
-    Position searchEnd = makePosition(560, 660);
-    
-    //dispatch_group_async(dispatchGroup, usedPotionThread, ^{
-        //@autoreleasepool {
-            //uint64_t startTime = mach_absolute_time();
-            
-            GenericObject* potionUsed = nullptr;
-            for (int x = searchStart.x; x < searchEnd.x; x++) {
-                for (int y = searchStart.y; y < searchEnd.y; y++) {
-                    uint8_t* pixel = getPixel2(image, x, y);
-                    potionUsed = ItemManager::detectUsedPotionAtPixel(image, pixel, x, y);
-                    if (potionUsed != NULL) {
-                        x = searchEnd.x;
-                        y = searchEnd.y;
-                    }
-                }
-            }
-            //if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
-                //NSLog(@"Process used potion Processing detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
-            //}
-            //dispatch_async(detectionThread, ^(void) {
-                //@autoreleasepool {
-                    if (potionUsed != NULL) {
-                        //if (potionBeingUsed != NULL) delete potionBeingUsed;
-                        potionBeingUsedShown = true;
-                        potionBeingUsed = potionUsed;
-                    } else {
-                        potionBeingUsedShown = false;
-                    }
-                //}
-            //});
-       // }
-    //});
-}
-
-void DetectionManager::processItemActives(ImageData image/* , dispatch_group_t dispatchGroup */) {
-    int searchWidth = 6; int searchHeight = 6;
-    Position item1Pos = makePosition(632, 672);
-    Position item2Pos = makePosition(666, 672);
-    Position item3Pos = makePosition(700, 672);
-    Position item4Pos = makePosition(632, 705);
-    Position item5Pos = makePosition(667, 705);
-    Position item6Pos = makePosition(701, 705);
-    
-    potionActiveAvailable = false;
-    
-    //Search for item 1 and if it is a potion
-    //dispatch_group_async(dispatchGroup, itemActive1Thread, ^{
-        //@autoreleasepool {
-            ////uint64_t startTime = mach_absolute_time();
-            GenericObject* item = nullptr;
-            GenericObject* potion = nullptr;
-            for (int x = item1Pos.x; x < item1Pos.x + searchWidth; x++) {
-                for (int y = item1Pos.y; y < item1Pos.y + searchHeight; y++) {
-                    uint8_t* pixel = getPixel2(image, x, y);
-                    if (item == NULL) {
-                        item = ItemManager::detectItemActiveAtPixel(image, pixel, x, y);
-                    }
-                    if (potion == NULL) {
-                        potion = ItemManager::detectPotionActiveAtPixel(image, pixel, x, y);
-                    }
-                    if (potion != NULL && item != NULL) {
-                        x = image.imageWidth; y = image.imageHeight;
-                    }
-                }
-            }
-            
-            //dispatch_async(detectionThread, ^(void) {
-                //@autoreleasepool {
-                    if (item != NULL) {
-                        //if (item1Active != NULL) delete item1Active;
-                        item1ActiveAvailable = true;
-                        item1Active = item;
-                    } else {
-                        item1ActiveAvailable = false;
-                    }
-                    if (potion != NULL) {
-                        //if (potionActive != NULL) delete potionActive;
-                        potionActiveAvailable = true;
-                        potionActive = potion;
-                        potionOnActive = 1;
-                    }
-            //    }
-            //});
-            //if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
-            ////NSLog(@"Processing item actives 1 detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
-            //}
-    //    }
-    //});
-    
-    //Search for item 2 and if it is a potion
-    //dispatch_group_async(dispatchGroup, itemActive2Thread, ^{
-        //@autoreleasepool {
-            ////uint64_t startTime = mach_absolute_time();
-             item = nullptr;
-             potion = nullptr;
-            for (int x = item2Pos.x; x < item2Pos.x + searchWidth; x++) {
-                for (int y = item2Pos.y; y < item2Pos.y + searchHeight; y++) {
-                    uint8_t* pixel = getPixel2(image, x, y);
-                    if (item == NULL) {
-                        item = ItemManager::detectItemActiveAtPixel(image, pixel, x, y);
-                    }
-                    if (potion == NULL) {
-                        potion = ItemManager::detectPotionActiveAtPixel(image, pixel, x, y);
-                    }
-                    if (potion != NULL && item != NULL) {
-                        x = image.imageWidth; y = image.imageHeight;
-                    }
-                }
-            }
-            
-            //dispatch_async(detectionThread, ^(void) {
-                //@autoreleasepool {
-                    if (item != NULL) {
-                        //if (item2Active != NULL) delete item2Active;
-                        item2ActiveAvailable = true;
-                        item2Active = item;
-                    } else {
-                        item2ActiveAvailable = false;
-                    }
-                    if (potion != NULL) {
-                        //if (potionActive != NULL) delete potionActive;
-                        potionActiveAvailable = true;
-                        potionActive = potion;
-                        potionOnActive = 2;
-                    }
-              //  }
-            //});
-            //if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
-            ////NSLog(@"Processing item actives 2 detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
-            //}
-      //  }
-    //});
-    
-    //Search for item 3 and if it is a potion
-    //dispatch_group_async(dispatchGroup, itemActive3Thread, ^{
-        //@autoreleasepool {
-            ////uint64_t startTime = mach_absolute_time();
-             item = nullptr;
-             potion = nullptr;
-            for (int x = item3Pos.x; x < item3Pos.x + searchWidth; x++) {
-                for (int y = item3Pos.y; y < item3Pos.y + searchHeight; y++) {
-                    uint8_t* pixel = getPixel2(image, x, y);
-                    if (item == NULL) {
-                        item = ItemManager::detectItemActiveAtPixel(image, pixel, x, y);
-                    }
-                    if (potion == NULL) {
-                        potion = ItemManager::detectPotionActiveAtPixel(image, pixel, x, y);
-                    }
-                    if (potion != NULL && item != NULL) {
-                        x = image.imageWidth; y = image.imageHeight;
-                    }
-                }
-            }
-            
-            //dispatch_async(detectionThread, ^(void) {
-                //@autoreleasepool {
-                    if (item != NULL) {
-                        //if (item3Active != NULL) delete item3Active;
-                        item3ActiveAvailable = true;
-                        item3Active = item;
-                    } else {
-                        item3ActiveAvailable = false;
-                    }
-                    if (potion != NULL) {
-                        //if (potionActive != NULL) delete potionActive;
-                        potionActiveAvailable = true;
-                        potionActive = potion;
-                        potionOnActive = 3;
-                    }
-            //    }
-            //});//if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
-            ////NSLog(@"Processing item actives 3 detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
-            //}
-     //   }
-   // });
-    
-    //Search for item 4 and if it is a potion
-    //dispatch_group_async(dispatchGroup, itemActive4Thread, ^{
-        //@autoreleasepool {
-            ////uint64_t startTime = mach_absolute_time();
-             item = nullptr;
-             potion = nullptr;
-            for (int x = item4Pos.x; x < item4Pos.x + searchWidth; x++) {
-                for (int y = item4Pos.y; y < item4Pos.y + searchHeight; y++) {
-                    uint8_t* pixel = getPixel2(image, x, y);
-                    if (item == NULL) {
-                        item = ItemManager::detectItemActiveAtPixel(image, pixel, x, y);
-                    }
-                    if (potion == NULL) {
-                        potion = ItemManager::detectPotionActiveAtPixel(image, pixel, x, y);
-                    }
-                    if (potion != NULL && item != NULL) {
-                        x = image.imageWidth; y = image.imageHeight;
-                    }
-                }
-            }
-            //dispatch_async(detectionThread, ^(void) {
-                //@autoreleasepool {
-                    if (item != NULL) {
-                        //if (item4Active != NULL) delete item4Active;
-                        item4ActiveAvailable = true;
-                        item4Active = item;
-                    } else {
-                        item4ActiveAvailable = false;
-                    }
-                    if (potion != NULL) {
-                        //if (potionActive != NULL) delete potionActive;
-                        potionActiveAvailable = true;
-                        potionActive = potion;
-                        potionOnActive = 4;
-                    }
-              //  }
-            //});
-            //if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
-            ////NSLog(@"Processing item actives 4 detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
-            //}
-      //  }
-    //});
-    
-    //Search for item 5 and if it is a potion
-    //dispatch_group_async(dispatchGroup, itemActive5Thread, ^{
-        //@autoreleasepool {
-            ////uint64_t startTime = mach_absolute_time();
-             item = nullptr;
-             potion = nullptr;
-            for (int x = item5Pos.x; x < item5Pos.x + searchWidth; x++) {
-                for (int y = item5Pos.y; y < item5Pos.y + searchHeight; y++) {
-                    uint8_t* pixel = getPixel2(image, x, y);
-                    if (item == NULL) {
-                        item = ItemManager::detectItemActiveAtPixel(image, pixel, x, y);
-                    }
-                    if (potion == NULL) {
-                        potion = ItemManager::detectPotionActiveAtPixel(image, pixel, x, y);
-                    }
-                    if (potion != NULL && item != NULL) {
-                        x = image.imageWidth; y = image.imageHeight;
-                    }
-                }
-            }
-            //dispatch_async(detectionThread, ^(void) {
-                //@autoreleasepool {
-                    if (item != NULL) {
-                        //if (item5Active != NULL) delete item5Active;
-                        item5ActiveAvailable = true;
-                        item5Active = item;
-                    } else {
-                        item5ActiveAvailable = false;
-                    }
-                    if (potion != NULL) {
-                        //if (potionActive != NULL) delete potionActive;
-                        potionActiveAvailable = true;
-                        potionActive = potion;
-                        potionOnActive = 5;
-                    }
-              //  }
-            //});
-            //if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
-            ////NSLog(@"Processing item actives 5 detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
-            //}
-     //   }
-   // });
-    
-    //Search for item 6 and if it is a potion
-    //dispatch_group_async(dispatchGroup, itemActive6Thread, ^{
-        //@autoreleasepool {
-            ////uint64_t startTime = mach_absolute_time();
-             item = nullptr;
-             potion = nullptr;
-            for (int x = item6Pos.x; x < item6Pos.x + searchWidth; x++) {
-                for (int y = item6Pos.y; y < item6Pos.y + searchHeight; y++) {
-                    uint8_t* pixel = getPixel2(image, x, y);
-                    if (item == NULL) {
-                        item = ItemManager::detectItemActiveAtPixel(image, pixel, x, y);
-                    }
-                    if (potion == NULL) {
-                        potion = ItemManager::detectPotionActiveAtPixel(image, pixel, x, y);
-                    }
-                    if (potion != NULL && item != NULL) {
-                        x = image.imageWidth; y = image.imageHeight;
-                    }
-                }
-            }
-            //dispatch_async(detectionThread, ^(void) {
-                //@autoreleasepool {
-                    if (item != NULL) {
-                        //if (item6Active != NULL) delete item6Active;
-                        item6ActiveAvailable = true;
-                        item6Active = item;
-                    } else {
-                        item6ActiveAvailable = false;
-                    }
-                    if (potion != NULL) {
-                        //if (potionActive != NULL) delete potionActive;
-                        potionActiveAvailable = true;
-                        potionActive = potion;
-                        potionOnActive = 6;
-                    }
-             //   }
-           // });
-            //if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
-            ////NSLog(@"Processing item actives 6 detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
-            //}
-     //   }
-   // });
-}
-void DetectionManager::processSurrender(ImageData image/* , dispatch_group_t dispatchGroup */) {
-    
-    int searchWidth = 30; int searchHeight = 30;
-    Position surrenderPos = makePosition(image.imageWidth - 210, image.imageHeight - 370);
-    //Search for trinket to use
-    //dispatch_group_async(dispatchGroup, surrenderThread, ^{
-        //@autoreleasepool {
-            
-            GenericObject* surrender = nullptr;
-            for (int x = surrenderPos.x; x < surrenderPos.x + searchWidth; x++) {
-                for (int y = surrenderPos.y; y < surrenderPos.y + searchHeight; y++) {
-                    uint8_t* pixel = getPixel2(image, x, y);
-                    surrender = SurrenderManager::detectSurrenderAtPixel(image, pixel, x, y);
-                    if (surrender != NULL) {
-                        x = image.imageWidth;
-                        y = image.imageHeight;
-                    }
-                }
-            }
-            //dispatch_async(detectionThread, ^(void) {
-                //@autoreleasepool {
-                    if (surrender != NULL) {
-                        surrenderAvailable = true;
-                        surrenderActive = surrender;
-                    } else {
-                        surrenderAvailable = false;
-                    }
-         //       }
-       //     });
-     //   }
-   // });
-}
-void DetectionManager::processTrinketActive(ImageData image/* , dispatch_group_t dispatchGroup */) {
-    
-    int searchWidth = 10; int searchHeight = 10;
-    Position trinketPos = makePosition(738, 675);
-    //Search for trinket to use
-    //dispatch_group_async(dispatchGroup, trinketActiveThread, ^{
-        //@autoreleasepool {
-            
-            //uint64_t startTime = mach_absolute_time();
-            GenericObject* trinket = nullptr;
-            for (int x = trinketPos.x; x < trinketPos.x + searchWidth; x++) {
-                for (int y = trinketPos.y; y < trinketPos.y + searchHeight; y++) {
-                    uint8_t* pixel = getPixel2(image, x, y);
-                    trinket = ItemManager::detectTrinketActiveAtPixel(image, pixel, x, y);
-                    if (trinket != NULL) {
-                        x = image.imageWidth;
-                        y = image.imageHeight;
-                    }
-                }
-            }
-            //if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
-                //NSLog(@"Process trinket active Processing detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
-            //}
-            //dispatch_async(detectionThread, ^(void) {
-                //@autoreleasepool {
-                    if (trinket != NULL) {
-                        //if (trinketActive != NULL) delete trinketActive;
-                        trinketActiveAvailable = true;
-                        trinketActive = trinket;
-                    } else {
-                        trinketActiveAvailable = false;
-                    }
-                //}
-         //   });
-      ///  }
-    //});
-}
-void DetectionManager::processSpellActives(ImageData image/* , dispatch_group_t dispatchGroup */) {
-    int searchWidth = 6; int searchHeight = 6;
-    Position level1Pos = makePosition(346, 672);
-    Position level2Pos = makePosition(393, 672);
-    Position level3Pos = makePosition(440, 672);
-    Position level4Pos = makePosition(488, 672);
-    
-    //Search for first level up
-    //dispatch_group_async(dispatchGroup, spell1ActiveThread, ^{
-        //@autoreleasepool {
-            //uint64_t startTime = mach_absolute_time();
-            
-            GenericObject* ability = nullptr;
-            for (int x = level1Pos.x; x < level1Pos.x + searchWidth; x++) {
-                for (int y = level1Pos.y; y < level1Pos.y + searchHeight; y++) {
-                    uint8_t* pixel = getPixel2(image, x, y);
-                    ability = AbilityManager::detectEnabledAbilityAtPixel(image, pixel, x, y);
-                    if (ability != NULL) {
-                        x = image.imageWidth;
-                        y = image.imageHeight;
-                    }
-                }
-            }
-          //  if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
-                //NSLog(@"Process spell actives Processing detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
-          //  }
-            //dispatch_async(detectionThread, ^(void) {
-                //@autoreleasepool {
-                    if (ability != NULL) {
-                        //if (spell1Active != NULL) delete spell1Active;
-                        spell1ActiveAvailable = true;
-                        spell1Active = ability;
-                    } else {
-                        spell1ActiveAvailable = false;
-                    }
-          //      }
-        //    });
-      //  }
-    //});
-    
-    //Search for second level up
-    //dispatch_group_async(dispatchGroup, spell2ActiveThread, ^{
-        //@autoreleasepool {
-            //uint64_t startTime = mach_absolute_time();
-             ability = nullptr;
-            for (int x = level2Pos.x; x < level2Pos.x + searchWidth; x++) {
-                for (int y = level2Pos.y; y < level2Pos.y + searchHeight; y++) {
-                    uint8_t* pixel = getPixel2(image, x, y);
-                    ability = AbilityManager::detectEnabledAbilityAtPixel(image, pixel, x, y);
-                    if (ability != NULL) {
-                        x = image.imageWidth;
-                        y = image.imageHeight;
-                    }
-                }
-            }
-            //if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
-                //NSLog(@"Process spell 2 actives Processing detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
-            //}
-            //dispatch_async(detectionThread, ^(void) {
-                //@autoreleasepool {
-                    if (ability != NULL) {
-                        //if (spell2Active != NULL) delete spell2Active;
-                        spell2ActiveAvailable = true;
-                        spell2Active = ability;
-                    } else {
-                        spell2ActiveAvailable = false;
-                    }
-          //      }
-        //    });
-      //  }
-    //});
-    
-    //Search for third level up
-    //dispatch_group_async(dispatchGroup, spell3ActiveThread, ^{
-        //@autoreleasepool {
-            //uint64_t startTime = mach_absolute_time();
-             ability = nullptr;
-            for (int x = level3Pos.x; x < level3Pos.x + searchWidth; x++) {
-                for (int y = level3Pos.y; y < level3Pos.y + searchHeight; y++) {
-                    uint8_t* pixel = getPixel2(image, x, y);
-                    ability = AbilityManager::detectEnabledAbilityAtPixel(image, pixel, x, y);
-                    if (ability != NULL) {
-                        x = image.imageWidth;
-                        y = image.imageHeight;
-                    }
-                }
-            }
-            //if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
-                //NSLog(@"Process spell 2 actives Processing detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
-           // }
-            //dispatch_async(detectionThread, ^(void) {
-                //@autoreleasepool {
-                    if (ability != NULL) {
-                        //if (spell3Active != NULL) delete spell3Active;
-                        spell3ActiveAvailable = true;
-                        spell3Active = ability;
-                    } else {
-                        spell3ActiveAvailable = false;
-                    }
-          //      }
-        //    });
-      //  }
-    //});
-    
-    //Search for fourth level up
-    //dispatch_group_async(dispatchGroup, spell4ActiveThread, ^{
-        //@autoreleasepool {
-            //uint64_t startTime = mach_absolute_time();
-             ability = nullptr;
-            for (int x = level4Pos.x; x < level4Pos.x + searchWidth; x++) {
-                for (int y = level4Pos.y; y < level4Pos.y + searchHeight; y++) {
-                    uint8_t* pixel = getPixel2(image, x, y);
-                    ability = AbilityManager::detectEnabledAbilityAtPixel(image, pixel, x, y);
-                    if (ability != NULL) {
-                        x = image.imageWidth;
-                        y = image.imageHeight;
-                    }
-                }
-            }
-           // if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
-                //NSLog(@"Process spell 2 actives Processing detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
-           // }
-            //dispatch_async(detectionThread, ^(void) {
-                //@autoreleasepool {
-                    if (ability != NULL) {
-                        //if (spell4Active != NULL) delete spell4Active;
-                        spell4ActiveAvailable = true;
-                        spell4Active = ability;
-                    } else {
-                        spell4ActiveAvailable = false;
-                    }
-         //       }
-     //       });
-       // }
-   // });
-}
-
-void DetectionManager::processSummonerSpellActives(ImageData image/* , dispatch_group_t dispatchGroup */) {
-    int searchWidth = 6; int searchHeight = 6;
-    Position spell1Pos = makePosition(541, 671);
-    Position spell2Pos = makePosition(577, 671);
-    
-    //Search for first summoner spell
-    //dispatch_group_async(dispatchGroup, summonerSpell1ActiveThread, ^{
-        //@autoreleasepool {
-            //uint64_t startTime = mach_absolute_time();
-            GenericObject* ability = nullptr;
-            for (int x = spell1Pos.x; x < spell1Pos.x + searchWidth; x++) {
-                for (int y = spell1Pos.y; y < spell1Pos.y + searchHeight; y++) {
-                    uint8_t* pixel = getPixel2(image, x, y);
-                    ability = AbilityManager::detectEnabledSummonerSpellAtPixel(image, pixel, x, y);
-                    if (ability != NULL) {
-                        x = image.imageWidth;
-                        y = image.imageHeight;
-                    }
-                }
-            }
-            //if (getTimeInMilliseconds(mach_absolute_time() - startTime)* 2 > longAlert) {
-                //NSLog(@"Processing summoner spell actives Processing detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
-            //}
-            //dispatch_async(detectionThread, ^(void) {
-                //@autoreleasepool {
-                    if (ability != NULL) {
-                        //if (summonerSpell1Active != NULL) delete summonerSpell1Active;
-                        summonerSpell1ActiveAvailable = true;
-                        summonerSpell1Active = ability;
-                    } else {
-                        summonerSpell1ActiveAvailable = false;
-                    }
-          //      }
-        //    });
-      //  }
-    //});
-    
-    //Search for second summoner spell
-    //dispatch_group_async(dispatchGroup, summonerSpell2ActiveThread, ^{
-        //@autoreleasepool {
-             ability = nullptr;
-            for (int x = spell2Pos.x; x < spell2Pos.x + searchWidth; x++) {
-                for (int y = spell2Pos.y; y < spell2Pos.y + searchHeight; y++) {
-                    uint8_t* pixel = getPixel2(image, x, y);
-                    ability = AbilityManager::detectEnabledSummonerSpellAtPixel(image, pixel, x, y);
-                    if (ability != NULL) {
-                        x = image.imageWidth;
-                        y = image.imageHeight;
-                    }
-                }
-            }
-            //dispatch_async(detectionThread, ^(void) {
-                //@autoreleasepool {
-                    if (ability != NULL) {
-                        //if (summonerSpell2Active != NULL) delete summonerSpell2Active;
-                        summonerSpell2ActiveAvailable = true;
-                        summonerSpell2Active = ability;
-                    } else {
-                        summonerSpell2ActiveAvailable = false;
-                    }
-        //        }
-       //     });
-     //   }
-   // });
-    
-}
-
-void DetectionManager::processSpellLevelDots(ImageData image/* , dispatch_group_t dispatchGroup */) {
-    int searchWidth = 40; int searchHeight = 5;
-    Position levelDot1Pos = makePosition(351, 719);
-    Position levelDot2Pos = makePosition(398, 719);
-    Position levelDot3Pos = makePosition(446, 719);
-    Position levelDot4Pos = makePosition(500, 719);
-    
-    //Search for level up dots
-    //dispatch_group_async(dispatchGroup, levelUpDotsThread, ^{
-        //@autoreleasepool {
-            //uint64_t startTime = mach_absolute_time();
-            std::vector<GenericObject> level1Dots;// = [NSMutableArray new];
-            for (int x = levelDot1Pos.x; x < levelDot1Pos.x + searchWidth; x++) {
-                for (int y = levelDot1Pos.y; y < levelDot1Pos.y + searchHeight; y++) {
-                    uint8_t* pixel = getPixel2(image, x, y);
-                    GenericObject* leveldot = AbilityManager::detectLevelDotAtPixel(image, pixel, x, y);
-                    if (leveldot != NULL) {
-                        //[level1Dots addObject: leveldot];
-                        y = levelDot1Pos.y;
-                        x += AbilityManager::levelDotImageData.imageWidth;
-                    }
-                }
-            }
-            
-            std::vector<GenericObject> level2Dots;// = [NSMutableArray new];
-            for (int x = levelDot2Pos.x; x < levelDot2Pos.x + searchWidth; x++) {
-                for (int y = levelDot2Pos.y; y < levelDot2Pos.y + searchHeight; y++) {
-                    uint8_t* pixel = getPixel2(image, x, y);
-                    GenericObject* leveldot = AbilityManager::detectLevelDotAtPixel(image, pixel, x, y);
-                    if (leveldot != NULL) {
-                        //[level2Dots addObject: leveldot];
-                        y = levelDot2Pos.y;
-                        x += AbilityManager::levelDotImageData.imageWidth;
-                    }
-                }
-            }
-            
-            std::vector<GenericObject> level3Dots;// = [NSMutableArray new];
-            for (int x = levelDot3Pos.x; x < levelDot3Pos.x + searchWidth; x++) {
-                for (int y = levelDot3Pos.y; y < levelDot3Pos.y + searchHeight; y++) {
-                    uint8_t* pixel = getPixel2(image, x, y);
-                    GenericObject* leveldot = AbilityManager::detectLevelDotAtPixel(image, pixel, x, y);
-                    if (leveldot != NULL) {
-                        //[level3Dots addObject: leveldot];
-                        y = levelDot3Pos.y;
-                        x += AbilityManager::levelDotImageData.imageWidth;
-                    }
-                }
-            }
-            
-            std::vector<GenericObject> level4Dots;// = [NSMutableArray new];
-            for (int x = levelDot4Pos.x; x < levelDot4Pos.x + searchWidth; x++) {
-                for (int y = levelDot4Pos.y; y < levelDot4Pos.y + searchHeight; y++) {
-                    uint8_t* pixel = getPixel2(image, x, y);
-                    GenericObject* leveldot = AbilityManager::detectLevelDotAtPixel(image, pixel, x, y);
-                    if (leveldot != NULL) {
-                        //[level4Dots addObject: leveldot];
-                        y = levelDot4Pos.y;
-                        x += AbilityManager::levelDotImageData.imageWidth;
-                    }
-                }
-            }
-            //if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
-                //NSLog(@"Process level up dots Processing detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
-            //}
-            
-            //dispatch_async(detectionThread, ^(void) {
-                //@autoreleasepool {
-
-    /*
-                    while (spell1LevelDots.count > 0) {
-                        [spell1LevelDots removeLastObject];
-                    }
-                    while (spell2LevelDots.count > 0) {
-                        [spell2LevelDots removeLastObject];
-                    }
-                    while (spell3LevelDots.count > 0) {
-                        [spell3LevelDots removeLastObject];
-                    }
-                    while (spell4LevelDots.count > 0) {
-                        [spell4LevelDots removeLastObject];
-                    }*/
-                    spell1LevelDots = level1Dots;
-                    spell2LevelDots = level2Dots;
-                    spell3LevelDots = level3Dots;
-                    spell4LevelDots = level4Dots;
-                   // currentLevel = (int)(spell1LevelDots.count + spell2LevelDots.count + spell3LevelDots.count + spell4LevelDots.count);
-          //      }
-        //    });
-      //  }
-    //});
-    
-}
-
-void DetectionManager::processSpellLevelUps(ImageData image/* , dispatch_group_t dispatchGroup */) {
-    //If we assume our screen is 1280x800, we can look in specific places
-    //Width = 10, Height = 5
-    //465, 660
-    //515, 660
-    //565, 660
-    //615, 660
-    int searchWidth = 10; int searchHeight = 5;
-    Position levelUp1Pos = makePosition(349, 634);
-    Position levelUp2Pos = makePosition(396, 634);
-    Position levelUp3Pos = makePosition(444, 634);
-    Position levelUp4Pos = makePosition(490, 634);
-    
-    //Search for first level up
-    //dispatch_group_async(dispatchGroup, spell1LevelUpThread, ^{
-        //@autoreleasepool {
-            //uint64_t startTime = mach_absolute_time();
-            GenericObject* levelUp = nullptr;
-            for (int x = levelUp1Pos.x; x < levelUp1Pos.x + searchWidth; x++) {
-                for (int y = levelUp1Pos.y; y < levelUp1Pos.y + searchHeight; y++) {
-                    uint8_t* pixel = getPixel2(image, x, y);
-                    GenericObject* levelup = AbilityManager::detectLevelUpAtPixel(image, pixel, x, y);
-                    if (levelup != NULL) {
-                        levelUp = levelup;
-                        x = image.imageWidth;
-                        y = image.imageHeight;
-                    }
-                }
-            }
-            //if (getTimeInMilliseconds(mach_absolute_time() - startTime)*4 > longAlert) {
-                //NSLog(@"Process spell level ups Processing detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
-            //}
-            //dispatch_async(detectionThread, ^(void) {
-                //@autoreleasepool {
-                    if (levelUp != NULL) {
-                        //if (spell1LevelUp != NULL) delete spell1LevelUp;
-                        spell1LevelUpAvailable = true;
-                        spell1LevelUp = levelUp;
-                    } else {
-                        spell1LevelUpAvailable = false;
-                    }
-    //            }
-    //        });
-    //    }
-    //});
-    
-    //Search for second level up
-    //dispatch_group_async(dispatchGroup, spell2LevelUpThread, ^{
-        //@autoreleasepool {
-             levelUp = nullptr;
-            for (int x = levelUp2Pos.x; x < levelUp2Pos.x + searchWidth; x++) {
-                for (int y = levelUp2Pos.y; y < levelUp2Pos.y + searchHeight; y++) {
-                    uint8_t* pixel = getPixel2(image, x, y);
-                    GenericObject* levelup = AbilityManager::detectLevelUpAtPixel(image, pixel, x, y);
-                    if (levelup != NULL) {
-                        levelUp = levelup;
-                        x = image.imageWidth;
-                        y = image.imageHeight;
-                    }
-                }
-            }
-            //dispatch_async(detectionThread, ^(void) {
-                //@autoreleasepool {
-                    if (levelUp != NULL) {
-                        //if (spell2LevelUp != NULL) delete spell2LevelUp;
-                        spell2LevelUpAvailable = true;
-                        spell2LevelUp = levelUp;
-                    } else {
-                        spell2LevelUpAvailable = false;
-                    }
-          //      }
-        //    });
-      //  }
-    //});
-    
-    //Search for third level up
-    //dispatch_group_async(dispatchGroup, spell3LevelUpThread, ^{
-        //@autoreleasepool {
-             levelUp = nullptr;
-            for (int x = levelUp3Pos.x; x < levelUp3Pos.x + searchWidth; x++) {
-                for (int y = levelUp3Pos.y; y < levelUp3Pos.y + searchHeight; y++) {
-                    uint8_t* pixel = getPixel2(image, x, y);
-                    GenericObject* levelup = AbilityManager::detectLevelUpAtPixel(image, pixel, x, y);
-                    if (levelup != NULL) {
-                        levelUp = levelup;
-                        x = image.imageWidth;
-                        y = image.imageHeight;
-                    }
-                }
-            }
-            //dispatch_async(detectionThread, ^(void) {
-                //@autoreleasepool {
-                    if (levelUp != NULL) {
-                        //if (spell3LevelUp != NULL) delete spell3LevelUp;
-                        spell3LevelUpAvailable = true;
-                        spell3LevelUp = levelUp;
-                    } else {
-                        spell3LevelUpAvailable = false;
-                    }
-        //        }
-          //  });
-      //  }
-    //});
-    
-    //Search for fourth level up
-    //dispatch_group_async(dispatchGroup, spell4LevelUpThread, ^{
-        //@autoreleasepool {
-             levelUp = nullptr;
-            for (int x = levelUp4Pos.x; x < levelUp4Pos.x + searchWidth; x++) {
-                for (int y = levelUp4Pos.y; y < levelUp4Pos.y + searchHeight; y++) {
-                    uint8_t* pixel = getPixel2(image, x, y);
-                    GenericObject* levelup = AbilityManager::detectLevelUpAtPixel(image, pixel, x, y);
-                    if (levelup != NULL) {
-                        levelUp = levelup;
-                        x = image.imageWidth;
-                        y = image.imageHeight;
-                    }
-                }
-            }
-            //dispatch_async(detectionThread, ^(void) {
-                //@autoreleasepool {
-                    if (levelUp != NULL) {
-                        //if (spell4LevelUp != NULL) delete spell4LevelUp;
-                        spell4LevelUpAvailable = true;
-                        spell4LevelUp = levelUp;
-                    } else {
-                        spell4LevelUpAvailable = false;
-                    }
-        //        }
-       //  /   });
-     //   }
-   // });
-}
-
-//Make it scan a chunk each frame
-//const int allyMinionScanChunksX = 8; //36 frames until full scan. Full scan at 60fps is 0.6 seconds.
-//const int allyMinionScanChunksY = 10;
-//const float allyMinionFrameMove = 80.0; //Assume minions can move 80 pixels in 1 frames
-void DetectionManager::processAllyMinionDetection(ImageData image/* , dispatch_group_t dispatchGroup */) {
-    float leagueGameWidth = image.imageWidth;
-    float leagueGameHeight = image.imageHeight;
-    //CGRect leagueWindowRect = CGRectMake(0, 0, leagueGameWidth, leagueGameHeight);
-    
-    
-    
-    
-    /*
-    int scanStartX = 0; int scanStartY = 0;
-    int scanEndX = leagueGameWidth; int scanEndY = leagueGameHeight;
-    int scanWidth = (scanEndX - scanStartX) / allyMinionScanChunksX;
-    int scanHeight = (scanEndY - scanStartY) / allyMinionScanChunksY;
-    
-    int framesPassed = (getTimeInMilliseconds(mach_absolute_time() - processAllyMinionLastTime)) / 16;
-    if (framesPassed <= 0) framesPassed = 1;
-    if (framesPassed > allyMinionScanChunksX * allyMinionScanChunksY) framesPassed = allyMinionScanChunksX * allyMinionScanChunksY;
-    if (framesPassed > 24) framesPassed = 24;
-    
-    std::vector<> scanRectangles = [NSMutableArray new];
-    //Increase the scan chunk by 1
-    for (int i = 0; i < framesPassed; i++) {
-        allyMinionScanCurrentChunkX += 1;
-        if (allyMinionScanCurrentChunkX >= allyMinionScanChunksX) {
-            allyMinionScanCurrentChunkX = 0;
-            allyMinionScanCurrentChunkY++;
-        }
-        if (allyMinionScanCurrentChunkY >= allyMinionScanChunksY) {
-            allyMinionScanCurrentChunkY = 0;
-        }
-        //Add chunk to scan
-        CGRect scanRect = CGRectMake( scanWidth * allyMinionScanCurrentChunkX + scanStartX ,
-                                     scanHeight * allyMinionScanCurrentChunkY + scanStartY ,
-                                     scanWidth ,
-                                     scanHeight );
-        scanRect = CGRectIntegral(scanRect);
-        scanRect = fitRectangleInRectangle(scanRect, leagueWindowRect);
-        combineRectangles(scanRectangles, scanRect);
-    }
-    
-    */
-    
-    
-    //Why not scan certain sections in intervals?
-    //I know it takes about 80 ms for a full scan.
-    //I want to keep it to 1 ms scan time per frame.
-    //So I need to split the screen into 49 sections and scan one section each frame. Plus where minions already are.
-    //A full screen scan happens every 0.8longAlert66666666667 seconds
-    
-    //Increase the scan chunk by 1
-    /*
-    allyMinionScanCurrentChunkX += 1;
-    if (allyMinionScanCurrentChunkX >= allyMinionScanChunksX) {
-        allyMinionScanCurrentChunkX = 0;
-        allyMinionScanCurrentChunkY++;
-    }
-    if (allyMinionScanCurrentChunkY >= allyMinionScanChunksY) {
-        allyMinionScanCurrentChunkY = 0;
-    }
-    std::vector<> scanRectangles = [NSMutableArray new];
-     
-    //Add chunk to scan
-    CGRect scanRect = CGRectMake( leagueGameWidth * allyMinionScanCurrentChunkX / allyMinionScanChunksX ,
-                                 leagueGameHeight * allyMinionScanCurrentChunkY / allyMinionScanChunksY ,
-                                 leagueGameWidth * 1 / allyMinionScanChunksX ,
-                                 leagueGameHeight * 1 / allyMinionScanChunksY );
-    scanRect = CGRectIntegral(scanRect);
-    scanRect = fitRectangleInRectangle(scanRect, leagueWindowRect);
-    combineRectangles(scanRectangles, scanRect);
-     */
-    //Add previous minions to scan
-
-    /*
-    for (int i = 0; i < [allyMinions count]; i++) {
-        Minion* minion = [allyMinions objectAtIndex:i];
-        CGRect rect = CGRectMake(minion->topLeft.x - allyMinionFrameMove*framesPassed,
-                                 minion->topLeft.y - allyMinionFrameMove*framesPassed,
-                                 minion->bottomRight.x - minion->topLeft.x + allyMinionFrameMove*framesPassed*2,
-                                 minion->bottomRight.y - minion->topLeft.y + allyMinionFrameMove*framesPassed*2);
-        rect = CGRectIntegral(rect);
-        rect = fitRectangleInRectangle(rect, leagueWindowRect);
-        combineRectangles(scanRectangles, rect);
-    }*/
-    
-    //dispatch_group_async(dispatchGroup, allyMinionThread, ^{
-        //@autoreleasepool {
-            //uint64_t startTime = mach_absolute_time();
-            std::vector<Minion> minionBars;// = [NSMutableArray new];
-            //Loop through scan chunks
-            //for (int i = 0; i < [scanRectangles count]; i++) {
-            //    CGRect rect = [[scanRectangles objectAtIndex:i] rectValue];
-                for (int x = 0; x < leagueGameWidth; x++) {
-                    for (int y = 0; y < leagueGameHeight; y++) {
-                        uint8_t* pixel = getPixel2(image, x, y);
-                        Minion* minionBar = AllyMinionManager::detectMinionBarAtPixel(image, pixel, x, y);
-                        if (minionBar != NULL) {
-                            minionBars.push_back(*minionBar);
-                            //[minionBars addObject: minionBar];
-                        }
-                    }
-                }
-            //}
-            minionBars = AllyMinionManager::validateMinionBars(image, minionBars);
-            
-            //if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
-                //NSLog(@"Process ally minions Processing detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
-            //}
-            /*
-            //dispatch_async(detectionThread, ^(void){
-                //@autoreleasepool {
-                    while (allyMinionsDetectionObject.count > 0) {
-                        //Minion* minion = allyMinionsDetectionObject.lastObject;
-                        //delete minion;
-                        [allyMinionsDetectionObject removeLastObject];
-                    }
-                    for (int i = 0; i < minionBars.count; i++) {
-                        Minion* minion = [minionBars objectAtIndex:i];
-                        [allyMinionsDetectionObject addObject:minion];
-                    }
-                }
-            });*/
-            //dispatch_async(detectionThread, ^(void) {
-                //@autoreleasepool {
-
-    /*
-                    while (allyMinions.count > 0) {
-                        //Minion* minion = allyMinions.lastObject;
-                        //delete minion;
-                        [allyMinions removeLastObject];
-                    }
-                    [allyMinions addObjectsFromArray:minionBars];
-                    processAllyMinionLastTime = mach_absolute_time();
-                    */
-                    allyMinions = minionBars;
-          //      }
-        //    });
-      //  }
-    //});
-}
-
-//const int enemyMinionScanChunksX = 8; //36 frames until full scan. Full scan at 60fps is 0.6 seconds.
-//const int enemyMinionScanChunksY = 8;
-//const float enemyMinionFrameMove = 80.0; //Assume minions can move 80 pixels in 1 frames
-void DetectionManager::processEnemyMinionDetection(ImageData image/* , dispatch_group_t dispatchGroup */) {
-    float leagueGameWidth = image.imageWidth;
-    float leagueGameHeight = image.imageHeight;
-    //CGRect leagueWindowRect = CGRectMake(0, 0, leagueGameWidth, leagueGameHeight);
-    
-    
-    
-    /*
-    int scanStartX = 0; int scanStartY = 0;
-    int scanEndX = leagueGameWidth; int scanEndY = leagueGameHeight;
-    int scanWidth = (scanEndX - scanStartX) / enemyMinionScanChunksX;
-    int scanHeight = (scanEndY - scanStartY) / enemyMinionScanChunksY;
-    
-    int framesPassed = (getTimeInMilliseconds(mach_absolute_time() - processEnemyMinionLastTime)) / 16;
-    if (framesPassed <= 0) framesPassed = 1;
-    if (framesPassed > enemyMinionScanChunksX * enemyMinionScanChunksY) framesPassed = enemyMinionScanChunksX * enemyMinionScanChunksY;
-    if (framesPassed > 24) framesPassed = 24;
-    
-    std::vector<> scanRectangles = [NSMutableArray new];
-    //Increase the scan chunk by 1
-    for (int i = 0; i < framesPassed; i++) {
-        enemyMinionScanCurrentChunkX += 1;
-        if (enemyMinionScanCurrentChunkX >= enemyMinionScanChunksX) {
-            enemyMinionScanCurrentChunkX = 0;
-            enemyMinionScanCurrentChunkY++;
-        }
-        if (enemyMinionScanCurrentChunkY >= enemyMinionScanChunksY) {
-            enemyMinionScanCurrentChunkY = 0;
-        }
-        //Add chunk to scan
-        CGRect scanRect = CGRectMake( scanWidth * enemyMinionScanCurrentChunkX + scanStartX ,
-                                     scanHeight * enemyMinionScanCurrentChunkY + scanStartY ,
-                                     scanWidth ,
-                                     scanHeight );
-        scanRect = CGRectIntegral(scanRect);
-        scanRect = fitRectangleInRectangle(scanRect, leagueWindowRect);
-        combineRectangles(scanRectangles, scanRect);
-    }
-    */
-    
-    
-    
-    //Why not scan certain sections in intervals?
-    //I know it takes about 80 ms for a full scan.
-    //I want to keep it to 1 ms scan time per frame.
-    //So I need to split the screen into 49 sections and scan one section each frame. Plus where minions already are.
-    //A full screen scan happens every 0.8longAlert66666666667 seconds
-    
-    //Increase the scan chunk by 1
-    /*
-    enemyMinionScanCurrentChunkX += 1;
-    if (enemyMinionScanCurrentChunkX >= enemyMinionScanChunksX) {
-        enemyMinionScanCurrentChunkX = 0;
-        enemyMinionScanCurrentChunkY++;
-    }
-    if (enemyMinionScanCurrentChunkY >= enemyMinionScanChunksY) {
-        enemyMinionScanCurrentChunkY = 0;
-    }
-    std::vector<> scanRectangles = [NSMutableArray new];
-    //Add chunk to scan
-    CGRect scanRect = CGRectMake( leagueGameWidth * enemyMinionScanCurrentChunkX / enemyMinionScanChunksX ,
-                                 leagueGameHeight * enemyMinionScanCurrentChunkY / enemyMinionScanChunksY ,
-                                 leagueGameWidth * 1 / enemyMinionScanChunksX ,
-                                 leagueGameHeight * 1 / enemyMinionScanChunksY );
-    scanRect = CGRectIntegral(scanRect);
-    scanRect = fitRectangleInRectangle(scanRect, leagueWindowRect);
-    combineRectangles(scanRectangles, scanRect);
-     */
-    
-    //MyLog(@"Enemy minion rectangles 1:\n");
-    //for (int i = 0; i < [scanRectangles count]; i++) {
-    //    CGRect rect = [[scanRectangles objectAtIndex:i] rectValue];
-    //    MyLog(@"\t X: %f, Y: %f, Width: %f, Height: %f\n", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
-    //}
-     
-    //Add previous minions to scan
-    /*
-    for (int i = 0; i < [enemyMinions count]; i++) {
-        Minion* minion = [enemyMinions objectAtIndex:i];
-        CGRect rect = CGRectMake(minion->topLeft.x - enemyMinionFrameMove*framesPassed,
-                                 minion->topLeft.y - enemyMinionFrameMove*framesPassed,
-                                 minion->bottomRight.x - minion->topLeft.x + enemyMinionFrameMove*framesPassed*2,
-                                 minion->bottomRight.y - minion->topLeft.y + enemyMinionFrameMove*framesPassed*2);
-        rect = CGRectIntegral(rect);
-        rect = fitRectangleInRectangle(rect, leagueWindowRect);
-        combineRectangles(scanRectangles, rect);
-    }*/
-    
-    ////NSLog(@"Enemy minion rectangles 2:");
-    //for (int i = 0; i < [scanRectangles count]; i++) {
-    //    CGRect rect = [[scanRectangles objectAtIndex:i] rectValue];
-    //    //NSLog(@"\t X: %f, Y: %f, Width: %f, Height: %f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
-    //}
-    
-    
-    //dispatch_group_async(dispatchGroup, enemyMinionThread, ^{
-        //@autoreleasepool {
-            //uint64_t startTime = mach_absolute_time();
-            std::vector<Minion> minionBars;// = [NSMutableArray new];
-            //Loop through scan chunks
-            //for (int i = 0; i < [scanRectangles count]; i++) {
-            //    CGRect rect = [[scanRectangles objectAtIndex:i] rectValue];
-                for (int x = 0; x < leagueGameWidth; x++) {
-                    for (int y = 0; y < leagueGameHeight; y++) {
-                        uint8_t* pixel = getPixel2(image, x, y);
-                        Minion* minionBar = EnemyMinionManager::detectMinionBarAtPixel(image, pixel, x, y);
-                        if (minionBar != NULL) {
-                            minionBars.push_back(*minionBar);
-                            //[minionBars addObject: minionBar];
-                        }
-                    }
-                }
-            //}
-           // //NSLog(@"Found %d possible minions");
-            minionBars = EnemyMinionManager::validateMinionBars(image, minionBars);
-            enemyMinions = minionBars;
-            
-            //if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
-                //NSLog(@"Process enemy minions Processing detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
-            //}/*
-            //dispatch_async(detectionThread, ^(void){
-                //@autoreleasepool {
-    /*
-                    while (enemyMinionsDetectionObject.count > 0) {
-                        //Minion* minion = enemyMinionsDetectionObject.lastObject;
-                        //delete minion;
-                        [enemyMinionsDetectionObject removeLastObject];
-                    }
-                    for (int i = 0; i < minionBars.count; i++) {
-                        Minion* minion = [minionBars objectAtIndex:i];
-                        [enemyMinionsDetectionObject addObject:minion];
-                    }
-                }
-                */
-            //});
-            //dispatch_async(detectionThread, ^(void) {
-                //@autoreleasepool {
-    /*
-                    while (enemyMinions.count > 0) {
-                        //Minion* minion = enemyMinions.lastObject;
-                        //delete minion;
-                        [enemyMinions removeLastObject];
-                    }
-                    [enemyMinions addObjectsFromArray:minionBars];
-                    processEnemyMinionLastTime = mach_absolute_time();
-                    */
-          //      }
-        //    });
-      //  }
-    //});
-}
-
-//const int enemyChampionScanChunksX = 2; //36 frames until full scan. Full scan at 60fps is 0.6 seconds.
-//const int enemyChampionScanChunksY = 4;
-//const float enemyChampionFrameMove = 80.0; //Assume Champions can move 80 pixels in 1 frames
-void DetectionManager::processEnemyChampionDetection(ImageData image/* , dispatch_group_t dispatchGroup */) {
-    float leagueGameWidth = image.imageWidth;
-    float leagueGameHeight = image.imageHeight;
-    //CGRect leagueWindowRect = CGRectMake(0, 0, leagueGameWidth, leagueGameHeight);
-    
-    /*
-    int scanStartX = 0; int scanStartY = 0;
-    int scanEndX = leagueGameWidth; int scanEndY = leagueGameHeight;
-    int scanWidth = (scanEndX - scanStartX) / enemyChampionScanChunksX;
-    int scanHeight = (scanEndY - scanStartY) / enemyChampionScanChunksY;
-    
-    int framesPassed = (getTimeInMilliseconds(mach_absolute_time() - processEnemyChampionLastTime)) / 16;
-    if (framesPassed <= 0) framesPassed = 1;
-    if (framesPassed > enemyChampionScanChunksX * enemyChampionScanChunksY) framesPassed = enemyChampionScanChunksX * enemyChampionScanChunksY;
-    if (framesPassed > 24) framesPassed = 24;
-    
-    std::vector<> scanRectangles = [NSMutableArray new];
-    //Increase the scan chunk by 1
-    for (int i = 0; i < framesPassed; i++) {
-        enemyChampionScanCurrentChunkX += 1;
-        if (enemyChampionScanCurrentChunkX >= enemyChampionScanChunksX) {
-            enemyChampionScanCurrentChunkX = 0;
-            enemyChampionScanCurrentChunkY++;
-        }
-        if (enemyChampionScanCurrentChunkY >= enemyChampionScanChunksY) {
-            enemyChampionScanCurrentChunkY = 0;
-        }
-        //Add chunk to scan
-        CGRect scanRect = CGRectMake( scanWidth * enemyChampionScanCurrentChunkX + scanStartX ,
-                                     scanHeight * enemyChampionScanCurrentChunkY + scanStartY ,
-                                     scanWidth ,
-                                     scanHeight );
-        scanRect = CGRectIntegral(scanRect);
-        scanRect = fitRectangleInRectangle(scanRect, leagueWindowRect);
-        combineRectangles(scanRectangles, scanRect);
-    }
-    */
-    
-    //Why not scan certain sections in intervals?
-    //I know it takes about 80 ms for a full scan.
-    //I want to keep it to 1 ms scan time per frame.
-    //So I need to split the screen into 49 sections and scan one section each frame. Plus where Champions already are.
-    //A full screen scan happens every 0.81666666666667 seconds
-    
-    //Increase the scan chunk by 1
-   /*
-    enemyChampionScanCurrentChunkX += 1;
-    if (enemyChampionScanCurrentChunkX >= enemyChampionScanChunksX) {
-        enemyChampionScanCurrentChunkX = 0;
-        enemyChampionScanCurrentChunkY++;
-    }
-    if (enemyChampionScanCurrentChunkY >= enemyChampionScanChunksY) {
-        enemyChampionScanCurrentChunkY = 0;
-    }
-    std::vector<> scanRectangles = [NSMutableArray new];
-    //Add chunk to scan
-    CGRect scanRect = CGRectMake( leagueGameWidth * enemyChampionScanCurrentChunkX / enemyChampionScanChunksX ,
-                                 leagueGameHeight * enemyChampionScanCurrentChunkY / enemyChampionScanChunksY ,
-                                 leagueGameWidth * 1 / enemyChampionScanChunksX ,
-                                 leagueGameHeight * 1 / enemyChampionScanChunksY );
-    scanRect = CGRectIntegral(scanRect);
-    scanRect = fitRectangleInRectangle(scanRect, leagueWindowRect);
-    combineRectangles(scanRectangles, scanRect);
-    */
-    /*
-    //Add previous Champions to scan
-    for (int i = 0; i < [enemyChampions count]; i++) {
-        Champion* Champion = [enemyChampions objectAtIndex:i];
-        CGRect rect = CGRectMake(Champion->topLeft.x - enemyChampionFrameMove*framesPassed,
-                                 Champion->topLeft.y - enemyChampionFrameMove*framesPassed,
-                                 Champion->bottomRight.x - Champion->topLeft.x + enemyChampionFrameMove*framesPassed*2,
-                                 Champion->bottomRight.y - Champion->topLeft.y + enemyChampionFrameMove*framesPassed*2);
-        rect = CGRectIntegral(rect);
-        rect = fitRectangleInRectangle(rect, leagueWindowRect);
-        combineRectangles(scanRectangles, rect);
-    }*/
-    
-    //dispatch_group_async(dispatchGroup, enemyChampionThread, ^{
-        //@autoreleasepool {
-            //uint64_t startTime = mach_absolute_time();
-            std::vector<Champion> championBars;// = [NSMutableArray new];
-            //Loop through scan chunks
-            //for (int i = 0; i < [scanRectangles count]; i++) {
-            //    CGRect rect = [[scanRectangles objectAtIndex:i] rectValue];
-                for (int x = 0; x < leagueGameWidth; x++) {
-                    for (int y = 0; y < leagueGameHeight; y++) {
-                        uint8_t* pixel = getPixel2(image, x, y);
-                        Champion* ChampionBar = EnemyChampionManager::detectChampionBarAtPixel(image, pixel, x, y);
-                        if (ChampionBar != NULL) {
-                            championBars.push_back(*ChampionBar);
-                            /*
-                            CGRect rect = CGRectMake(ChampionBar->topLeft.x - 5, ChampionBar->topLeft.y - 5, ChampionBar->bottomRight.x - ChampionBar->topLeft.x + 10, ChampionBar->bottomRight.y - ChampionBar->topLeft.y + 10);
-                            rect = CGRectIntegral(rect);
-                            rect = fitRectangleInRectangle(rect, leagueWindowRect);
-                            combineRectangles(scanRectangles, rect);
-                            [ChampionBars addObject: ChampionBar];
-                             */
-                        }
-                    }
-                }
-            //}
-            championBars = EnemyChampionManager::validateChampionBars(image, championBars);
-            enemyChampions = championBars;
-            
-            //if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
-                ////NSLog(@"Process enemy champions Processing detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
-            //}/*
-            //dispatch_async(detectionThread, ^(void){
-                //@autoreleasepool {
-    /*
-                    while (enemyChampionsDetectionObject.count > 0) {
-                        //Champion* champ = enemyChampionsDetectionObject.lastObject;
-                        //delete champ;
-                        [enemyChampionsDetectionObject removeLastObject];
-                    }
-                    for (int i = 0; i < ChampionBars.count; i++) {
-                        Champion* champ = [ChampionBars objectAtIndex:i];
-                        [enemyChampionsDetectionObject addObject:champ];
-                    }
-                }*/
-            //});
-            //dispatch_async(detectionThread, ^(void) {
-                //@autoreleasepool {
-    /*
-                    while (enemyChampions.count > 0) {
-                        //Champion* champ = (Champion*)[enemyChampions.lastObject;
-                        //delete champ;
-                        [enemyChampions removeLastObject];
-                    }
-                    [enemyChampions addObjectsFromArray:ChampionBars];
-                    processEnemyChampionLastTime = mach_absolute_time();
-                    */
-          //      }
-        //    });
-      //  }
-    //});
-}
-
-//const int allyChampionScanChunksX = 5; //36 frames until full scan. Full scan at 60fps is 0.6 seconds.
-//const int allyChampionScanChunksY = 24;
-//const float allyChampionFrameMove = 80.0; //Assume Champions can move 80 pixels in 1 frames
-void DetectionManager::processAllyChampionDetection(ImageData image/* , dispatch_group_t dispatchGroup */) {
-    float leagueGameWidth = image.imageWidth;
-    float leagueGameHeight = image.imageHeight;
-    //CGRect leagueWindowRect = CGRectMake(0, 0, leagueGameWidth, leagueGameHeight);
-    
-    
-    /*
-    int scanStartX = 0; int scanStartY = 0;
-    int scanEndX = leagueGameWidth; int scanEndY = leagueGameHeight;
-    int scanWidth = (scanEndX - scanStartX) / allyChampionScanChunksX;
-    int scanHeight = (scanEndY - scanStartY) / allyChampionScanChunksY;
-    
-    int framesPassed = (getTimeInMilliseconds(mach_absolute_time() - processAllyChampionLastTime)) / 16;
-    if (framesPassed <= 0) framesPassed = 1;
-    if (framesPassed > allyChampionScanChunksX * allyChampionScanChunksY) framesPassed = allyChampionScanChunksX * allyChampionScanChunksY;
-    if (framesPassed > 24) framesPassed = 24;
-    
-    std::vector<> scanRectangles = [NSMutableArray new];
-    //Increase the scan chunk by 1
-    for (int i = 0; i < framesPassed; i++) {
-        allyChampionScanCurrentChunkX += 1;
-        if (allyChampionScanCurrentChunkX >= allyChampionScanChunksX) {
-            allyChampionScanCurrentChunkX = 0;
-            allyChampionScanCurrentChunkY++;
-        }
-        if (allyChampionScanCurrentChunkY >= allyChampionScanChunksY) {
-            allyChampionScanCurrentChunkY = 0;
-        }
-        //Add chunk to scan
-        CGRect scanRect = CGRectMake( scanWidth * allyChampionScanCurrentChunkX + scanStartX ,
-                                     scanHeight * allyChampionScanCurrentChunkY + scanStartY ,
-                                     scanWidth ,
-                                     scanHeight );
-        scanRect = CGRectIntegral(scanRect);
-        scanRect = fitRectangleInRectangle(scanRect, leagueWindowRect);
-        combineRectangles(scanRectangles, scanRect);
-    }
-    
-    
-    */
-    //Why not scan certain sections in intervals?
-    //I know it takes about 80 ms for a full scan.
-    //I want to keep it to 1 ms scan time per frame.
-    //So I need to split the screen into 49 sections and scan one section each frame. Plus where Champions already are.
-    //A full screen scan happens every 0.81666666666667 seconds
-    
-    //Increase the scan chunk by 1
-    /*
-    allyChampionScanCurrentChunkX += 1;
-    if (allyChampionScanCurrentChunkX >= allyChampionScanChunksX) {
-        allyChampionScanCurrentChunkX = 0;
-        allyChampionScanCurrentChunkY++;
-    }
-    if (allyChampionScanCurrentChunkY >= allyChampionScanChunksY) {
-        allyChampionScanCurrentChunkY = 0;
-    }
-    std::vector<> scanRectangles = [NSMutableArray new];
-    //Add chunk to scan
-    CGRect scanRect = CGRectMake( leagueGameWidth * allyChampionScanCurrentChunkX / allyChampionScanChunksX ,
-                                 leagueGameHeight * allyChampionScanCurrentChunkY / allyChampionScanChunksY ,
-                                 leagueGameWidth * 1 / allyChampionScanChunksX ,
-                                 leagueGameHeight * 1 / allyChampionScanChunksY );
-    scanRect = CGRectIntegral(scanRect);
-    scanRect = fitRectangleInRectangle(scanRect, leagueWindowRect);
-    combineRectangles(scanRectangles, scanRect);
-     
-     */
-    
-    //Add previous Champions to scan
-    /*
-    for (int i = 0; i < [allyChampions count]; i++) {
-        Champion* Champion = [allyChampions objectAtIndex:i];
-        CGRect rect = CGRectMake(Champion->topLeft.x - allyChampionFrameMove*framesPassed,
-                                 Champion->topLeft.y - allyChampionFrameMove*framesPassed,
-                                 Champion->bottomRight.x - Champion->topLeft.x + allyChampionFrameMove*framesPassed*2,
-                                 Champion->bottomRight.y - Champion->topLeft.y + allyChampionFrameMove*framesPassed*2);
-        rect = CGRectIntegral(rect);
-        rect = fitRectangleInRectangle(rect, leagueWindowRect);
-        combineRectangles(scanRectangles, rect);
-    }*/
-    
-    //dispatch_group_async(dispatchGroup, allyChampionThread, ^{
-        //@autoreleasepool {
-            //uint64_t startTime = mach_absolute_time();
-            std::vector<Champion> championBars;// = [NSMutableArray new];
-            //Loop through scan chunks
-            //for (int i = 0; i < [scanRectangles count]; i++) {
-            //    CGRect rect = [[scanRectangles objectAtIndex:i] rectValue];
-                for (int x = 0; x < leagueGameWidth; x++) {
-                    for (int y = 0; y < leagueGameHeight; y++) {
-                        uint8_t* pixel = getPixel2(image, x, y);
-                        Champion* ChampionBar = AllyChampionManager::detectChampionBarAtPixel(image, pixel, x, y);
-                        if (ChampionBar != NULL) {
-                            championBars.push_back(*ChampionBar);
-                            //Add extra rectangle to scan
-                            /*
-                            CGRect rect = CGRectMake(ChampionBar->topLeft.x - 5, ChampionBar->topLeft.y - 5, ChampionBar->bottomRight.x - ChampionBar->topLeft.x + 10, ChampionBar->bottomRight.y - ChampionBar->topLeft.y + 10);
-                            rect = CGRectIntegral(rect);
-                            rect = fitRectangleInRectangle(rect, leagueWindowRect);
-                            combineRectangles(scanRectangles, rect);
-                            [ChampionBars addObject: ChampionBar];
-                             */
-                        }
-                    }
-                }
-            //}
-            championBars = AllyChampionManager::validateChampionBars(image, championBars);
-            allyChampions = championBars;
-            
-            //if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
-                //NSLog(@"Process ally champions Processing detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
-            //}
-    //
-    /*
-            //dispatch_async(detectionThread, ^(void){
-                //@autoreleasepool {
-                    while (allyChampionsDetectionObject.count > 0) {
-                        //Champion* champ = (Champion*)[allyChampionsDetectionObject.lastObject;
-                        //delete champ;
-                        [allyChampionsDetectionObject removeLastObject];
-                    }
-                    for (int i = 0; i < ChampionBars.count; i++) {
-                        Champion* champ = [ChampionBars objectAtIndex:i];
-                        [allyChampionsDetectionObject addObject:champ];
-                    }
-                }
-            });*/
-            //dispatch_async(detectionThread, ^(void) {
-                //@autoreleasepool {
-    /*
-                    while (allyChampions.count > 0) {
-                        //Champion* champ = allyChampions.lastObject;
-                        //delete champ;
-                        [allyChampions removeLastObject];
-                    }
-                    [allyChampions addObjectsFromArray:ChampionBars];
-                    processAllyChampionLastTime = mach_absolute_time();
-                }*/
-      //      });
-    //    }
-    //});
-}
-
-//const int enemyTowerScanChunksX = 4; //36 frames until full scan. Full scan at 60fps is 0.6 seconds.
-//const int enemyTowerScanChunksY = 8;
-//const float enemyTowerFrameMove = 80.0; //Assume Towers can move 80 pixels in 1 frames
-void DetectionManager::processEnemyTowerDetection(ImageData image/* , dispatch_group_t dispatchGroup */) {
-    float leagueGameWidth = image.imageWidth;
-    float leagueGameHeight = image.imageHeight;
-    //CGRect leagueWindowRect = CGRectMake(0, 0, leagueGameWidth, leagueGameHeight);
-    
-    
-    
-    /*
-    int scanStartX = 0; int scanStartY = 0;
-    int scanEndX = leagueGameWidth; int scanEndY = leagueGameHeight;
-    int scanWidth = (scanEndX - scanStartX) / enemyTowerScanChunksX;
-    int scanHeight = (scanEndY - scanStartY) / enemyTowerScanChunksY;
-    
-    int framesPassed = (getTimeInMilliseconds(mach_absolute_time() - processEnemyTowerLastTime)) / 16;
-    if (framesPassed <= 0) framesPassed = 1;
-    if (framesPassed > enemyTowerScanChunksX * enemyTowerScanChunksY) framesPassed = enemyTowerScanChunksX * enemyTowerScanChunksY;
-    if (framesPassed > 24) framesPassed = 24;
-    
-    std::vector<> scanRectangles = [NSMutableArray new];
-    //Increase the scan chunk by 1
-    for (int i = 0; i < framesPassed; i++) {
-        enemyTowerScanCurrentChunkX += 1;
-        if (enemyTowerScanCurrentChunkX >= enemyTowerScanChunksX) {
-            enemyTowerScanCurrentChunkX = 0;
-            enemyTowerScanCurrentChunkY++;
-        }
-        if (enemyTowerScanCurrentChunkY >= enemyTowerScanChunksY) {
-            enemyTowerScanCurrentChunkY = 0;
-        }
-        //Add chunk to scan
-        CGRect scanRect = CGRectMake( scanWidth * enemyTowerScanCurrentChunkX + scanStartX ,
-                                     scanHeight * enemyTowerScanCurrentChunkY + scanStartY ,
-                                     scanWidth ,
-                                     scanHeight );
-        scanRect = CGRectIntegral(scanRect);
-        scanRect = fitRectangleInRectangle(scanRect, leagueWindowRect);
-        combineRectangles(scanRectangles, scanRect);
-    }
-    
-    */
-    
-    //Why not scan certain sections in intervals?
-    //I know it takes about 80 ms for a full scan.
-    //I want to keep it to 1 ms scan time per frame.
-    //So I need to split the screen into 49 sections and scan one section each frame. Plus where Towers already are.
-    //A full screen scan happens every 0.81666666666667 seconds
-    
-    //Increase the scan chunk by 1
-    /*
-    enemyTowerScanCurrentChunkX += 1;
-    if (enemyTowerScanCurrentChunkX >= enemyTowerScanChunksX) {
-        enemyTowerScanCurrentChunkX = 0;
-        enemyTowerScanCurrentChunkY++;
-    }
-    if (enemyTowerScanCurrentChunkY >= enemyTowerScanChunksY) {
-        enemyTowerScanCurrentChunkY = 0;
-    }
-    std::vector<> scanRectangles = [NSMutableArray new];
-    //Add chunk to scan
-    CGRect scanRect = CGRectMake( leagueGameWidth * enemyTowerScanCurrentChunkX / enemyTowerScanChunksX ,
-                                 leagueGameHeight * enemyTowerScanCurrentChunkY / enemyTowerScanChunksY ,
-                                 leagueGameWidth * 1 / enemyTowerScanChunksX ,
-                                 leagueGameHeight * 1 / enemyTowerScanChunksY );
-    scanRect = CGRectIntegral(scanRect);
-    scanRect = fitRectangleInRectangle(scanRect, leagueWindowRect);
-    combineRectangles(scanRectangles, scanRect);
-     */
-    //Add previous Towers to scan
-    /*
-    for (int i = 0; i < [enemyTowers count]; i++) {
-        Tower* Tower = [enemyTowers objectAtIndex:i];
-        CGRect rect = CGRectMake(Tower->topLeft.x - enemyTowerFrameMove*framesPassed,
-                                 Tower->topLeft.y - enemyTowerFrameMove*framesPassed,
-                                 Tower->bottomRight.x - Tower->topLeft.x + enemyTowerFrameMove*framesPassed*2,
-                                 Tower->bottomRight.y - Tower->topLeft.y + enemyTowerFrameMove*framesPassed*2);
-        rect = CGRectIntegral(rect);
-        rect = fitRectangleInRectangle(rect, leagueWindowRect);
-        combineRectangles(scanRectangles, rect);
-    }
-    */
-    //dispatch_group_async(dispatchGroup, enemyTowerThread, ^{
-        //@autoreleasepool {
-            //uint64_t startTime = mach_absolute_time();
-            std::vector<Tower> TowerBars;// = [NSMutableArray new];
-            //Loop through scan chunks
-            //for (int i = 0; i < [scanRectangles count]; i++) {
-            //    CGRect rect = [[scanRectangles objectAtIndex:i] rectValue];
-                for (int x = 0; x < leagueGameWidth; x++) {
-                    for (int y = 0; y < leagueGameHeight; y++) {
-                        uint8_t* pixel = getPixel2(image, x, y);
-                        Tower* TowerBar = EnemyTowerManager::detectTowerBarAtPixel(image, pixel, x, y);
-                        if (TowerBar != NULL) {
-                            TowerBars.push_back(*TowerBar);
-                            //Add extra rectangle to scan
-                            //CGRect rect = CGRectMake(TowerBar->topLeft.x - 5, TowerBar->topLeft.y - 5, TowerBar->bottomRight.x - TowerBar->topLeft.x + 10, TowerBar->bottomRight.y - TowerBar->topLeft.y + 10);
-                            //rect = CGRectIntegral(rect);
-                            //rect = fitRectangleInRectangle(rect, leagueWindowRect);
-                            //combineRectangles(scanRectangles, rect);
-                            //[TowerBars addObject: TowerBar];
-                        }
-                    }
-                }
-            //}
-            TowerBars = EnemyTowerManager::validateTowerBars(image, TowerBars);
-            enemyTowers = TowerBars;
-            
-            //if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
-                //NSLog(@"Process enemy tower Processing detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
-            //}
-/*
-            //dispatch_async(detectionThread, ^(void){
-                //@autoreleasepool {
-                    while (enemyTowersDetectionObject.count > 0) {
-                        //Tower* tower = (Tower*)[enemyTowersDetectionObject.lastObject;
-                        //delete tower;
-                        [enemyTowersDetectionObject removeLastObject];
-                    }
-                    for (int i = 0; i < TowerBars.count; i++) {
-                        Tower* tower = [TowerBars objectAtIndex:i];
-                        [enemyTowersDetectionObject addObject:tower];
-                    }
-                }
-            });*/
-            //dispatch_async(detectionThread, ^(void) {
-                //@autoreleasepool {
-/*
-                    while (enemyTowers.count > 0) {
-                        //Tower* tower = (Tower*)[enemyTowers.lastObject;
-                        //delete tower;
-                        [enemyTowers removeLastObject];
-                    }
-                    [enemyTowers addObjectsFromArray:TowerBars];
-                    processEnemyTowerLastTime = mach_absolute_time();
-                    */
-          //      }
-        //    });
-      //  }
-    //});
-}
-
-//const int selfChampionScanChunksX = 14; //36 frames until full scan. Full scan at 60fps is 0.6 seconds.
-//const int selfChampionScanChunksY = 24;
-//const float SelfChampionFrameMove = 80.0; //Assume Champions can move 80 pixels in 1 frames
-void DetectionManager::processSelfChampionDetection(ImageData image/* , dispatch_group_t dispatchGroup */) {
-    float leagueGameWidth = image.imageWidth;
-    float leagueGameHeight = image.imageHeight;
-    //CGRect leagueWindowRect = CGRectMake(0, 0, leagueGameWidth, leagueGameHeight);
-    
-    
-    
-    /*
-    int scanStartX = 0; int scanStartY = 0;
-    int scanEndX = leagueGameWidth; int scanEndY = leagueGameHeight;
-    int scanWidth = (scanEndX - scanStartX) / selfChampionScanChunksX;
-    int scanHeight = (scanEndY - scanStartY) / selfChampionScanChunksY;
-    
-    int framesPassed = (getTimeInMilliseconds(mach_absolute_time() - processSelfChampionLastTime)) / 16;
-    if (framesPassed <= 0) framesPassed = 1;
-    if (framesPassed > selfChampionScanChunksX * selfChampionScanChunksY) framesPassed = selfChampionScanChunksX * selfChampionScanChunksY;
-    if (framesPassed > 24) framesPassed = 24;
-    
-    std::vector<> scanRectangles = [NSMutableArray new];
-    //Increase the scan chunk by 1
-    for (int i = 0; i < framesPassed; i++) {
-        selfChampionScanCurrentChunkX += 1;
-        if (selfChampionScanCurrentChunkX >= selfChampionScanChunksX) {
-            selfChampionScanCurrentChunkX = 0;
-            selfChampionScanCurrentChunkY++;
-        }
-        if (selfChampionScanCurrentChunkY >= selfChampionScanChunksY) {
-            selfChampionScanCurrentChunkY = 0;
-        }
-        //Add chunk to scan
-        CGRect scanRect = CGRectMake( scanWidth * selfChampionScanCurrentChunkX + scanStartX ,
-                                     scanHeight * selfChampionScanCurrentChunkY + scanStartY ,
-                                     scanWidth ,
-                                     scanHeight );
-        scanRect = CGRectIntegral(scanRect);
-        scanRect = fitRectangleInRectangle(scanRect, leagueWindowRect);
-        combineRectangles(scanRectangles, scanRect);
-    }
-    
-    */
-    
-    
-    //Why not scan certain sections in intervals?
-    //I know it takes about 80 ms for a full scan.
-    //I want to keep it to 1 ms scan time per frame.
-    //So I need to split the screen into 49 sections and scan one section each frame. Plus where Champions already are.
-    //A full screen scan happens every 0.81666666666667 seconds
-    
-    //Increase the scan chunk by 1
-    /*
-    selfChampionScanCurrentChunkX += 1;
-    if (selfChampionScanCurrentChunkX >= SelfChampionScanChunksX) {
-        selfChampionScanCurrentChunkX = 0;
-        selfChampionScanCurrentChunkY++;
-    }
-    if (selfChampionScanCurrentChunkY >= SelfChampionScanChunksY) {
-        selfChampionScanCurrentChunkY = 0;
-    }
-    std::vector<> scanRectangles = [NSMutableArray new];
-    //Add chunk to scan
-    CGRect scanRect = CGRectMake( leagueGameWidth * selfChampionScanCurrentChunkX / SelfChampionScanChunksX ,
-                                 leagueGameHeight * selfChampionScanCurrentChunkY / SelfChampionScanChunksY ,
-                                 leagueGameWidth * 1 / SelfChampionScanChunksX ,
-                                 leagueGameHeight * 1 / SelfChampionScanChunksY );
-    scanRect = CGRectIntegral(scanRect);
-    scanRect = fitRectangleInRectangle(scanRect, leagueWindowRect);
-    combineRectangles(scanRectangles, scanRect);
-     */
-    //Add previous Champions to scan
-    /*
-    for (int i = 0; i < [selfChampions count]; i++) {
-        Champion* Champion = [selfChampions objectAtIndex:i];
-        CGRect rect = CGRectMake(Champion->topLeft.x - SelfChampionFrameMove*framesPassed,
-                                 Champion->topLeft.y - SelfChampionFrameMove*framesPassed,
-                                 Champion->bottomRight.x - Champion->topLeft.x + SelfChampionFrameMove*framesPassed*2,
-                                 Champion->bottomRight.y - Champion->topLeft.y + SelfChampionFrameMove*framesPassed*2);
-        rect = CGRectIntegral(rect);
-        rect = fitRectangleInRectangle(rect, leagueWindowRect);
-        combineRectangles(scanRectangles, rect);
-    }
-    //Scan middle of the screen
-    CGRect rect = CGRectMake(image.imageWidth / 2 - 150,
-                             image.imageHeight / 2 - 230,
-                             220,
-                             120);
-    rect = CGRectIntegral(rect);
-    rect = fitRectangleInRectangle(rect, leagueWindowRect);
-    combineRectangles(scanRectangles, rect);
-    */
-    //dispatch_group_async(dispatchGroup, selfChampionThread, ^{
-        //@autoreleasepool {
-            //uint64_t startTime = mach_absolute_time();
-            std::vector<Champion> ChampionBars;// = [NSMutableArray new];
-            //Loop through scan chunks
-            //for (int i = 0; i < [scanRectangles count]; i++) {
-            //    CGRect rect = [[scanRectangles objectAtIndex:i] rectValue];
-                for (int x = 0; x < leagueGameWidth; x++) {
-                    for (int y = 0; y < leagueGameHeight; y++) {
-                        uint8_t* pixel = getPixel2(image, x, y);
-                        Champion* ChampionBar = SelfChampionManager::detectChampionBarAtPixel(image, pixel, x, y);
-                        if (ChampionBar != NULL) {
-                            ChampionBars.push_back(*ChampionBar);
-                            //Add extra rectangle to scan
-                            //CGRect rect = CGRectMake(ChampionBar->topLeft.x-5, ChampionBar->topLeft.y-5, ChampionBar->bottomRight.x - ChampionBar->topLeft.x + 10, ChampionBar->bottomRight.y - ChampionBar->topLeft.y + 10);
-                            //rect = CGRectIntegral(rect);
-                            //rect = fitRectangleInRectangle(rect, leagueWindowRect);
-                            //combineRectangles(scanRectangles, rect);
-                            //[ChampionBars addObject: ChampionBar];
-                            ////NSLog(@"Adding self champ");
-                        }
-                    }
-                }
-            //}
-            ChampionBars = SelfChampionManager::validateChampionBars(image, ChampionBars);
-            selfChampions = ChampionBars;
-            
-            //if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
-                //NSLog(@"Process self champs Processing detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
-            //}
-/*
-            //dispatch_async(detectionThread, ^(void){
-                //@autoreleasepool {
-                    while (selfChampionsDetectionObject.count > 0) {
-                        //Champion* champ = (Champion*)[selfChampionsDetectionObject.lastObject;
-                        //delete champ;
-                        [selfChampionsDetectionObject removeLastObject];
-                    }
-                    for (int i = 0; i < ChampionBars.count; i++) {
-                        Champion* champ = [ChampionBars objectAtIndex:i];
-                        [selfChampionsDetectionObject addObject:champ];
-                    }
-                }
-            });*/
-            //dispatch_async(detectionThread, ^(void) {
-                //@autoreleasepool {
-/*
-                    while (selfChampions.count > 0) {
-                        //Champion* champ = (Champion*)[selfChampions.lastObject;
-                        //delete champ;
-                        [selfChampions removeLastObject];
-                    }
-                    [selfChampions addObjectsFromArray:ChampionBars];
-                    processSelfChampionLastTime = mach_absolute_time();
-                    */
-          //      }
-        //    });
-      //  }
-    //});
-}
-
-//const int selfHealthBarScanChunksX = 8; //36 frames until full scan. Full scan at 60fps is 0.6 seconds.
-//const int selfHealthBarScanChunksY = 8;
-void DetectionManager::processSelfHealthBarDetection(ImageData image/* , dispatch_group_t dispatchGroup */) {
-    //float leagueGameWidth = image.imageWidth - 600;
-    //float leagueGameHeight = image.imageHeight - 700;
-    //CGRect leagueWindowRect = CGRectMake(300, 700, leagueGameWidth, leagueGameHeight);
-    //float leagueGameWidth = image.imageWidth;
-    //float leagueGameHeight =image.imageHeight;
-    //CGRect leagueWindowRect = CGRectMake(0, 0, leagueGameWidth, leagueGameHeight);
-    Position searchStart = makePosition(300, 728);
-    Position searchEnd = makePosition(320, 748);
-    
-    //Increase the scan chunk by 1
-    /*
-     selfHealthBarScanCurrentChunkX += 1;
-     if (selfHealthBarScanCurrentChunkX >= selfHealthBarScanChunksX) {
-     selfHealthBarScanCurrentChunkX = 0;
-     selfHealthBarScanCurrentChunkY++;
-     }
-     if (selfHealthBarScanCurrentChunkY >= selfHealthBarScanChunksY) {
-     selfHealthBarScanCurrentChunkY = 0;
-     }*/
-    /*
-     std::vector<> scanRectangles = [NSMutableArray new];
-     //Add chunk to scan
-     CGRect scanRect = CGRectMake( leagueGameWidth * selfHealthBarScanCurrentChunkX / selfHealthBarScanChunksX ,
-     leagueGameHeight * selfHealthBarScanCurrentChunkY / selfHealthBarScanChunksY ,
-     leagueGameWidth * 1 / selfHealthBarScanChunksX ,
-     leagueGameHeight * 1 / selfHealthBarScanChunksY );
-     scanRect = CGRectIntegral(scanRect);
-     scanRect = fitRectangleInRectangle(scanRect, leagueWindowRect);
-     combineRectangles(scanRectangles, scanRect);
-     //Add previous HealthBars to scan
-     if (selfHealthBar != NULL) {
-     ////NSLog(@"Health bar exists at %d, %d", selfHealthBar->topLeft.x, selfHealthBar->topLeft.y);
-     CGRect rect = CGRectMake(selfHealthBar->topLeft.x - 20,
-     selfHealthBar->topLeft.y - 20,
-     selfHealthBar->bottomRight.x - selfHealthBar->topLeft.x + 20,
-     selfHealthBar->bottomRight.y - selfHealthBar->topLeft.y + 20);
-     rect = CGRectIntegral(rect);
-     rect = fitRectangleInRectangle(rect, leagueWindowRect);
-     combineRectangles(scanRectangles, rect);
-     }*/
-    
-    //dispatch_group_async(dispatchGroup, selfHealthBarThread, ^{
-        //@autoreleasepool {
-            ////uint64_t startTime = mach_absolute_time();
-            std::vector<SelfHealth> HealthBarBars;// = [NSMutableArray new];
-            //Loop through scan chunks
-            //for (int i = 0; i < [scanRectangles count]; i++) {
-            //    CGRect rect = [[scanRectangles objectAtIndex:i] rectValue];
-            for (int x = searchStart.x; x < searchEnd.x; x++) {
-                for (int y = searchStart.y; y < searchEnd.y; y++) {
-                    uint8_t* pixel = getPixel2(image, x, y);
-                    SelfHealth* HealthBarBar = SelfChampionManager::detectSelfHealthBarAtPixel(image, pixel, x, y);
-                    if (HealthBarBar != NULL) {
-
-                            HealthBarBars.push_back(*HealthBarBar);
-                        ////NSLog(@"Found self health bar");
-                        //Add extra rectangle to scan
-                        //CGRect rect = CGRectMake(HealthBarBar->topLeft.x-5, HealthBarBar->topLeft.y-5, HealthBarBar->bottomRight.x - HealthBarBar->topLeft.x + 10, HealthBarBar->bottomRight.y - HealthBarBar->topLeft.y + 10);
-                        //rect = CGRectIntegral(rect);
-                        //rect = fitRectangleInRectangle(rect, leagueWindowRect);
-                        //combineRectangles(scanRectangles, rect);
-                        //[HealthBarBars addObject: HealthBarBar];
-                        x = searchEnd.x;
-                        y = searchEnd.y;
-                    }
-                }
-            }
-            //}
-            ////NSLog(@"health bars: %lu", (unsigned long)HealthBarBars.count);
-            HealthBarBars = SelfChampionManager::validateSelfHealthBars(image, HealthBarBars);
-            if (HealthBarBars.size() > 0) {
-                        //if (selfHealthBar != NULL) delete selfHealthBar;
-                        selfHealthBarVisible = true;
-                        selfHealthBar = &HealthBarBars.front();
-                    } else {
-                        selfHealthBarVisible = false;
-                    }
-            //if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
-                //NSLog(@"Process self health bar Processing detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
-            //}
-            //dispatch_async(detectionThread, ^(void) {
-                //@autoreleasepool {
-    /*
-                    if ([HealthBarBars count] > 0) {
-                        //if (selfHealthBar != NULL) delete selfHealthBar;
-                        selfHealthBarVisible = true;
-                        selfHealthBar = [HealthBarBars firstObject];
-                    } else {
-                        selfHealthBarVisible = false;
-                    }
-                    */
-          //      }
-        //    });
-     ///   }
-   // });
-    
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-

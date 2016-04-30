@@ -17,21 +17,7 @@ ImageData EnemyChampionManager::bottomRightImageData = loadImage("Resources/Enem
 ImageData EnemyChampionManager::topRightImageData = loadImage("Resources/Enemy Champion Health Bar/Top Right Corner.png");
 ImageData EnemyChampionManager::healthSegmentImageData = loadImage("Resources/Enemy Champion Health Bar/Health Segment.png");
 
-EnemyChampionManager::EnemyChampionManager () {
-    /*
-    championBars = [NSMutableArray new];
-    topRightDetect = [NSMutableArray new];
-    topLeftDetect = [NSMutableArray new];
-    bottomRightDetect = [NSMutableArray new];
-    bottomLeftDetect = [NSMutableArray new];
-     */
-    
-
-    
-    //needsFullScreenUpdate = true;
-    //fullScreenUpdateTime = clock();
-    //lastUpdateTime = clock();
-}
+EnemyChampionManager::EnemyChampionManager () {}
 
 Champion* EnemyChampionManager::detectChampionBarAtPixel(ImageData imageData, uint8_t *pixel, int x, int y) {
     Champion* champ = NULL;
@@ -96,37 +82,35 @@ Champion* EnemyChampionManager::detectChampionBarAtPixel(ImageData imageData, ui
 }
 
 //To Validate, at least 2 corners need detected then we detect the health percentage
-std::vector<Champion> EnemyChampionManager::validateChampionBars(ImageData imageData, std::vector<Champion> detectedChampionBars) {
-    /*
-    NSMutableArray* championBars = [NSMutableArray new];
-    
-    while ([detectedChampionBars count] > 0) {
-        Champion* champ = [detectedChampionBars lastObject];
-        [detectedChampionBars removeLastObject];
+void EnemyChampionManager::validateChampionBars(ImageData imageData, std::vector<Champion*>* detectedChampionBars) {
+    //Remove duplicates
+    for (int i = 0; i < detectedChampionBars->size(); i++) {
+        Champion* champ = (*detectedChampionBars)[i];
         int detectedCorners = 1;
-        for (int i = 0; i < [detectedChampionBars count]; i++) {
-            Champion* champ2 = [detectedChampionBars objectAtIndex:i];
-            if (champ2->topLeft.x == champ->topLeft.x && champ->topLeft.y == champ2-> topLeft.y) {
-                [detectedChampionBars removeObjectAtIndex:i];
-                i--;
-                if (champ2->detectedBottomLeft) champ->detectedBottomLeft = true;
-                if (champ2->detectedBottomRight) champ->detectedBottomRight = true;
-                if (champ2->detectedTopLeft) champ->detectedTopLeft = true;
-                if (champ2->detectedTopRight) champ->detectedTopRight = true;
-                detectedCorners++;
+        for (int j = 0; j < detectedChampionBars->size(); j++) {
+            if (j != i) {
+                Champion* champ2 = (*detectedChampionBars)[i];
+                if (champ2->topLeft.x == champ->topLeft.x && champ->topLeft.y == champ2-> topLeft.y) {
+                    detectedChampionBars->erase(detectedChampionBars->begin() + j);
+                    j--;
+                    if (champ2->detectedBottomLeft) champ->detectedBottomLeft = true;
+                    if (champ2->detectedBottomRight) champ->detectedBottomRight = true;
+                    if (champ2->detectedTopLeft) champ->detectedTopLeft = true;
+                    if (champ2->detectedTopRight) champ->detectedTopRight = true;
+                    detectedCorners++;
+                }
             }
         }
-        if (detectedCorners > 1) {
-            champ->characterCenter.x = champ->topLeft.x+66; champ->characterCenter.y = champ->topLeft.y+104;
-            [championBars addObject: champ];
-        }// else {
-        //    delete champ;
-        //}
+        if (detectedCorners < 2) {
+            detectedChampionBars->erase(detectedChampionBars->begin() + i);
+            i--;
+        }
+        champ->characterCenter.x = champ->topLeft.x+66; champ->characterCenter.y = champ->topLeft.y+104;
     }
-    
+
     //Detect health
-    for (int i = 0; i < [championBars count]; i++) {
-        Champion* champ = [championBars objectAtIndex:i];
+    for (int i = 0; i < detectedChampionBars->size(); i++) {
+        Champion* champ = (*detectedChampionBars)[i];
         champ->health = 0;
         for (int x = 103; x >= 0; x--) {
             for (int y = 0; y < healthSegmentImageData.imageHeight; y++) {
@@ -143,8 +127,4 @@ std::vector<Champion> EnemyChampionManager::validateChampionBars(ImageData image
             }
         }
     }
-    
-    return championBars;
-     */
-    return detectedChampionBars;
 }

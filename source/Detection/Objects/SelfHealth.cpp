@@ -7,10 +7,8 @@
 //
 
 #import "SelfHealth.h"
-//#import "Utility.h"
 
 SelfHealth::SelfHealth () {
-    //Position topLeft, topRight, bottomLeft, bottomRight, characterCenter;
     detectedLeftSide = false;
     detectedRightSide = false;
     health = 0;

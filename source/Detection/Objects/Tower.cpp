@@ -7,10 +7,8 @@
 //
 
 #import "Tower.h"
-//#import "Utility.h"
 
 Tower::Tower () {
-    //Position topLeft, topRight, bottomLeft, bottomRight, characterCenter;
     detectedTopLeft = false;
     detectedBottomLeft = false;
     detectedTopRight = false;

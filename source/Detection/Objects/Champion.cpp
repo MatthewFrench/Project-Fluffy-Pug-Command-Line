@@ -7,10 +7,8 @@
 //
 
 #import "Champion.h"
-//#import "Utility.h"
 
 Champion::Champion () {
-    //Position topLeft, topRight, bottomLeft, bottomRight, characterCenter;
     detectedTopLeft = false;
     detectedBottomLeft = false;
     detectedTopRight = false;

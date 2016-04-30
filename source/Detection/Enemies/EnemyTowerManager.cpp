@@ -8,9 +8,6 @@
 
 #import "EnemyTowerManager.h"
 
-//static int Debug_Draw_Red = 255, Debug_Draw_Green = 0, Debug_Draw_Blue = 255;
-//static int Health_Bar_Width = 126, Health_Bar_Height = 8;
-
 ImageData EnemyTowerManager::topLeftImageData = loadImage("Resources/Enemy Tower Health Bar/Top Left Corner.png");
 
 ImageData EnemyTowerManager::bottomLeftImageData = loadImage("Resources/Enemy Tower Health Bar/Bottom Left Corner.png");
@@ -18,21 +15,7 @@ ImageData EnemyTowerManager::bottomRightImageData = loadImage("Resources/Enemy T
 ImageData EnemyTowerManager::topRightImageData = loadImage("Resources/Enemy Tower Health Bar/Top Right Corner.png");
 ImageData EnemyTowerManager::healthSegmentImageData = loadImage("Resources/Enemy Tower Health Bar/Health Segment.png");
 
-EnemyTowerManager::EnemyTowerManager () {
-   /*
-    towerBars = [NSMutableArray new];
-    topRightDetect = [NSMutableArray new];
-    topLeftDetect = [NSMutableArray new];
-    bottomRightDetect = [NSMutableArray new];
-    bottomLeftDetect = [NSMutableArray new];
-    
-
-    
-    needsFullScreenUpdate = true;
-    fullScreenUpdateTime = clock();
-    lastUpdateTime = clock();
-    */
-}
+EnemyTowerManager::EnemyTowerManager () {}
 
 
 Tower* EnemyTowerManager::detectTowerBarAtPixel(ImageData imageData, uint8_t *pixel, int x, int y) {
@@ -98,37 +81,35 @@ Tower* EnemyTowerManager::detectTowerBarAtPixel(ImageData imageData, uint8_t *pi
 }
 
 //To Validate, at least 2 corners need detected then we detect the health percentage
-std::vector<Tower> EnemyTowerManager::validateTowerBars(ImageData imageData, std::vector<Tower> detectedTowerBars) {
-    /*
-    NSMutableArray* TowerBars = [NSMutableArray new];
-    
-    while ([detectedTowerBars count] > 0) {
-        Tower* tower = [detectedTowerBars lastObject];
-        [detectedTowerBars removeLastObject];
+void EnemyTowerManager::validateTowerBars(ImageData imageData, std::vector<Tower*>* detectedTowerBars) {
+    //Remove duplicates
+    for (int i = 0; i < detectedTowerBars->size(); i++) {
+        Tower* tower = (*detectedTowerBars)[i];
         int detectedCorners = 1;
-        for (int i = 0; i < [detectedTowerBars count]; i++) {
-            Tower * tower2 = [detectedTowerBars objectAtIndex:i] ;
-            if (tower2->topLeft.x == tower->topLeft.x && tower->topLeft.y == tower2-> topLeft.y) {
-                [detectedTowerBars removeObjectAtIndex:i];
-                i--;
-                if (tower2->detectedBottomLeft) tower->detectedBottomLeft = true;
-                if (tower2->detectedBottomRight) tower->detectedBottomRight = true;
-                if (tower2->detectedTopLeft) tower->detectedTopLeft = true;
-                if (tower2->detectedTopRight) tower->detectedTopRight = true;
-                detectedCorners++;
+        for (int j = 0; j < detectedTowerBars->size(); j++) {
+            if (j != i) {
+                Tower* tower2 = (*detectedTowerBars)[i];
+                if (tower2->topLeft.x == tower->topLeft.x && tower->topLeft.y == tower2-> topLeft.y) {
+                    detectedTowerBars->erase(detectedTowerBars->begin() + j);
+                    j--;
+                    if (tower2->detectedBottomLeft) tower->detectedBottomLeft = true;
+                    if (tower2->detectedBottomRight) tower->detectedBottomRight = true;
+                    if (tower2->detectedTopLeft) tower->detectedTopLeft = true;
+                    if (tower2->detectedTopRight) tower->detectedTopRight = true;
+                    detectedCorners++;
+                }
             }
         }
-        if (detectedCorners > 1) {
-            tower->towerCenter.x = tower->topLeft.x+126/2; tower->towerCenter.y = tower->topLeft.y+200;
-            [TowerBars addObject: tower];
-        }// else {
-        //    delete tower;
-        //}
+        if (detectedCorners < 2) {
+            detectedTowerBars->erase(detectedTowerBars->begin() + i);
+            i--;
+        }
+        tower->towerCenter.x = tower->topLeft.x+126/2; tower->towerCenter.y = tower->topLeft.y+200;
     }
     
     //Detect health
-    for (int i = 0; i < [TowerBars count]; i++) {
-        Tower* tower = [TowerBars objectAtIndex:i];
+    for (int i = 0; i < detectedTowerBars->size(); i++) {
+        Tower* tower = (*detectedTowerBars)[i];
         tower->health = 0;
         for (int x = 125; x >= 0; x--) {
             for (int y = 0; y < healthSegmentImageData.imageHeight; y++) {
@@ -145,12 +126,8 @@ std::vector<Tower> EnemyTowerManager::validateTowerBars(ImageData imageData, std
             }
         }
         if (tower->health == 0) {
-            [TowerBars removeObjectAtIndex:i];
+            detectedTowerBars->erase(detectedTowerBars->begin() + i);
             i--;
         }
     }
-    
-    return TowerBars;
-     */
-    return detectedTowerBars;
 }

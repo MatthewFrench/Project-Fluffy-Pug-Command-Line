@@ -24,20 +24,8 @@ ImageData ShopManager::shopTopLeftCornerImageData = loadImage("Resources/Shop/Sh
 ImageData ShopManager::shopAvailableImageData = loadImage("Resources/Shop/Shop Available.png");
 ImageData ShopManager::shopBottomLeftCornerImageData = loadImage("Resources/Shop/Shop Bottom Left Corner.png");
 
-ShopManager::ShopManager() {
-    /*
-    fullScreenUpdateTime = clock();
-    shopItemImageData = makeImageDataFrom([[NSBundle mainBundle] pathForResource:@"Resources/Shop/Item" ofType:@"png"]);
-    shopWindowImageData = makeImageDataFrom([[NSBundle mainBundle] pathForResource:@"Resources/Shop/Shop Window" ofType:@"png"]);
-    shopEmptyItemSlotImageData = makeImageDataFrom([[NSBundle mainBundle] pathForResource:@"Resources/Shop/Empty Item Slot" ofType:@"png"]);
-    shopAvailableImageData = makeImageDataFrom([[NSBundle mainBundle] pathForResource:@"Resources/Shop/Shop Available" ofType:@"png"]);
-    shopBottomLeftCornerImageData = makeImageDataFrom([[NSBundle mainBundle] pathForResource:@"Resources/Shop/Shop Bottom Left Corner" ofType:@"png"]);
-    buyableItems = [NSMutableArray new];
-    lastShopOpenAttempt = clock();
-    lastShopCloseAttempt = clock();
-    lastItemBuyTime = clock();
-     */
-}
+ShopManager::ShopManager() {}
+
 GenericObject* ShopManager::detectShopAvailable(ImageData imageData, uint8_t *pixel, int x, int y) {
     GenericObject* object = NULL;
     if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData.imageWidth, imageData.imageHeight, shopAvailableImageData, 0.5) >=  0.5) {
@@ -101,20 +89,14 @@ GenericObject* ShopManager::detectBuyableItems(ImageData imageData, uint8_t *pix
     GenericObject* object = NULL;
     if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData.imageWidth, imageData.imageHeight, shopBuyableItemTopLeftCornerImageData, precision) >=  precision) {
         
-        //NSLog(@"Found top left corner at %d, %d", x, y);
         int cornerCount = 1;
         
-        //Top right corner
-       // NSLog(@"Top right corner should be at %d, %d", x + ItemWidth - shopBuyableItemTopRightCornerImageData.imageWidth, y);
         for (int i = ItemWidth - SearchMargin - shopBuyableItemTopRightCornerImageData.imageWidth; i <= ItemWidth+SearchMargin - shopBuyableItemTopRightCornerImageData.imageWidth; i++) {
-            //NSLog(@"    Searching %d, %d", x+i, y);
             if (getImageAtPixelPercentageOptimizedExact(getPixel2(imageData, x+i, y), x+i, y, imageData.imageWidth, imageData.imageHeight, shopBuyableItemTopRightCornerImageData, precision) >=  precision) {
                 cornerCount++;
-                //NSLog(@"Found top right corner");
                 break;
             }
         }
-        //if (topRightCorner == false) return nil;
         
         
         bool bottomLeftCorner = false;
@@ -122,11 +104,9 @@ GenericObject* ShopManager::detectBuyableItems(ImageData imageData, uint8_t *pix
             if (getImageAtPixelPercentageOptimizedExact(getPixel2(imageData, x, y+i), x, y+i, imageData.imageWidth, imageData.imageHeight, shopBuyableItemBottomLeftCornerImageData, precision) >=  precision) {
                 bottomLeftCorner = true;
                 cornerCount++;
-                //NSLog(@"Found bottom left corner");
                 break;
             }
         }
-        //if (bottomLeftCorner == false) return nil;
         
         bool bottomRightCorner = false;
         for (int i = ItemWidth - SearchMargin - shopBuyableItemBottomRightCornerImageData.imageWidth; i <= ItemWidth + SearchMargin - shopBuyableItemBottomRightCornerImageData.imageWidth && !bottomRightCorner; i++) {
@@ -134,15 +114,12 @@ GenericObject* ShopManager::detectBuyableItems(ImageData imageData, uint8_t *pix
                 if (getImageAtPixelPercentageOptimizedExact(getPixel2(imageData, x+i, y+i2), x+i, y+i2, imageData.imageWidth, imageData.imageHeight, shopBuyableItemBottomRightCornerImageData, precision) >=  precision) {
                     bottomRightCorner = true;
                     cornerCount++;
-                    //NSLog(@"Found bottom right corner");
                     break;
                 }
             }
         }
-        //if (bottomRightCorner == false) return nil;
         if (cornerCount < 2) return NULL;
-        //NSLog(@"Corner count: %d", cornerCount);
-        
+         
         object = new GenericObject();
         object->topLeft.x = x;
         object->topLeft.y = y;

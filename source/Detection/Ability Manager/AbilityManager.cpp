@@ -16,32 +16,8 @@ ImageData AbilityManager::abilityEnabledImageData = loadImage("Resources/Skill B
 ImageData AbilityManager::abilityDisabledImageData = loadImage("Resources/Skill Bar/Disabled Ability.png");
 
 AbilityManager::AbilityManager() {
-    /*
-    levelUpDetect = [NSMutableArray new];
-    levelUpDisabledDetect = [NSMutableArray new];
-    abilityEnabledDetect = [NSMutableArray new];
-    abilityDisabledDetect = [NSMutableArray new];
-    */
-    
-    /*
-    ability1LevelUpAvailable = false;
-    ability2LevelUpAvailable = false;
-    ability3LevelUpAvailable = false;
-    ability4LevelUpAvailable = false;
-    ability1Ready = false;
-    ability2Ready = false;
-    ability3Ready = false;
-    ability4Ready = false;
-    summonerSpell1Ready = false;
-    summonerSpell2Ready = false;
-    
-    needsFullScreenUpdate = true;
-    fullScreenUpdateTime = clock();
-    lastUpdateTime = clock();
-    
-    levelUpCount = 0;
-     */
 }
+
 GenericObject* AbilityManager::detectLevelUpAtPixel(ImageData imageData, uint8_t *pixel, int x, int y) {
     GenericObject* object = NULL;
     if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData.imageWidth, imageData.imageHeight, levelUpImageData, 0.25) >=  0.8) {

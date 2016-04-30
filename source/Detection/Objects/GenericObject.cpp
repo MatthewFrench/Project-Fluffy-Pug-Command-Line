@@ -7,8 +7,5 @@
 //
 
 #import "GenericObject.h"
-//#import "Utility.h"
 
-GenericObject::GenericObject () {
-
-}
+GenericObject::GenericObject () {}

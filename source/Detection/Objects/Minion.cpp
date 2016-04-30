@@ -7,10 +7,8 @@
 //
 
 #import "Minion.h"
-//#import "Utility.h"
 
 Minion::Minion () {
-    //Position topLeft, topRight, bottomLeft, bottomRight, characterCenter;
     detectedTopLeft = false;
     detectedBottomLeft = false;
     detectedTopRight = false;

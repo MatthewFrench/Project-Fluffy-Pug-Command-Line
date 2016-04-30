@@ -23,28 +23,28 @@ int main() {
 
 	double simulation_time = read_timer( );
 
-    detection->processDetection(image);
+    detection->processDetection(&image);
 
     simulation_time = read_timer( ) - simulation_time;
 
     printf("Detected: \n");
-    if (detection->getAllyMinions().size() > 0) {
-    	printf("\t%lu ally minions\n", detection->getAllyMinions().size());
+    if (detection->getAllyMinions()->size() > 0) {
+    	printf("\t%lu ally minions\n", detection->getAllyMinions()->size());
     }
-    if (detection->getAllyChampions().size() > 0) {
-    	printf("\t%lu ally champions\n", detection->getAllyChampions().size());
+    if (detection->getAllyChampions()->size() > 0) {
+    	printf("\t%lu ally champions\n", detection->getAllyChampions()->size());
     }
-    if (detection->getSelfChampions().size() > 0) {
-    	printf("\t%lu self champions\n", detection->getSelfChampions().size());
+    if (detection->getSelfChampions()->size() > 0) {
+    	printf("\t%lu self champions\n", detection->getSelfChampions()->size());
     }
-    if (detection->getEnemyMinions().size() > 0) {
-    	printf("\t%lu enemy minions\n", detection->getEnemyMinions().size());
+    if (detection->getEnemyMinions()->size() > 0) {
+    	printf("\t%lu enemy minions\n", detection->getEnemyMinions()->size());
     }
-    if (detection->getEnemyChampions().size() > 0) {
-    	printf("\t%lu enemy champions\n", detection->getEnemyChampions().size());
+    if (detection->getEnemyChampions()->size() > 0) {
+    	printf("\t%lu enemy champions\n", detection->getEnemyChampions()->size());
     }
-    if (detection->getEnemyTowers().size() > 0) {
-    	printf("\t%lu enemy towers\n", detection->getEnemyTowers().size());
+    if (detection->getEnemyTowers()->size() > 0) {
+    	printf("\t%lu enemy towers\n", detection->getEnemyTowers()->size());
     }
     if (detection->getSelfHealthBarVisible()) {
     	printf("\tCan see self health bar\n");
@@ -121,8 +121,8 @@ int main() {
     if (detection->getShopBottomLeftCornerVisible()) {
     	printf("\tShop bottom left corner is visible\n");
     }
-    if (detection->getBuyableItems().size() > 0) {
-    	printf("\tBuyable items: %lu\n", detection->getBuyableItems().size());
+    if (detection->getBuyableItems()->size() > 0) {
+    	printf("\tBuyable items: %lu\n", detection->getBuyableItems()->size());
     }
     if (detection->getMapVisible()) {
     	printf("\tMap is visible\n");

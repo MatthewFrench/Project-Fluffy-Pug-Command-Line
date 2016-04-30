@@ -6,11 +6,8 @@
 //  Copyright © 2015 Matthew French. All rights reserved.
 //
 
-//#import <Foundation/Foundation.h>
-
 #import "../../Utility.h"
 #import <time.h>
-//#import "InteractiveEvents.h"
 
 class SurrenderManager {
 public:

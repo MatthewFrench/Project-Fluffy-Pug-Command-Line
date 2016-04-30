@@ -79,13 +79,13 @@ inline ImageData loadImage(string name) {
 
     for (int x = 0; x < image.width(); x++) {
         for (int y = 0; y < image.height(); y++) {
-            data[x + y * image.width() + 0] = image.atXY(x, y, 0);
-            data[x + y * image.width() + 1] = image.atXY(x, y, 1);
-            data[x + y * image.width() + 2] = image.atXY(x, y, 2);
+            data[(x + y * image.width())*4 + 0] = image.atXY(x, y, 0);
+            data[(x + y * image.width())*4 + 1] = image.atXY(x, y, 1);
+            data[(x + y * image.width())*4 + 2] = image.atXY(x, y, 2);
             if (image.spectrum() <= 3) {
-                data[x + y * image.width() + 3] = 255;
+                data[(x + y * image.width())*4 + 3] = 255;
             } else {
-                data[x + y * image.width() + 3] = image.atXY(x, y, 3);
+                data[(x + y * image.width())*4 + 3] = image.atXY(x, y, 3);
             }
         }
     }

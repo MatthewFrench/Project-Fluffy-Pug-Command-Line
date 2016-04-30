@@ -6,43 +6,17 @@
 //  Copyright (c) 2015 Matthew French. All rights reserved.
 //
 
-//#import <Foundation/Foundation.h>
 #import "../../Utility.h"
 #import <vector>
-//#include "concurrentqueue.h"
 
 class EnemyMinionManager {
-    
-    
-    //moodycamel::ConcurrentQueue<Position> topLeftQueue, bottomLeftQueue, topRightQueue, bottomRightQueue;
-    /*
-    bool needsFullScreenUpdate;
-    
-    double fullScreenUpdateTime, lastUpdateTime;
-    
-    void scanSection(ImageData imageData, int xStart, int yStart, int xEnd, int yEnd);
-    void processMinionsLocations();
-    void processMinionsHealth(ImageData imageData);
-    void processPixel(ImageData imageData, uint8_t *pixel, int x, int y);
-    void processTopLeftDetect(); void processBottomLeftDetect(); void processTopRightDetect(); void processBottomRightDetect();
-    bool containsPosition(NSMutableArray* array, Position p);
-    
-    const double minionSpeed = 400; //100 pixels per second
-    */
 public:
     
     static ImageData topLeftImageData, bottomLeftImageData,
     bottomRightImageData, topRightImageData, healthSegmentImageData;
     
-    //NSMutableArray* minionBars, *topRightDetect, *topLeftDetect, *bottomRightDetect, *bottomLeftDetect;
-    
     EnemyMinionManager();
     
     static Minion* detectMinionBarAtPixel(ImageData imageData, uint8_t *pixel, int x, int y);
-    static std::vector<Minion> validateMinionBars(ImageData imageData, std::vector<Minion> detectedChampionBars);
-    //void processImage(ImageData imageData);
-    //MinionBar getNearestMinion(int x, int y);
-    //MinionBar getLowestHealthMinion(int x, int y);
-    
-    //void debugDraw(ImageData imageData);
+    static void validateMinionBars(ImageData imageData, std::vector<Minion*>* detectedChampionBars);
 };
