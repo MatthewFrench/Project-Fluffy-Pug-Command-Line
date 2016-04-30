@@ -21,7 +21,11 @@ int main() {
 
     DetectionManager* detection = new DetectionManager();
 
+	double simulation_time = read_timer( );
+
     detection->processDetection(image);
+
+    simulation_time = read_timer( ) - simulation_time;
 
     printf("Detected: \n");
     if (detection->getAllyMinions().size() > 0) {
@@ -133,7 +137,7 @@ int main() {
     	printf("\tSurrender is visible\n");
     }
     printf("-------------------\n");
-    printf("Finished detection!\n");
+    printf("Finished detection in %g seconds!\n", simulation_time);
 
   return(0);
 }
