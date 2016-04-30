@@ -218,5 +218,5 @@ std::vector<Minion> EnemyMinionManager::validateMinionBars(ImageData imageData, 
     
     return minionBars;
      */
-    return NULL;
+    return detectedMinionBars;
 }

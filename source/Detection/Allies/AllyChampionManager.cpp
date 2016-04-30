@@ -145,7 +145,7 @@ std::vector<Champion> AllyChampionManager::validateChampionBars(ImageData imageD
     
     return championBars;
      */
-    return NULL;
+    return detectedChampionBars;
 }
 
 /*

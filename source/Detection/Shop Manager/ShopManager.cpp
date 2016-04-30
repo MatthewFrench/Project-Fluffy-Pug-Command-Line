@@ -16,13 +16,13 @@
 //  Copyright © 2015 Matthew French. All rights reserved.
 //
 
-ImageData ShopManager::shopBuyableItemTopLeftCornerImageData = loadImage("Resources/Shop/Buyable Item Top Left Corner");
+ImageData ShopManager::shopBuyableItemTopLeftCornerImageData = loadImage("Resources/Shop/Buyable Item Top Left Corner.png");
 ImageData ShopManager::shopBuyableItemBottomLeftCornerImageData = loadImage("Resources/Shop/Buyable Item Bottom Left Corner.png");
 ImageData ShopManager::shopBuyableItemTopRightCornerImageData = loadImage("Resources/Shop/Buyable Item Top Right Corner.png");
 ImageData ShopManager::shopBuyableItemBottomRightCornerImageData = loadImage("Resources/Shop/Buyable Item Bottom Right Corner.png");
 ImageData ShopManager::shopTopLeftCornerImageData = loadImage("Resources/Shop/Shop Top Left Corner.png");
 ImageData ShopManager::shopAvailableImageData = loadImage("Resources/Shop/Shop Available.png");
-ImageData ShopManager::shopBottomLeftCornerImageData = loadImage("Re\sources/Shop/Shop Bottom Left Corner.png");
+ImageData ShopManager::shopBottomLeftCornerImageData = loadImage("Resources/Shop/Shop Bottom Left Corner.png");
 
 ShopManager::ShopManager() {
     /*

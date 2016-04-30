@@ -146,5 +146,5 @@ std::vector<Champion> EnemyChampionManager::validateChampionBars(ImageData image
     
     return championBars;
      */
-    return NULL;
+    return detectedChampionBars;
 }

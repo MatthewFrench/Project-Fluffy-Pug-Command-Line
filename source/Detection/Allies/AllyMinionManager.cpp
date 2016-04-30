@@ -202,7 +202,7 @@ std::vector<Minion> AllyMinionManager::validateMinionBars(ImageData imageData, s
     
     return minionBars;
      */
-    return NULL;
+    return detectedMinionBars;
 }
 
 

@@ -199,7 +199,7 @@ std::vector<Champion> SelfChampionManager::validateChampionBars(ImageData imageD
     
     return championBars;
      */
-    return NULL;
+    return detectedChampionBars;
 }
 
 //To Validate, at least 2 sides need detected then we detect the health percentage
@@ -247,5 +247,5 @@ std::vector<SelfHealth> SelfChampionManager::validateSelfHealthBars(ImageData im
     
     return healthBars;
      */
-    return NULL;
+    return detectedHealthBars;
 }

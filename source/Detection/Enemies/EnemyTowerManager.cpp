@@ -16,7 +16,7 @@ ImageData EnemyTowerManager::topLeftImageData = loadImage("Resources/Enemy Tower
 ImageData EnemyTowerManager::bottomLeftImageData = loadImage("Resources/Enemy Tower Health Bar/Bottom Left Corner.png");
 ImageData EnemyTowerManager::bottomRightImageData = loadImage("Resources/Enemy Tower Health Bar/Bottom Right Corner.png");
 ImageData EnemyTowerManager::topRightImageData = loadImage("Resources/Enemy Tower Health Bar/Top Right Corner.png");
-ImageData EnemyTowerManager::healthSegmentImageData = loadImage("Resources/Enemy Tower Health Bar/Health Segment");
+ImageData EnemyTowerManager::healthSegmentImageData = loadImage("Resources/Enemy Tower Health Bar/Health Segment.png");
 
 EnemyTowerManager::EnemyTowerManager () {
    /*
@@ -152,5 +152,5 @@ std::vector<Tower> EnemyTowerManager::validateTowerBars(ImageData imageData, std
     
     return TowerBars;
      */
-    return NULL;
+    return detectedTowerBars;
 }

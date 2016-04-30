@@ -1,4 +1,8 @@
 cmake_minimum_required(VERSION 3.5.1)
+
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED on)
+
 project (artificialIntelligenceBenchmark)
 
 file(GLOB_RECURSE all_SRC "source/*.cpp" "source/*.h")
