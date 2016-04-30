@@ -450,8 +450,8 @@ void DetectionManager::processMap(ImageData image/* , dispatch_group_t dispatchG
     //    }
     //});
 }
-const int shopScanChunksX = 7;
-const int shopScanChunksY = 7;
+//const int shopScanChunksX = 7;
+//const int shopScanChunksY = 7;
 void DetectionManager::processShop(ImageData image/* , dispatch_group_t dispatchGroup */) {
     //First detect top left corner, but do it as a slow scan
     
@@ -464,10 +464,10 @@ void DetectionManager::processShop(ImageData image/* , dispatch_group_t dispatch
     float leagueGameHeight = image.imageHeight;
     //CGRect leagueWindowRect = CGRectMake(0, 0, leagueGameWidth, leagueGameHeight);
     
-    int scanStartX = 0; int scanStartY = 0;
-    int scanEndX = leagueGameWidth/2; int scanEndY = leagueGameHeight/2;
-    int scanWidth = (scanEndX - scanStartX) / shopScanChunksX;
-    int scanHeight = (scanEndY - scanStartY) / shopScanChunksX;
+    //int scanStartX = 0; int scanStartY = 0;
+    //int scanEndX = leagueGameWidth/2; int scanEndY = leagueGameHeight/2;
+    //int scanWidth = (scanEndX - scanStartX) / shopScanChunksX;
+    //int scanHeight = (scanEndY - scanStartY) / shopScanChunksX;
     
     //int framesPassed = (getTimeInMilliseconds(mach_absolute_time() - processShopLastTime)) / 16;
     //if (framesPassed <= 0) framesPassed = 1;
@@ -1445,9 +1445,9 @@ void DetectionManager::processSpellLevelUps(ImageData image/* , dispatch_group_t
 }
 
 //Make it scan a chunk each frame
-const int allyMinionScanChunksX = 8; //36 frames until full scan. Full scan at 60fps is 0.6 seconds.
-const int allyMinionScanChunksY = 10;
-const float allyMinionFrameMove = 80.0; //Assume minions can move 80 pixels in 1 frames
+//const int allyMinionScanChunksX = 8; //36 frames until full scan. Full scan at 60fps is 0.6 seconds.
+//const int allyMinionScanChunksY = 10;
+//const float allyMinionFrameMove = 80.0; //Assume minions can move 80 pixels in 1 frames
 void DetectionManager::processAllyMinionDetection(ImageData image/* , dispatch_group_t dispatchGroup */) {
     float leagueGameWidth = image.imageWidth;
     float leagueGameHeight = image.imageHeight;
@@ -1544,6 +1544,7 @@ void DetectionManager::processAllyMinionDetection(ImageData image/* , dispatch_g
                         uint8_t* pixel = getPixel2(image, x, y);
                         Minion* minionBar = AllyMinionManager::detectMinionBarAtPixel(image, pixel, x, y);
                         if (minionBar != NULL) {
+                            minionBars.push_back(*minionBar);
                             //[minionBars addObject: minionBar];
                         }
                     }
@@ -1580,15 +1581,16 @@ void DetectionManager::processAllyMinionDetection(ImageData image/* , dispatch_g
                     [allyMinions addObjectsFromArray:minionBars];
                     processAllyMinionLastTime = mach_absolute_time();
                     */
+                    allyMinions = minionBars;
           //      }
         //    });
       //  }
     //});
 }
 
-const int enemyMinionScanChunksX = 8; //36 frames until full scan. Full scan at 60fps is 0.6 seconds.
-const int enemyMinionScanChunksY = 8;
-const float enemyMinionFrameMove = 80.0; //Assume minions can move 80 pixels in 1 frames
+//const int enemyMinionScanChunksX = 8; //36 frames until full scan. Full scan at 60fps is 0.6 seconds.
+//const int enemyMinionScanChunksY = 8;
+//const float enemyMinionFrameMove = 80.0; //Assume minions can move 80 pixels in 1 frames
 void DetectionManager::processEnemyMinionDetection(ImageData image/* , dispatch_group_t dispatchGroup */) {
     float leagueGameWidth = image.imageWidth;
     float leagueGameHeight = image.imageHeight;
@@ -1696,6 +1698,7 @@ void DetectionManager::processEnemyMinionDetection(ImageData image/* , dispatch_
                         uint8_t* pixel = getPixel2(image, x, y);
                         Minion* minionBar = EnemyMinionManager::detectMinionBarAtPixel(image, pixel, x, y);
                         if (minionBar != NULL) {
+                            minionBars.push_back(*minionBar);
                             //[minionBars addObject: minionBar];
                         }
                     }
@@ -1703,6 +1706,7 @@ void DetectionManager::processEnemyMinionDetection(ImageData image/* , dispatch_
             //}
            // //NSLog(@"Found %d possible minions");
             minionBars = EnemyMinionManager::validateMinionBars(image, minionBars);
+            enemyMinions = minionBars;
             
             //if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
                 //NSLog(@"Process enemy minions Processing detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
@@ -1822,7 +1826,7 @@ void DetectionManager::processEnemyChampionDetection(ImageData image/* , dispatc
     //dispatch_group_async(dispatchGroup, enemyChampionThread, ^{
         //@autoreleasepool {
             //uint64_t startTime = mach_absolute_time();
-            std::vector<Champion> ChampionBars;// = [NSMutableArray new];
+            std::vector<Champion> championBars;// = [NSMutableArray new];
             //Loop through scan chunks
             //for (int i = 0; i < [scanRectangles count]; i++) {
             //    CGRect rect = [[scanRectangles objectAtIndex:i] rectValue];
@@ -1831,6 +1835,7 @@ void DetectionManager::processEnemyChampionDetection(ImageData image/* , dispatc
                         uint8_t* pixel = getPixel2(image, x, y);
                         Champion* ChampionBar = EnemyChampionManager::detectChampionBarAtPixel(image, pixel, x, y);
                         if (ChampionBar != NULL) {
+                            championBars.push_back(*ChampionBar);
                             /*
                             CGRect rect = CGRectMake(ChampionBar->topLeft.x - 5, ChampionBar->topLeft.y - 5, ChampionBar->bottomRight.x - ChampionBar->topLeft.x + 10, ChampionBar->bottomRight.y - ChampionBar->topLeft.y + 10);
                             rect = CGRectIntegral(rect);
@@ -1842,7 +1847,8 @@ void DetectionManager::processEnemyChampionDetection(ImageData image/* , dispatc
                     }
                 }
             //}
-            ChampionBars = EnemyChampionManager::validateChampionBars(image, ChampionBars);
+            championBars = EnemyChampionManager::validateChampionBars(image, championBars);
+            enemyChampions = championBars;
             
             //if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
                 ////NSLog(@"Process enemy champions Processing detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
@@ -1965,7 +1971,7 @@ void DetectionManager::processAllyChampionDetection(ImageData image/* , dispatch
     //dispatch_group_async(dispatchGroup, allyChampionThread, ^{
         //@autoreleasepool {
             //uint64_t startTime = mach_absolute_time();
-            std::vector<Champion> ChampionBars;// = [NSMutableArray new];
+            std::vector<Champion> championBars;// = [NSMutableArray new];
             //Loop through scan chunks
             //for (int i = 0; i < [scanRectangles count]; i++) {
             //    CGRect rect = [[scanRectangles objectAtIndex:i] rectValue];
@@ -1974,6 +1980,7 @@ void DetectionManager::processAllyChampionDetection(ImageData image/* , dispatch
                         uint8_t* pixel = getPixel2(image, x, y);
                         Champion* ChampionBar = AllyChampionManager::detectChampionBarAtPixel(image, pixel, x, y);
                         if (ChampionBar != NULL) {
+                            championBars.push_back(*ChampionBar);
                             //Add extra rectangle to scan
                             /*
                             CGRect rect = CGRectMake(ChampionBar->topLeft.x - 5, ChampionBar->topLeft.y - 5, ChampionBar->bottomRight.x - ChampionBar->topLeft.x + 10, ChampionBar->bottomRight.y - ChampionBar->topLeft.y + 10);
@@ -1986,7 +1993,8 @@ void DetectionManager::processAllyChampionDetection(ImageData image/* , dispatch
                     }
                 }
             //}
-            ChampionBars = AllyChampionManager::validateChampionBars(image, ChampionBars);
+            championBars = AllyChampionManager::validateChampionBars(image, championBars);
+            allyChampions = championBars;
             
             //if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
                 //NSLog(@"Process ally champions Processing detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
@@ -2117,6 +2125,7 @@ void DetectionManager::processEnemyTowerDetection(ImageData image/* , dispatch_g
                         uint8_t* pixel = getPixel2(image, x, y);
                         Tower* TowerBar = EnemyTowerManager::detectTowerBarAtPixel(image, pixel, x, y);
                         if (TowerBar != NULL) {
+                            TowerBars.push_back(*TowerBar);
                             //Add extra rectangle to scan
                             //CGRect rect = CGRectMake(TowerBar->topLeft.x - 5, TowerBar->topLeft.y - 5, TowerBar->bottomRight.x - TowerBar->topLeft.x + 10, TowerBar->bottomRight.y - TowerBar->topLeft.y + 10);
                             //rect = CGRectIntegral(rect);
@@ -2128,6 +2137,7 @@ void DetectionManager::processEnemyTowerDetection(ImageData image/* , dispatch_g
                 }
             //}
             TowerBars = EnemyTowerManager::validateTowerBars(image, TowerBars);
+            enemyTowers = TowerBars;
             
             //if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
                 //NSLog(@"Process enemy tower Processing detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
@@ -2267,6 +2277,7 @@ void DetectionManager::processSelfChampionDetection(ImageData image/* , dispatch
                         uint8_t* pixel = getPixel2(image, x, y);
                         Champion* ChampionBar = SelfChampionManager::detectChampionBarAtPixel(image, pixel, x, y);
                         if (ChampionBar != NULL) {
+                            ChampionBars.push_back(*ChampionBar);
                             //Add extra rectangle to scan
                             //CGRect rect = CGRectMake(ChampionBar->topLeft.x-5, ChampionBar->topLeft.y-5, ChampionBar->bottomRight.x - ChampionBar->topLeft.x + 10, ChampionBar->bottomRight.y - ChampionBar->topLeft.y + 10);
                             //rect = CGRectIntegral(rect);
@@ -2279,6 +2290,7 @@ void DetectionManager::processSelfChampionDetection(ImageData image/* , dispatch
                 }
             //}
             ChampionBars = SelfChampionManager::validateChampionBars(image, ChampionBars);
+            selfChampions = ChampionBars;
             
             //if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
                 //NSLog(@"Process self champs Processing detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
@@ -2370,6 +2382,8 @@ void DetectionManager::processSelfHealthBarDetection(ImageData image/* , dispatc
                     uint8_t* pixel = getPixel2(image, x, y);
                     SelfHealth* HealthBarBar = SelfChampionManager::detectSelfHealthBarAtPixel(image, pixel, x, y);
                     if (HealthBarBar != NULL) {
+
+                            HealthBarBars.push_back(*HealthBarBar);
                         ////NSLog(@"Found self health bar");
                         //Add extra rectangle to scan
                         //CGRect rect = CGRectMake(HealthBarBar->topLeft.x-5, HealthBarBar->topLeft.y-5, HealthBarBar->bottomRight.x - HealthBarBar->topLeft.x + 10, HealthBarBar->bottomRight.y - HealthBarBar->topLeft.y + 10);
@@ -2385,6 +2399,13 @@ void DetectionManager::processSelfHealthBarDetection(ImageData image/* , dispatc
             //}
             ////NSLog(@"health bars: %lu", (unsigned long)HealthBarBars.count);
             HealthBarBars = SelfChampionManager::validateSelfHealthBars(image, HealthBarBars);
+            if (HealthBarBars.size() > 0) {
+                        //if (selfHealthBar != NULL) delete selfHealthBar;
+                        selfHealthBarVisible = true;
+                        selfHealthBar = &HealthBarBars.front();
+                    } else {
+                        selfHealthBarVisible = false;
+                    }
             //if (getTimeInMilliseconds(mach_absolute_time() - startTime) > longAlert) {
                 //NSLog(@"Process self health bar Processing detection time(ms): %d", getTimeInMilliseconds(mach_absolute_time() - startTime));
             //}
