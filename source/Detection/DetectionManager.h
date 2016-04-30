@@ -1,5 +1,6 @@
-#import <Cocoa/Cocoa.h>
+//#import <Cocoa/Cocoa.h>
 #import "../Utility.h"
+#import <vector>
 
 class DetectionManager {
     
@@ -20,42 +21,45 @@ class DetectionManager {
     
     
     
-    NSMutableArray  *allyMinions, *enemyMinions,
-                    *allyChampions, *enemyChampions,
-                    *selfChampions, *enemyTowers;
+    std::vector<Minion>  allyMinions;
+    std::vector<Minion> enemyMinions;
+    std::vector<Champion> allyChampions;
+    std::vector<Champion> enemyChampions;
+    std::vector<Champion> selfChampions;
+    std::vector<Tower> enemyTowers;
     bool spell1LevelUpAvailable = false, spell2LevelUpAvailable = false, spell3LevelUpAvailable = false, spell4LevelUpAvailable = false;
-    GenericObject* spell1LevelUp=nil, *spell2LevelUp=nil, *spell3LevelUp=nil, *spell4LevelUp=nil;
-    NSMutableArray* spell1LevelDots, *spell2LevelDots, *spell3LevelDots, *spell4LevelDots;
+    GenericObject* spell1LevelUp=NULL, *spell2LevelUp=NULL, *spell3LevelUp=NULL, *spell4LevelUp=NULL;
+    std::vector<GenericObject> spell1LevelDots, spell2LevelDots, spell3LevelDots, spell4LevelDots;
     bool spell1LevelDotsVisible = false, spell2LevelDotsVisible = false, spell3LevelDotsVisible = false, spell4LevelDotsVisible = false;
     int currentLevel = 0;
     bool spell1ActiveAvailable = false, spell2ActiveAvailable = false, spell3ActiveAvailable = false, spell4ActiveAvailable = false;
-    GenericObject* spell1Active=nil, *spell2Active=nil, *spell3Active=nil, *spell4Active=nil;
+    GenericObject* spell1Active=NULL, *spell2Active=NULL, *spell3Active=NULL, *spell4Active=NULL;
     bool summonerSpell1ActiveAvailable = false, summonerSpell2ActiveAvailable = false;
-    GenericObject* summonerSpell1Active=nil, *summonerSpell2Active=nil;
+    GenericObject* summonerSpell1Active=NULL, *summonerSpell2Active=NULL;
     bool trinketActiveAvailable = false;
-    GenericObject* trinketActive=nil;
+    GenericObject* trinketActive=NULL;
     bool item1ActiveAvailable = false, item2ActiveAvailable = false, item3ActiveAvailable = false, item4ActiveAvailable = false, item5ActiveAvailable = false, item6ActiveAvailable = false;
-    GenericObject* item1Active=nil, *item2Active=nil, *item3Active=nil, *item4Active=nil, *item5Active=nil, *item6Active=nil;
+    GenericObject* item1Active=NULL, *item2Active=NULL, *item3Active=NULL, *item4Active=NULL, *item5Active=NULL, *item6Active=NULL;
     bool potionActiveAvailable = false;
     int potionOnActive;
-    GenericObject* potionActive=nil;
+    GenericObject* potionActive=NULL;
     bool potionBeingUsedShown = false;
-    GenericObject* potionBeingUsed=nil;
+    GenericObject* potionBeingUsed=NULL;
     bool shopAvailableShown = false;
-    GenericObject* shopAvailable=nil;
+    GenericObject* shopAvailable=NULL;
     bool shopTopLeftCornerShown = false;
-    GenericObject* shopTopLeftCorner=nil;
+    GenericObject* shopTopLeftCorner=NULL;
     bool shopBottomLeftCornerShown = false;
-    GenericObject* shopBottomLeftCorner=nil;
-    NSMutableArray* buyableItems;
+    GenericObject* shopBottomLeftCorner=NULL;
+    std::vector<GenericObject> buyableItems;
     bool mapVisible = false;
-    GenericObject* map=nil;
+    GenericObject* map=NULL;
     bool mapShopVisible = false;
-    GenericObject* mapShop=nil;
+    GenericObject* mapShop=NULL;
     bool mapSelfLocationVisible = false;
-    GenericObject* mapSelfLocation=nil;
+    GenericObject* mapSelfLocation=NULL;
     bool selfHealthBarVisible = false;
-    SelfHealth* selfHealthBar=nil;
+    SelfHealth* selfHealthBar=NULL;
     
     int allyMinionScanCurrentChunkX = 0;
     int allyMinionScanCurrentChunkY = 0;
@@ -81,58 +85,58 @@ class DetectionManager {
     int shopScanCurrentChunkX = 0;
     int shopScanCurrentChunkY = 0;
     
-    dispatch_queue_t aiThread;
-    dispatch_queue_t detectionThread;
+    //dispatch_queue_t aiThread;
+    //dispatch_queue_t detectionThread;
     
     bool surrenderAvailable = false;
-    GenericObject* surrenderActive = nil;
+    GenericObject* surrenderActive = NULL;
     
-    dispatch_queue_t itemActive1Thread, itemActive2Thread, itemActive3Thread, itemActive4Thread, itemActive5Thread, itemActive6Thread;
-    dispatch_queue_t mapThread, shopThread, shopAvailableThread, usedPotionThread, trinketActiveThread, spell1ActiveThread, spell2ActiveThread, spell3ActiveThread, spell4ActiveThread, summonerSpell1ActiveThread, summonerSpell2ActiveThread, levelUpDotsThread, spell1LevelUpThread, spell2LevelUpThread, spell3LevelUpThread, spell4LevelUpThread, allyMinionThread, enemyMinionThread, enemyChampionThread, allyChampionThread, enemyTowerThread, selfChampionThread, selfHealthBarThread, surrenderThread;
+    //dispatch_queue_t itemActive1Thread, itemActive2Thread, itemActive3Thread, itemActive4Thread, itemActive5Thread, itemActive6Thread;
+    //dispatch_queue_t mapThread, shopThread, shopAvailableThread, usedPotionThread, trinketActiveThread, spell1ActiveThread, spell2ActiveThread, spell3ActiveThread, spell4ActiveThread, summonerSpell1ActiveThread, summonerSpell2ActiveThread, levelUpDotsThread, spell1LevelUpThread, spell2LevelUpThread, spell3LevelUpThread, spell4LevelUpThread, allyMinionThread, enemyMinionThread, enemyChampionThread, allyChampionThread, enemyTowerThread, selfChampionThread, selfHealthBarThread, surrenderThread;
     
     //Detection thread only variables:
-    //GenericObject* mapDetectionObject=nil, *shopTopLeftCornerDetectionObject=nil;
-    //NSMutableArray* allyMinionsDetectionObject, *enemyMinionsDetectionObject, *selfChampionsDetectionObject, *enemyTowersDetectionObject, *allyChampionsDetectionObject, *enemyChampionsDetectionObject;
+    //GenericObject* mapDetectionObject=NULL, *shopTopLeftCornerDetectionObject=NULL;
+    //std::vector<>* allyMinionsDetectionObject, *enemyMinionsDetectionObject, *selfChampionsDetectionObject, *enemyTowersDetectionObject, *allyChampionsDetectionObject, *enemyChampionsDetectionObject;
     
     //bool scanningScreen = false;
     
-    uint64_t processAllyMinionLastTime;
-    uint64_t processEnemyMinionLastTime;
-    uint64_t processAllyChampionLastTime;
-    uint64_t processEnemyChampionLastTime;
-    uint64_t processEnemyTowerLastTime;
-    uint64_t processSelfChampionLastTime;
-    uint64_t processSelfHealthBarLastTime;
-    uint64_t processShopLastTime;
+    //uint64_t processAllyMinionLastTime;
+    //uint64_t processEnemyMinionLastTime;
+    //uint64_t processAllyChampionLastTime;
+    //uint64_t processEnemyChampionLastTime;
+    //uint64_t processEnemyTowerLastTime;
+    //uint64_t processSelfChampionLastTime;
+    //uint64_t processSelfHealthBarLastTime;
+    //uint64_t processShopLastTime;
     
 public:
-    DetectionManager(dispatch_queue_t _aiThread, dispatch_queue_t _detectionThread);
+    DetectionManager(/*dispatch_queue_t _aiThread, dispatch_queue_t _detectionThread*/);
     void processDetection(ImageData image);
-    void processAllyMinionDetection(ImageData image, dispatch_group_t dispatchGroup);
-    void processEnemyMinionDetection(ImageData image, dispatch_group_t dispatchGroup);
-    void processAllyChampionDetection(ImageData image, dispatch_group_t dispatchGroup);
-    void processEnemyChampionDetection(ImageData image, dispatch_group_t dispatchGroup);
-    void processEnemyTowerDetection(ImageData image, dispatch_group_t dispatchGroup);
-    void processSelfChampionDetection(ImageData image, dispatch_group_t dispatchGroup);
-    void processSelfHealthBarDetection(ImageData image, dispatch_group_t dispatchGroup);
-    void processSpellLevelUps(ImageData image, dispatch_group_t dispatchGroup);
-    void processSpellLevelDots(ImageData image, dispatch_group_t dispatchGroup);
-    void processSpellActives(ImageData image, dispatch_group_t dispatchGroup);
-    void processSummonerSpellActives(ImageData image, dispatch_group_t dispatchGroup);
-    void processTrinketActive(ImageData image, dispatch_group_t dispatchGroup);
-    void processSurrender(ImageData image, dispatch_group_t dispatchGroup);
-    void processItemActives(ImageData image, dispatch_group_t dispatchGroup);
-    void processUsedPotion(ImageData image, dispatch_group_t dispatchGroup);
-    void processShopAvailable(ImageData image, dispatch_group_t dispatchGroup);
-    void processShop(ImageData image, dispatch_group_t dispatchGroup);
-    void processMap(ImageData image, dispatch_group_t dispatchGroup);
+    void processAllyMinionDetection(ImageData image/*, dispatch_group_t dispatchGroup*/);
+    void processEnemyMinionDetection(ImageData image/*, dispatch_group_t dispatchGroup*/);
+    void processAllyChampionDetection(ImageData image/*, dispatch_group_t dispatchGroup*/);
+    void processEnemyChampionDetection(ImageData image/*, dispatch_group_t dispatchGroup*/);
+    void processEnemyTowerDetection(ImageData image/*, dispatch_group_t dispatchGroup*/);
+    void processSelfChampionDetection(ImageData image/*, dispatch_group_t dispatchGroup*/);
+    void processSelfHealthBarDetection(ImageData image/*, dispatch_group_t dispatchGroup*/);
+    void processSpellLevelUps(ImageData image/*, dispatch_group_t dispatchGroup*/);
+    void processSpellLevelDots(ImageData image/*, dispatch_group_t dispatchGroup*/);
+    void processSpellActives(ImageData image/*, dispatch_group_t dispatchGroup*/);
+    void processSummonerSpellActives(ImageData image/*, dispatch_group_t dispatchGroup*/);
+    void processTrinketActive(ImageData image/*, dispatch_group_t dispatchGroup*/);
+    void processSurrender(ImageData image/*, dispatch_group_t dispatchGroup*/);
+    void processItemActives(ImageData image/*, dispatch_group_t dispatchGroup*/);
+    void processUsedPotion(ImageData image/*, dispatch_group_t dispatchGroup*/);
+    void processShopAvailable(ImageData image/*, dispatch_group_t dispatchGroup*/);
+    void processShop(ImageData image/*, dispatch_group_t dispatchGroup*/);
+    void processMap(ImageData image/*, dispatch_group_t dispatchGroup*/);
     
-    NSMutableArray* getAllyMinions();
-    NSMutableArray* getEnemyMinions();
-    NSMutableArray* getAllyChampions();
-    NSMutableArray* getEnemyChampions();
-    NSMutableArray* getEnemyTowers();
-    NSMutableArray* getSelfChampions();
+    std::vector<Minion> getAllyMinions();
+    std::vector<Minion> getEnemyMinions();
+    std::vector<Champion> getAllyChampions();
+    std::vector<Champion> getEnemyChampions();
+    std::vector<Tower> getEnemyTowers();
+    std::vector<Champion> getSelfChampions();
     bool getSelfHealthBarVisible();
     SelfHealth* getSelfHealthBar();
     bool getSpell1LevelUpVisible();
@@ -143,10 +147,10 @@ public:
     GenericObject* getSpell2LevelUp();
     GenericObject* getSpell3LevelUp();
     GenericObject* getSpell4LevelUp();
-    NSMutableArray* getSpell1LevelDots();
-    NSMutableArray* getSpell2LevelDots();
-    NSMutableArray* getSpell3LevelDots();
-    NSMutableArray* getSpell4LevelDots();
+    std::vector<GenericObject> getSpell1LevelDots();
+    std::vector<GenericObject> getSpell2LevelDots();
+    std::vector<GenericObject> getSpell3LevelDots();
+    std::vector<GenericObject> getSpell4LevelDots();
     int getCurrentLevel();
     bool getSpell1Available();
     bool getSpell2Available();
@@ -184,7 +188,7 @@ public:
     GenericObject* getShopTopLeftCorner();
     bool getShopBottomLeftCornerVisible();
     GenericObject* getShopBottomleftCorner();
-    NSMutableArray* getBuyableItems();
+    std::vector<GenericObject> getBuyableItems();
     bool getMapVisible();
     GenericObject* getMap();
     bool getMapShopVisible();

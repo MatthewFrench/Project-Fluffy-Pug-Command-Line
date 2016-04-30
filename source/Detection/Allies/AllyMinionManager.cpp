@@ -10,14 +10,14 @@
 
 //static int Debug_Draw_Red = 0, Debug_Draw_Green = 255, Debug_Draw_Blue = 0;
 //static int Health_Bar_Width = 62, Health_Bar_Height = 4;
-ImageData AllyMinionManager::wardImageData = makeImageDataFrom([[NSBundle mainBundle] pathForResource:@"Resources/Ward/Pink Ward" ofType:@"png"]);
+ImageData AllyMinionManager::wardImageData = loadImage("Resources/Ward/Pink Ward.png");
 
-ImageData AllyMinionManager::topLeftImageData = makeImageDataFrom([[NSBundle mainBundle] pathForResource:@"Resources/Ally Minion Health Bar/Top Left Corner" ofType:@"png"]);
+ImageData AllyMinionManager::topLeftImageData = loadImage("Resources/Ally Minion Health Bar/Top Left Corner.png");
 
-ImageData AllyMinionManager::bottomLeftImageData = makeImageDataFrom([[NSBundle mainBundle] pathForResource:@"Resources/Ally Minion Health Bar/Bottom Left Corner" ofType:@"png"]);
-ImageData AllyMinionManager::bottomRightImageData = makeImageDataFrom([[NSBundle mainBundle] pathForResource:@"Resources/Ally Minion Health Bar/Bottom Right Corner" ofType:@"png"]);
-ImageData AllyMinionManager::topRightImageData = makeImageDataFrom([[NSBundle mainBundle] pathForResource:@"Resources/Ally Minion Health Bar/Top Right Corner" ofType:@"png"]);
-ImageData AllyMinionManager::healthSegmentImageData = makeImageDataFrom([[NSBundle mainBundle] pathForResource:@"Resources/Ally Minion Health Bar/Health Segment" ofType:@"png"]);
+ImageData AllyMinionManager::bottomLeftImageData = loadImage("Resources/Ally Minion Health Bar/Bottom Left Corner.png");
+ImageData AllyMinionManager::bottomRightImageData = loadImage("Resources/Ally Minion Health Bar/Bottom Right Corner.png");
+ImageData AllyMinionManager::topRightImageData = loadImage("Resources/Ally Minion Health Bar/Top Right Corner.png");
+ImageData AllyMinionManager::healthSegmentImageData = loadImage("Resources/Ally Minion Health Bar/Health Segment.png");
 
 AllyMinionManager::AllyMinionManager () {
     /*
@@ -39,13 +39,13 @@ const float allyMinionHealthMatch = 0.80; //0.87
 Minion* AllyMinionManager::detectMinionBarAtPixel(ImageData imageData, uint8_t *pixel, int x, int y) {
     //In the future maybe for precision sake, scan for minions using a cross section of the bar, 1 pixel width top to bottom
     
-    Minion* minion = nil;
+    Minion* minion = NULL;
     //Look top left corner
     if (isColor3(pixel, 0, 0, 0)) {
         if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData.imageWidth, imageData.imageHeight, topLeftImageData, coloredPixelPrecision) >=  overalImagePrecision) {
             int barTopLeftX = x + 1;
             int barTopLeftY = y + 1;
-            minion = [Minion new];
+            minion = new Minion();
             minion->topLeft.x = barTopLeftX;
             minion->topLeft.y = barTopLeftY;
             minion->bottomLeft.x = barTopLeftX;
@@ -60,7 +60,7 @@ Minion* AllyMinionManager::detectMinionBarAtPixel(ImageData imageData, uint8_t *
         } else if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData.imageWidth, imageData.imageHeight, bottomLeftImageData, coloredPixelPrecision) >=  overalImagePrecision) { // Look for bottom left corner
             int barTopLeftX = x + 1;
             int barTopLeftY = y - 3;
-            minion = [Minion new];
+            minion = new Minion();
             minion->topLeft.x = barTopLeftX;
             minion->topLeft.y = barTopLeftY;
             minion->bottomLeft.x = barTopLeftX;
@@ -112,9 +112,10 @@ Minion* AllyMinionManager::detectMinionBarAtPixel(ImageData imageData, uint8_t *
 }
 
 //To Validate, at least 2 corners need detected then we detect the health percentage
-NSMutableArray* AllyMinionManager::validateMinionBars(ImageData imageData, NSMutableArray* detectedMinionBars) {
+std::vector<Minion> AllyMinionManager::validateMinionBars(ImageData imageData, std::vector<Minion> detectedMinionBars) {
     //NSLog(@"Detected minions: %lu", (unsigned long)[detectedMinionBars count]);
-    NSMutableArray* minionBars = [NSMutableArray new];
+    /*
+    std::vector<Tower> minionBars = [NSMutableArray new];
     
     while ([detectedMinionBars count] > 0) {
         Minion* minion = [detectedMinionBars lastObject];
@@ -200,6 +201,8 @@ NSMutableArray* AllyMinionManager::validateMinionBars(ImageData imageData, NSMut
     }
     
     return minionBars;
+     */
+    return NULL;
 }
 
 

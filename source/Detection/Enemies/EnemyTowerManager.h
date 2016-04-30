@@ -6,10 +6,9 @@
 //  Copyright © 2015 Matthew French. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "Utility.h"
-#include "concurrentqueue.h"
+#import "../../Utility.h"
 #import <time.h>
+#include <vector>
 
 class EnemyTowerManager {
     /*
@@ -32,7 +31,7 @@ public:
     bottomRightImageData, topRightImageData, healthSegmentImageData;
     EnemyTowerManager();
     static Tower* detectTowerBarAtPixel(ImageData imageData, uint8_t *pixel, int x, int y);
-    static NSMutableArray* validateTowerBars(ImageData imageData, NSMutableArray* detectedTowerBars);
+    static std::vector<Tower> validateTowerBars(ImageData imageData, std::vector<Tower> detectedTowerBars);
     //void debugDraw(ImageData imageData);
     
     //NSMutableArray* towerBars, *topRightDetect, *topLeftDetect, *bottomRightDetect, *bottomLeftDetect;

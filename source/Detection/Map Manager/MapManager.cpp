@@ -26,7 +26,7 @@ ImageData MapManager::locationBottomRightCornerImageData = makeImageDataFrom([[N
 MapManager::MapManager() {}
 
 GenericObject* MapManager::detectMap(ImageData imageData, uint8_t *pixel, int x, int y) {
-    GenericObject* object = nil;
+    GenericObject* object = NULL;
     if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData.imageWidth, imageData.imageHeight, mapTopLeftCornerImageData, 0.7) >=  0.7) {
         object = new GenericObject();
         object->topLeft.x = x;
@@ -44,7 +44,7 @@ GenericObject* MapManager::detectMap(ImageData imageData, uint8_t *pixel, int x,
     return object;
 }
 GenericObject* MapManager::detectShop(ImageData imageData, uint8_t *pixel, int x, int y) {
-    GenericObject* object = nil;
+    GenericObject* object = NULL;
     if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData.imageWidth, imageData.imageHeight, shopIconImageData, 0.0) >=  0.7) {
         object = new GenericObject();
         object->topLeft.x = x;
@@ -61,7 +61,7 @@ GenericObject* MapManager::detectShop(ImageData imageData, uint8_t *pixel, int x
     
     return object;
 }
-CGPoint getHorizontalWhiteBar(ImageData imageData, int x, int y) {
+Position getHorizontalWhiteBar(ImageData imageData, int x, int y) {
     int endX = x;
     int startX = x;
     for (int x2 = x+1; x2 < imageData.imageWidth; x2++) {
@@ -78,9 +78,9 @@ CGPoint getHorizontalWhiteBar(ImageData imageData, int x, int y) {
             break;
         }
     }
-    return CGPointMake(startX, endX);
+    return makePosition(startX, endX);
 }
-CGPoint getVerticalWhiteBar(ImageData imageData, int x, int y) {
+Position getVerticalWhiteBar(ImageData imageData, int x, int y) {
     int endY = y;
     int startY = y;
     for (int y2 = y+1; y2 < imageData.imageHeight; y2++) {
@@ -97,9 +97,9 @@ CGPoint getVerticalWhiteBar(ImageData imageData, int x, int y) {
             break;
         }
     }
-    return CGPointMake(startY, endY);
+    return makePosition(startY, endY);
 }
-int getSizeOfBar(CGPoint bar) {
+int getSizeOfBar(Position bar) {
     return bar.y - bar.x;
 }
 GenericObject* MapManager::detectLocation(ImageData imageData, uint8_t *pixel, int x, int y) {
@@ -112,20 +112,20 @@ GenericObject* MapManager::detectLocation(ImageData imageData, uint8_t *pixel, i
     //have one of the side lengths. Then search for the other bar on either side of the first
     //bar and get it's length. Now you have it. This should be way cheaper than looking for
     //4 images each time. Cause we're only searching for a single color. Quite a bit of code though.
-    GenericObject* object = nil;
+    GenericObject* object = NULL;
     if (isColor3(pixel, 255, 255, 255)) {
-        CGPoint horzBar = getHorizontalWhiteBar(imageData, x, y);
-        CGPoint vertBar = getVerticalWhiteBar(imageData, x, y);
+        Position horzBar = getHorizontalWhiteBar(imageData, x, y);
+        Position vertBar = getVerticalWhiteBar(imageData, x, y);
         if (getSizeOfBar(horzBar) > getSizeOfBar(vertBar)) {
             //We have a horizontal bar
             //Search for vertical bar
-            CGPoint topLeftVertBar = getVerticalWhiteBar(imageData, horzBar.x, y - 1);
-            CGPoint chosenVertBar = topLeftVertBar;
-            CGPoint bottomLeftVertBar = getVerticalWhiteBar(imageData, horzBar.x, y + 1);
+            Position topLeftVertBar = getVerticalWhiteBar(imageData, horzBar.x, y - 1);
+            Position chosenVertBar = topLeftVertBar;
+            Position bottomLeftVertBar = getVerticalWhiteBar(imageData, horzBar.x, y + 1);
             if (getSizeOfBar(bottomLeftVertBar) > getSizeOfBar(chosenVertBar)) chosenVertBar = bottomLeftVertBar;
-            CGPoint topRightVertBar = getVerticalWhiteBar(imageData, horzBar.y, y - 1);
+            Position topRightVertBar = getVerticalWhiteBar(imageData, horzBar.y, y - 1);
             if (getSizeOfBar(topRightVertBar) > getSizeOfBar(chosenVertBar)) chosenVertBar = topRightVertBar;
-            CGPoint bottomRightVertBar = getVerticalWhiteBar(imageData, horzBar.y, y + 1);
+            Position bottomRightVertBar = getVerticalWhiteBar(imageData, horzBar.y, y + 1);
             if (getSizeOfBar(bottomRightVertBar) > getSizeOfBar(chosenVertBar)) chosenVertBar = bottomRightVertBar;
             
             if (getSizeOfBar(chosenVertBar) > 5 && getSizeOfBar(horzBar) > 5) {
@@ -148,14 +148,14 @@ GenericObject* MapManager::detectLocation(ImageData imageData, uint8_t *pixel, i
         } else {
             //We have a vertical bar
             //Search for horizontal bar
-            CGPoint topLeftHorzBar = getHorizontalWhiteBar(imageData, x - 1, vertBar.x);
-            CGPoint chosenHorzBar = topLeftHorzBar;
+            Position topLeftHorzBar = getHorizontalWhiteBar(imageData, x - 1, vertBar.x);
+            Position chosenHorzBar = topLeftHorzBar;
             
-            CGPoint bottomLeftHorzBar = getHorizontalWhiteBar(imageData, x + 1, vertBar.x);
+            Position bottomLeftHorzBar = getHorizontalWhiteBar(imageData, x + 1, vertBar.x);
             if (getSizeOfBar(bottomLeftHorzBar) > getSizeOfBar(chosenHorzBar)) chosenHorzBar = bottomLeftHorzBar;
-            CGPoint topRightHorzBar = getHorizontalWhiteBar(imageData, x - 1, vertBar.y);
+            Position topRightHorzBar = getHorizontalWhiteBar(imageData, x - 1, vertBar.y);
             if (getSizeOfBar(topRightHorzBar) > getSizeOfBar(chosenHorzBar)) chosenHorzBar = topRightHorzBar;
-            CGPoint bottomRightHorzBar = getHorizontalWhiteBar(imageData, x + 1, vertBar.y);
+            Position bottomRightHorzBar = getHorizontalWhiteBar(imageData, x + 1, vertBar.y);
             if (getSizeOfBar(bottomRightHorzBar) > getSizeOfBar(chosenHorzBar)) chosenHorzBar = bottomRightHorzBar;
             
             if (getSizeOfBar(chosenHorzBar) > 5 && getSizeOfBar(horzBar) > 5) {

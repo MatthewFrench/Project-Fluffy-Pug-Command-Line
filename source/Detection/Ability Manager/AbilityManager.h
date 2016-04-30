@@ -6,9 +6,10 @@
 //  Copyright © 2015 Matthew French. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "Utility.h"
-#import "InteractiveEvents.h"
+//#import <Foundation/Foundation.h>
+#import "../../Utility.h"
+#import <vector>
+//#import "InteractiveEvents.h"
 
 class AbilityManager {
     
@@ -46,28 +47,4 @@ public:
     static GenericObject* detectLevelDotAtPixel(ImageData imageData, uint8_t *pixel, int x, int y);
     static GenericObject* detectEnabledAbilityAtPixel(ImageData imageData, uint8_t *pixel, int x, int y);
     static GenericObject* detectEnabledSummonerSpellAtPixel(ImageData imageData, uint8_t *pixel, int x, int y);
-    /*
-    void processImage(ImageData imageData);
-    NSMutableArray* levelUpDetect, *levelUpDisabledDetect, *abilityEnabledDetect, *abilityDisabledDetect;
-    bool ability1LevelUpAvailable, ability2LevelUpAvailable, ability3LevelUpAvailable, ability4LevelUpAvailable;
-    bool ability1Ready, ability2Ready, ability3Ready, ability4Ready;
-    int levelUpCount;
-    bool summonerSpell1Ready, summonerSpell2Ready;
-    
-    void useSpell1();
-    void useSpell2();
-    void useSpell3();
-    void useSpell4();
-    
-    void useSummonerSpell1();
-    void useSummonerSpell2();
-     */
-    /*
-     NSMutableArray* minionBars, *topRightDetect, *topLeftDetect, *bottomRightDetect, *bottomLeftDetect;
-     
-     MinionBar getNearestMinion(int x, int y);
-     MinionBar getLowestHealthMinion(int x, int y);
-     
-     void debugDraw();
-     */
 };

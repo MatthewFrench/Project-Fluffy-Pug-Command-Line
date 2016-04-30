@@ -6,9 +6,10 @@
 //  Copyright (c) 2015 Matthew French. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "Utility.h"
-#include "concurrentqueue.h"
+//#import <Foundation/Foundation.h>
+#import "../../Utility.h"
+#import <vector>
+//#include "concurrentqueue.h"
 
 class EnemyMinionManager {
     
@@ -38,7 +39,7 @@ public:
     EnemyMinionManager();
     
     static Minion* detectMinionBarAtPixel(ImageData imageData, uint8_t *pixel, int x, int y);
-    static NSMutableArray* validateMinionBars(ImageData imageData, NSMutableArray* detectedChampionBars);
+    static std::vector<Minion> validateMinionBars(ImageData imageData, std::vector<Minion> detectedChampionBars);
     //void processImage(ImageData imageData);
     //MinionBar getNearestMinion(int x, int y);
     //MinionBar getLowestHealthMinion(int x, int y);

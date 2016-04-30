@@ -6,10 +6,11 @@
 //  Copyright (c) 2015 Matthew French. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "Utility.h"
-#include "concurrentqueue.h"
+//#import <Foundation/Foundation.h>
+#import "../../Utility.h"
+//#include "concurrentqueue.h"
 #import <time.h>
+#import <vector>
 
 class EnemyChampionManager {
     /*
@@ -39,7 +40,7 @@ public:
     
     EnemyChampionManager();
     static Champion* detectChampionBarAtPixel(ImageData imageData, uint8_t *pixel, int x, int y);
-    static NSMutableArray* validateChampionBars(ImageData imageData, NSMutableArray* detectedChampionBars);
+    static std::vector<Champion> validateChampionBars(ImageData imageData, std::vector<Champion> detectedChampionBars);
     //void processImage(ImageData imageData);
     //ChampionBar getNearestChampion(int x, int y);
     //ChampionBar getLowestHealthChampion(int x, int y);

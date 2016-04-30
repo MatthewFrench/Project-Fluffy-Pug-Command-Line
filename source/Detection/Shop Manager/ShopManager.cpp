@@ -39,9 +39,9 @@ ShopManager::ShopManager() {
      */
 }
 GenericObject* ShopManager::detectShopAvailable(ImageData imageData, uint8_t *pixel, int x, int y) {
-    GenericObject* object = nil;
+    GenericObject* object = NULL;
     if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData.imageWidth, imageData.imageHeight, shopAvailableImageData, 0.5) >=  0.5) {
-        object = [GenericObject new];
+        object = new GenericObject();
         object->topLeft.x = x;
         object->topLeft.y = y;
         object->bottomLeft.x = x;
@@ -57,9 +57,9 @@ GenericObject* ShopManager::detectShopAvailable(ImageData imageData, uint8_t *pi
     return object;
 }
 GenericObject* ShopManager::detectShopTopLeftCorner(ImageData imageData, uint8_t *pixel, int x, int y) {
-    GenericObject* object = nil;
+    GenericObject* object = NULL;
     if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData.imageWidth, imageData.imageHeight, shopTopLeftCornerImageData, 0.4) >=  0.8) {
-        object = [GenericObject new];
+        object = new GenericObject();
         object->topLeft.x = x;
         object->topLeft.y = y;
         object->bottomLeft.x = x;
@@ -75,9 +75,9 @@ GenericObject* ShopManager::detectShopTopLeftCorner(ImageData imageData, uint8_t
     return object;
 }
 GenericObject* ShopManager::detectShopBottomLeftCorner(ImageData imageData, uint8_t *pixel, int x, int y) {
-    GenericObject* object = nil;
+    GenericObject* object = NULL;
     if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData.imageWidth, imageData.imageHeight, shopBottomLeftCornerImageData, 0.5) >=  0.95) {
-        object = [GenericObject new];
+        object = new GenericObject();
         object->topLeft.x = x;
         object->topLeft.y = y;
         object->bottomLeft.x = x;
@@ -98,7 +98,7 @@ const int ItemHeight = 38;
 const int SearchMargin = 10;
 GenericObject* ShopManager::detectBuyableItems(ImageData imageData, uint8_t *pixel, int x, int y) {
     float precision = 0.8;
-    GenericObject* object = nil;
+    GenericObject* object = NULL;
     if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData.imageWidth, imageData.imageHeight, shopBuyableItemTopLeftCornerImageData, precision) >=  precision) {
         
         //NSLog(@"Found top left corner at %d, %d", x, y);
@@ -140,10 +140,10 @@ GenericObject* ShopManager::detectBuyableItems(ImageData imageData, uint8_t *pix
             }
         }
         //if (bottomRightCorner == false) return nil;
-        if (cornerCount < 2) return nil;
+        if (cornerCount < 2) return NULL;
         //NSLog(@"Corner count: %d", cornerCount);
         
-        object = [GenericObject new];
+        object = new GenericObject();
         object->topLeft.x = x;
         object->topLeft.y = y;
         object->bottomLeft.x = x;

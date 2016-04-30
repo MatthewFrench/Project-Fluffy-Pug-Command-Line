@@ -12,12 +12,12 @@
 //static int Health_Bar_Width = 104, Health_Bar_Height = 9;
 
 
-ImageData AllyChampionManager::topLeftImageData = makeImageDataFrom([[NSBundle mainBundle] pathForResource:@"Resources/Ally Champion Health Bar/Top Left Corner" ofType:@"png"]);
+ImageData AllyChampionManager::topLeftImageData = loadImage("Resources/Ally Champion Health Bar/Top Left Corner.png");
 
-ImageData AllyChampionManager::bottomLeftImageData = makeImageDataFrom([[NSBundle mainBundle] pathForResource:@"Resources/Ally Champion Health Bar/Bottom Left Corner" ofType:@"png"]);
-ImageData AllyChampionManager::bottomRightImageData = makeImageDataFrom([[NSBundle mainBundle] pathForResource:@"Resources/Ally Champion Health Bar/Bottom Right Corner" ofType:@"png"]);
-ImageData AllyChampionManager::topRightImageData = makeImageDataFrom([[NSBundle mainBundle] pathForResource:@"Resources/Ally Champion Health Bar/Top Right Corner" ofType:@"png"]);
-ImageData AllyChampionManager::healthSegmentImageData = makeImageDataFrom([[NSBundle mainBundle] pathForResource:@"Resources/Ally Champion Health Bar/Health Segment" ofType:@"png"]);
+ImageData AllyChampionManager::bottomLeftImageData = loadImage("Resources/Ally Champion Health Bar/Bottom Left Corner.png");
+ImageData AllyChampionManager::bottomRightImageData = loadImage("Resources/Ally Champion Health Bar/Bottom Right Corner.png");
+ImageData AllyChampionManager::topRightImageData = loadImage("Resources/Ally Champion Health Bar/Top Right Corner.png");
+ImageData AllyChampionManager::healthSegmentImageData = loadImage("Resources/Ally Champion Health Bar/Health Segment.png");
 
 AllyChampionManager::AllyChampionManager () {
     /*
@@ -33,12 +33,12 @@ AllyChampionManager::AllyChampionManager () {
     //lastUpdateTime = clock();
 }
 Champion* AllyChampionManager::detectChampionBarAtPixel(ImageData imageData, uint8_t *pixel, int x, int y) {
-    Champion* champ = nil;
+    Champion* champ = null;
     //Look top left corner
     if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData.imageWidth, imageData.imageHeight, topLeftImageData, 0.85) >=  0.85) {
         int barTopLeftX = x + 3;
         int barTopLeftY = y + 3;
-        champ = [Champion new];
+        champ = new Champion();
         champ->topLeft.x = barTopLeftX;
         champ->topLeft.y = barTopLeftY;
         champ->bottomLeft.x = barTopLeftX;
@@ -51,7 +51,7 @@ Champion* AllyChampionManager::detectChampionBarAtPixel(ImageData imageData, uin
     } else if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData.imageWidth, imageData.imageHeight, bottomLeftImageData, 0.85) >=  0.85) { // Look for bottom left corner
         int barTopLeftX = x + 3;
         int barTopLeftY = y - 8;
-        champ = [Champion new];
+        champ = new Champion();
         champ->topLeft.x = barTopLeftX;
         champ->topLeft.y = barTopLeftY;
         champ->bottomLeft.x = barTopLeftX;
@@ -64,7 +64,7 @@ Champion* AllyChampionManager::detectChampionBarAtPixel(ImageData imageData, uin
     } else if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData.imageWidth, imageData.imageHeight, topRightImageData, 0.85) >=  0.85) { // Look for top right corner
         int barTopLeftX = x - 101 - 2;
         int barTopLeftY = y + 3;
-        champ = [Champion new];
+        champ = new Champion();
         champ->topLeft.x = barTopLeftX;
         champ->topLeft.y = barTopLeftY;
         champ->bottomLeft.x = barTopLeftX;
@@ -77,7 +77,7 @@ Champion* AllyChampionManager::detectChampionBarAtPixel(ImageData imageData, uin
     } else if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData.imageWidth, imageData.imageHeight, bottomRightImageData, 0.85) >=  0.85) { // Look for bottom right corner
         int barTopLeftX = x - 101 - 2;
         int barTopLeftY = y - 8;
-        champ = [Champion new];
+        champ = new Champion();
         champ->topLeft.x = barTopLeftX;
         champ->topLeft.y = barTopLeftY;
         champ->bottomLeft.x = barTopLeftX;
@@ -95,7 +95,8 @@ Champion* AllyChampionManager::detectChampionBarAtPixel(ImageData imageData, uin
 }
 
 //To Validate, at least 2 corners need detected then we detect the health percentage
-NSMutableArray* AllyChampionManager::validateChampionBars(ImageData imageData, NSMutableArray* detectedChampionBars) {
+std::vector<Champion> AllyChampionManager::validateChampionBars(ImageData imageData, std::vector<Champion> detectedChampionBars) {
+    /*
     NSMutableArray* championBars = [NSMutableArray new];
     
     while ([detectedChampionBars count] > 0) {
@@ -143,6 +144,8 @@ NSMutableArray* AllyChampionManager::validateChampionBars(ImageData imageData, N
     }
     
     return championBars;
+     */
+    return NULL;
 }
 
 /*
