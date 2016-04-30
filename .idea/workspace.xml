@@ -12,6 +12,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f10cf6ff-22a8-4a99-9a3a-2114f04636f2" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Project-Fluffy-Pug-Command-Line.iml" afterPath="$PROJECT_DIR$/.idea/Project-Fluffy-Pug-Command-Line.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Readme.md" afterPath="$PROJECT_DIR$/Readme.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/Utility.h" afterPath="$PROJECT_DIR$/source/Utility.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/main.cpp" afterPath="$PROJECT_DIR$/source/main.cpp" />
     </list>
     <ignored path="Project-Fluffy-Pug-Command-Line.iws" />
@@ -33,12 +37,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
-              <folding />
+            <state relative-caret-position="390">
+              <caret line="26" column="12" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
+              <folding>
+                <element signature="e#92#111#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -53,11 +59,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Utility.h" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Utility.h" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/source/Utility.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="43" column="26" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="26" />
+            <state relative-caret-position="213">
+              <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+              <folding>
+                <element signature="e#382#400#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -66,8 +84,8 @@
       <file leaf-file-name="DetectionManager.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/Detection/DetectionManager.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+            <state relative-caret-position="1860">
+              <caret line="124" column="19" selection-start-line="124" selection-start-column="19" selection-end-line="124" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -105,10 +123,10 @@
         <option value="$PROJECT_DIR$/source/Detection/Objects/Tower.cpp" />
         <option value="$PROJECT_DIR$/source/Detection/Objects/Tower.h" />
         <option value="$PROJECT_DIR$/source/Detection/Map Manager/MapManager.h" />
-        <option value="$PROJECT_DIR$/source/Utility.h" />
         <option value="$PROJECT_DIR$/source/Detection/Map Manager/MapManager.cpp" />
         <option value="$PROJECT_DIR$/source/Detection/Shop Manager/ShopManager.cpp" />
         <option value="$PROJECT_DIR$/source/main.cpp" />
+        <option value="$PROJECT_DIR$/source/Utility.h" />
       </list>
     </option>
   </component>
@@ -119,9 +137,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="43" />
-    <option name="width" value="1270" />
-    <option name="height" value="733" />
+    <option name="x" value="356" />
+    <option name="y" value="55" />
+    <option name="width" value="1008" />
+    <option name="height" value="773" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -594,10 +613,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="43" width="1270" height="733" extended-state="0" />
+    <frame x="356" y="55" width="1008" height="773" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2480315" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -630,18 +649,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/source/Detection/DetectionManager.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/Detection/Objects/Champion.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -667,7 +679,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="32" column="26" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -675,7 +686,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
           <caret line="44" column="16" selection-start-line="44" selection-start-column="16" selection-end-line="44" selection-end-column="16" />
-          <folding />
+          <folding>
+            <element signature="e#382#400#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -739,7 +752,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -747,7 +759,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
           <caret line="44" column="16" selection-start-line="44" selection-start-column="16" selection-end-line="44" selection-end-column="16" />
-          <folding />
+          <folding>
+            <element signature="e#382#400#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -811,7 +825,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -819,7 +832,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
           <caret line="44" column="16" selection-start-line="44" selection-start-column="16" selection-end-line="44" selection-end-column="16" />
-          <folding />
+          <folding>
+            <element signature="e#382#400#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -936,7 +951,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -950,8 +964,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/source/Detection/DetectionManager.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+        <state relative-caret-position="1860">
+          <caret line="124" column="19" selection-start-line="124" selection-start-column="19" selection-end-line="124" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
           <folding />
         </state>
       </provider>
@@ -964,19 +986,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/Utility.h">
+    <entry file="file://$PROJECT_DIR$/source/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="43" column="26" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="26" />
-          <folding />
+        <state relative-caret-position="390">
+          <caret line="26" column="12" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
+          <folding>
+            <element signature="e#92#111#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/main.cpp">
+    <entry file="file://$PROJECT_DIR$/source/Utility.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
-          <folding />
+        <state relative-caret-position="213">
+          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <folding>
+            <element signature="e#382#400#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

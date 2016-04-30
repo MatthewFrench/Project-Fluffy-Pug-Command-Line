@@ -10,6 +10,9 @@ Creating make files
 Creating Xcode files
 • Use CMake application to create Xcode files
 
+Running cmake:
+cd build
+cmake .. && make
 
 Running through make 
 • make

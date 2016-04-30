@@ -33,7 +33,7 @@ AllyChampionManager::AllyChampionManager () {
     //lastUpdateTime = clock();
 }
 Champion* AllyChampionManager::detectChampionBarAtPixel(ImageData imageData, uint8_t *pixel, int x, int y) {
-    Champion* champ = null;
+    Champion* champ = NULL;
     //Look top left corner
     if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData.imageWidth, imageData.imageHeight, topLeftImageData, 0.85) >=  0.85) {
         int barTopLeftX = x + 3;

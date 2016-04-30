@@ -25,9 +25,14 @@
 #import "Detection/Objects/Tower.h"
 #import "Detection/Objects/GenericObject.h"
 #import "Detection/Objects/Position.h"
+
+#define cimg_display 0
+#define cimg_use_png
+
 #include "lib/CImg.h"
 
 using namespace std;
+using namespace cimg_library; 
 
 struct ImageData {
     //CFDataRef rawData;
@@ -41,9 +46,29 @@ struct Pixel {
     bool exist;
 };
 
+
+inline  ImageData makeImageData(uint8_t * data, int imageWidth, int imageHeight);
+
 inline ImageData loadImage(string name) {
-    CImg<unsigned char> img(name);
-    return nil;
+    CImg<unsigned char> image(name.c_str());
+
+    //need to make a uint8_t
+    uint8_t * data = (uint8_t *)malloc(sizeof(uint8_t) * image.width() * image.height() * 4);
+
+    for (int x = 0; x < image.width(); x++) {
+        for (int y = 0; y < image.height(); y++) {
+            data[x + y * image.width() + 0] = image.atXY(x, y, 0);
+            data[x + y * image.width() + 1] = image.atXY(x, y, 1);
+            data[x + y * image.width() + 2] = image.atXY(x, y, 2);
+            if (image.spectrum() <= 3) {
+                data[x + y * image.width() + 3] = 255;
+            } else {
+                data[x + y * image.width() + 3] = image.atXY(x, y, 3);
+            }
+        }
+    }
+
+    return makeImageData(data, image.width(), image.height());
 }
 inline Position makePosition(int x, int y);
 inline int getRandomInteger(int minimum, int maximum);
@@ -58,8 +83,7 @@ inline bool isPixelPreciseColor( Pixel pixel, unsigned char r, unsigned char g, 
 inline bool isColor(const uint8_t *pixel, unsigned char r, unsigned char g, unsigned char b, int tolerance);
 inline bool isColor3(const uint8_t *pixel, unsigned char r, unsigned char g, unsigned char b);
 inline bool isColor2(const uint8_t *pixel, const uint8_t *pixel2, int tolerance);
-inline  ImageData makeImageData(uint8_t * data, int imageWidth, int imageHeight);
-inline ImageData makeImageDataFrom(string* path);
+//inline ImageData makeImageDataFrom(string* path);
 //inline bool detectImageAtPixel(const uint8_t *pixel, int x, int y, int width, int height, ImageData image, int tolerance);
 //inline bool detectImageAtPixelPercentage(const uint8_t *pixel, int x, int y, int width, int height, ImageData image, float percentage);
 inline void normalizePoint(int &x, int &y, int length);
@@ -221,20 +245,20 @@ extern inline CGRect* getIntersectionRectangles(CGRect baseRect, const CGRect* r
     return newRects;
 }*/
 
-extern inline uint8_t * copyImageBufferSection(uint8_t *baseAddress, int bufferWidth, int bufferHeight, int copyX, int copyY, int copyWidth, int copyHeight) {
-    uint8_t * testImage = (uint8_t*) calloc (copyWidth * copyHeight * 4,sizeof(uint8_t));
-    for (int x = copyX; x < copyX+copyWidth; x++) {
-        for (int y = copyY; y < copyY+copyHeight; y++) {
-            uint8_t *largePixel = getPixel3(baseAddress, x, y, bufferWidth);
-            uint8_t *newPixel = getPixel3(testImage, x - copyX, y - copyY, copyWidth);
-            newPixel[0] = largePixel[0];
-            newPixel[1] = largePixel[1];
-            newPixel[2] = largePixel[2];
-            newPixel[3] = largePixel[3];
+    extern inline uint8_t * copyImageBufferSection(uint8_t *baseAddress, int bufferWidth, int bufferHeight, int copyX, int copyY, int copyWidth, int copyHeight) {
+        uint8_t * testImage = (uint8_t*) calloc (copyWidth * copyHeight * 4,sizeof(uint8_t));
+        for (int x = copyX; x < copyX+copyWidth; x++) {
+            for (int y = copyY; y < copyY+copyHeight; y++) {
+                uint8_t *largePixel = getPixel3(baseAddress, x, y, bufferWidth);
+                uint8_t *newPixel = getPixel3(testImage, x - copyX, y - copyY, copyWidth);
+                newPixel[0] = largePixel[0];
+                newPixel[1] = largePixel[1];
+                newPixel[2] = largePixel[2];
+                newPixel[3] = largePixel[3];
+            }
         }
+        return testImage;
     }
-    return testImage;
-}
 /*
 extern inline void detectExactImageToImageToRectangle(ImageData smallImage, ImageData largeImage, CGRect rect, float &returnPercentage, Position &returnPosition, float minimumPercentage, bool getFirstMatching) {
     Position position;
@@ -266,127 +290,127 @@ extern inline void detectExactImageToImageToRectangles(ImageData smallImage, Ima
         }
     }
 }*/
-extern inline void detectExactImageToImage(ImageData smallImage, ImageData largeImage, int xStart, int yStart, int xEnd, int yEnd, float &returnPercentage, Position &returnPosition, float minimumPercentage, bool getFirstMatching) {
+    extern inline void detectExactImageToImage(ImageData smallImage, ImageData largeImage, int xStart, int yStart, int xEnd, int yEnd, float &returnPercentage, Position &returnPosition, float minimumPercentage, bool getFirstMatching) {
     //Minimum percentage is so it matches faster
-    float highestPercent = 0.0;
-    Position location;
-    location.x = -1; location.y = -1;
+        float highestPercent = 0.0;
+        Position location;
+        location.x = -1; location.y = -1;
     //Stop image search from putting the width and height past the end
-    yEnd -= smallImage.imageHeight;
-    xEnd -= smallImage.imageWidth;
-    
-    for (int y = yStart; y < yEnd; y++) {
-        uint8_t *pixel = getPixel2(largeImage, xStart, y);
-        for (int x = xStart; x < xEnd; x++) {
-            float percent = getImageAtPixelPercentageOptimizedExact(pixel, x, y, largeImage.imageWidth, largeImage.imageHeight, smallImage, minimumPercentage);
-            if (percent > highestPercent) {
-                location.x = x; location.y = y;
-                highestPercent = percent;
-                if (percent >= minimumPercentage && getFirstMatching) {
-                    x = xEnd; y = yEnd;
+        yEnd -= smallImage.imageHeight;
+        xEnd -= smallImage.imageWidth;
+
+        for (int y = yStart; y < yEnd; y++) {
+            uint8_t *pixel = getPixel2(largeImage, xStart, y);
+            for (int x = xStart; x < xEnd; x++) {
+                float percent = getImageAtPixelPercentageOptimizedExact(pixel, x, y, largeImage.imageWidth, largeImage.imageHeight, smallImage, minimumPercentage);
+                if (percent > highestPercent) {
+                    location.x = x; location.y = y;
+                    highestPercent = percent;
+                    if (percent >= minimumPercentage && getFirstMatching) {
+                        x = xEnd; y = yEnd;
+                    }
                 }
+                pixel += 4;
             }
-            pixel += 4;
         }
+        returnPercentage = highestPercent;
+        returnPosition = location;
     }
-    returnPercentage = highestPercent;
-    returnPosition = location;
-}
-extern inline float getImageAtPixelPercentageOptimizedExact(const uint8_t *pixel, int x, int y, int width, int height, ImageData image, float minimumPercentage) {
-    int pixels = 0;
-    int maxPixelCount = image.imageWidth * image.imageHeight;
-    int skipPixels = 4 * (width - image.imageWidth);
-    float percentage = 0.0;
-    uint8_t *pixel2 = image.imageData;
+    extern inline float getImageAtPixelPercentageOptimizedExact(const uint8_t *pixel, int x, int y, int width, int height, ImageData image, float minimumPercentage) {
+        int pixels = 0;
+        int maxPixelCount = image.imageWidth * image.imageHeight;
+        int skipPixels = 4 * (width - image.imageWidth);
+        float percentage = 0.0;
+        uint8_t *pixel2 = image.imageData;
     //int xLimit = image.imageWidth;
     //int yLimit = image.imageHeight;
-    if (x + image.imageWidth > width || y + image.imageHeight > height) {
-        return 0.0;
+        if (x + image.imageWidth > width || y + image.imageHeight > height) {
+            return 0.0;
         //xLimit = width - x;
         //NSLog(@"%d vs %d", x + image.imageWidth, width);
         //NSLog(@"Add amount pixels: %d", (image.imageWidth - xLimit));
         //NSLog(@"Old limit: %d vs new limit: %d", image.imageWidth, xLimit);
-    }
+        }
     //if (y + image.imageHeight > height) yLimit = height - y;
     //int addAmountPixels = (image.imageWidth - xLimit);
     //int addAmount = addAmountPixels * 4;
-    int perfectPixels = 0;
-    int nonPerfectPixels = 0;
-    for (int y1 = 0; y1 < image.imageHeight; y1++) {
+        int perfectPixels = 0;
+        int nonPerfectPixels = 0;
+        for (int y1 = 0; y1 < image.imageHeight; y1++) {
         //const uint8_t *pixel1 = pixel + y1 * width * 4;
-        for (int x1 = 0; x1 < image.imageWidth; x1++) {
-            if (pixel2[3] != 0) {
-                pixels++;
-                float p = getColorPercentage(pixel, pixel2);
-                
-                percentage += p;
-                if (p < minimumPercentage) {
-                    return percentage / maxPixelCount;
-                }
-                if (p == 1.0) {
-                    perfectPixels++;
-                } else {
-                    nonPerfectPixels++;
-                }
-            } else {maxPixelCount--;}
-            pixel2 += 4;
-            pixel += 4;
-        }
+            for (int x1 = 0; x1 < image.imageWidth; x1++) {
+                if (pixel2[3] != 0) {
+                    pixels++;
+                    float p = getColorPercentage(pixel, pixel2);
+
+                    percentage += p;
+                    if (p < minimumPercentage) {
+                        return percentage / maxPixelCount;
+                    }
+                    if (p == 1.0) {
+                        perfectPixels++;
+                    } else {
+                        nonPerfectPixels++;
+                    }
+                } else {maxPixelCount--;}
+                pixel2 += 4;
+                pixel += 4;
+            }
         //pixel2 += addAmount;
         //pixels += addAmountPixels;
-        pixel += skipPixels;
+            pixel += skipPixels;
+        }
+        return percentage / pixels;
     }
-    return percentage / pixels;
-}
-extern inline void detectSimilarImageToImage(ImageData smallImage, ImageData largeImage, int xStart, int yStart, int xEnd, int yEnd, float &returnPercentage, Position &returnPosition, float minimumPercentage, bool getFirstMatching) {
+    extern inline void detectSimilarImageToImage(ImageData smallImage, ImageData largeImage, int xStart, int yStart, int xEnd, int yEnd, float &returnPercentage, Position &returnPosition, float minimumPercentage, bool getFirstMatching) {
     //Minimum percentage is so it matches faster
-    float highestPercent = 0.0;
-    Position location;
-    location.x = -1; location.y = -1;
+        float highestPercent = 0.0;
+        Position location;
+        location.x = -1; location.y = -1;
     //Stop image search from putting the width and height past the end
-    yEnd -= smallImage.imageHeight;
-    xEnd -= smallImage.imageWidth;
-    
-    for (int y = yStart; y < yEnd; y++) {
-        uint8_t *pixel = getPixel2(largeImage, xStart, y);
-        for (int x = xStart; x < xEnd; x++) {
-            float percent = getImageAtPixelPercentageOptimized(pixel, x, y, largeImage.imageWidth, largeImage.imageHeight, smallImage, minimumPercentage);
-            if (percent > highestPercent) {
-                location.x = x; location.y = y;
-                highestPercent = percent;
-                if (percent >= minimumPercentage && getFirstMatching) {
-                    x = xEnd; y = yEnd;
+        yEnd -= smallImage.imageHeight;
+        xEnd -= smallImage.imageWidth;
+
+        for (int y = yStart; y < yEnd; y++) {
+            uint8_t *pixel = getPixel2(largeImage, xStart, y);
+            for (int x = xStart; x < xEnd; x++) {
+                float percent = getImageAtPixelPercentageOptimized(pixel, x, y, largeImage.imageWidth, largeImage.imageHeight, smallImage, minimumPercentage);
+                if (percent > highestPercent) {
+                    location.x = x; location.y = y;
+                    highestPercent = percent;
+                    if (percent >= minimumPercentage && getFirstMatching) {
+                        x = xEnd; y = yEnd;
+                    }
                 }
+                pixel += 4;
             }
-            pixel += 4;
         }
+        returnPercentage = highestPercent;
+        returnPosition = location;
     }
-    returnPercentage = highestPercent;
-    returnPosition = location;
-}
-extern inline float getImageAtPixelPercentageOptimized(const uint8_t *pixel, int x, int y, int width, int height, ImageData image, float minimumPercentage) {
-    int pixels = 0;
-    int maxPixelCount = image.imageWidth * image.imageHeight;
-    int skipPixels = 4 * (width - image.imageWidth);
-    float percentage = 0.0;
-    uint8_t *pixel2 = image.imageData;
-    for (int y1 = 0; y1 < image.imageHeight; y1++) {
+    extern inline float getImageAtPixelPercentageOptimized(const uint8_t *pixel, int x, int y, int width, int height, ImageData image, float minimumPercentage) {
+        int pixels = 0;
+        int maxPixelCount = image.imageWidth * image.imageHeight;
+        int skipPixels = 4 * (width - image.imageWidth);
+        float percentage = 0.0;
+        uint8_t *pixel2 = image.imageData;
+        for (int y1 = 0; y1 < image.imageHeight; y1++) {
         //const uint8_t *pixel1 = pixel + y1 * width * 4;
-        for (int x1 = 0; x1 < image.imageWidth; x1++) {
-            if (pixel2[3] != 0) {
-                pixels++;
-                percentage += getColorPercentage(pixel, pixel2);
-            } else {maxPixelCount--;}
-            pixel2 += 4;
-            pixel += 4;
+            for (int x1 = 0; x1 < image.imageWidth; x1++) {
+                if (pixel2[3] != 0) {
+                    pixels++;
+                    percentage += getColorPercentage(pixel, pixel2);
+                } else {maxPixelCount--;}
+                pixel2 += 4;
+                pixel += 4;
+            }
+            if ((percentage + (maxPixelCount - pixels)) / maxPixelCount < minimumPercentage) {
+                break;
+            }
+            pixel += skipPixels;
         }
-        if ((percentage + (maxPixelCount - pixels)) / maxPixelCount < minimumPercentage) {
-            break;
-        }
-        pixel += skipPixels;
+        return percentage / pixels;
     }
-    return percentage / pixels;
-}
 
 /*
 extern inline NSImage* getImageFromRGBABuffer(uint8_t *baseAddress, int bufferWidth, int bufferHeight) {
@@ -536,11 +560,11 @@ extern inline float getImageAtPixelPercentage(const uint8_t *pixel, int x, int y
 }*/
 
 
-extern inline float getColorPercentage(const uint8_t *pixel,const uint8_t *pixel2) {
+    extern inline float getColorPercentage(const uint8_t *pixel,const uint8_t *pixel2) {
     //pixel 1 is 255, 255, 255
     //pixel 2 is 0, 0, 0
     //match is 0
-    
+
     //pixel 1 and 2 is 255, 255, 255
     //match is 1.0
     const float scale = 1.0 / (255.0 * 255.0 * 255.0); // compile-time constant
@@ -576,20 +600,20 @@ extern inline bool detectImageAtPixel(const uint8_t *pixel, int x, int y, int wi
         if (width - x > image.imageWidth &&
             height - y > image.imageHeight) {
             uint8_t *pixel2 = image.imageData;
-            for (int y1 = 0; y1 < image.imageHeight; y1++) {
-                const uint8_t *pixel1 = pixel + (y1 * width)*4;
-                for (int x1 = 0; x1 < image.imageWidth; x1++) {
-                    if (!isColor2(pixel1, pixel2, tolerance) && pixel2[3] > 0) {
-                        return false;
-                    }
-                    pixel2 += 4;
-                    pixel1 += 4;
+        for (int y1 = 0; y1 < image.imageHeight; y1++) {
+            const uint8_t *pixel1 = pixel + (y1 * width)*4;
+            for (int x1 = 0; x1 < image.imageWidth; x1++) {
+                if (!isColor2(pixel1, pixel2, tolerance) && pixel2[3] > 0) {
+                    return false;
                 }
+                pixel2 += 4;
+                pixel1 += 4;
             }
-            return true;
         }
+        return true;
     }
-    return false;
+}
+return false;
 }
 
 extern inline bool detectImageAtPixelPercentage(const uint8_t *pixel, int x, int y, int width, int height, ImageData image, float percentage) {
@@ -597,20 +621,20 @@ extern inline bool detectImageAtPixelPercentage(const uint8_t *pixel, int x, int
         if (width - x > image.imageWidth &&
             height - y > image.imageHeight) {
             uint8_t *pixel2 = image.imageData;
-            for (int y1 = 0; y1 < image.imageHeight; y1++) {
-                const uint8_t *pixel1 = pixel + (y1 * width)*4;
-                for (int x1 = 0; x1 < image.imageWidth; x1++) {
-                    if (getColorPercentage(pixel1, pixel2) < percentage && pixel2[3] > 0) {
-                        return false;
-                    }
-                    pixel2 += 4;
-                    pixel1 += 4;
+        for (int y1 = 0; y1 < image.imageHeight; y1++) {
+            const uint8_t *pixel1 = pixel + (y1 * width)*4;
+            for (int x1 = 0; x1 < image.imageWidth; x1++) {
+                if (getColorPercentage(pixel1, pixel2) < percentage && pixel2[3] > 0) {
+                    return false;
                 }
+                pixel2 += 4;
+                pixel1 += 4;
             }
-            return true;
         }
+        return true;
     }
-    return false;
+}
+return false;
 }
 
 //Uses insane CPU for whatever reason
@@ -663,88 +687,88 @@ extern ImageData makeImageDataFrom(string* path) {
     return imageData;
 }*/
 
-extern bool isColor2(const uint8_t *pixel, const uint8_t *pixel2, int tolerance) {
-    if (abs(pixel[0] - pixel2[0]) > tolerance) return false;
-    if (abs(pixel[1] - pixel2[1]) > tolerance) return false;
-    if (abs(pixel[2] - pixel2[2]) > tolerance) return false;
-    return true;
-}
+    extern bool isColor2(const uint8_t *pixel, const uint8_t *pixel2, int tolerance) {
+        if (abs(pixel[0] - pixel2[0]) > tolerance) return false;
+        if (abs(pixel[1] - pixel2[1]) > tolerance) return false;
+        if (abs(pixel[2] - pixel2[2]) > tolerance) return false;
+        return true;
+    }
 
-extern bool isColor3(const uint8_t *pixel, unsigned char r, unsigned char g, unsigned char b) {
-    if (pixel[0] != b) return false;
-    if (pixel[1] != g) return false;
-    if (pixel[2] != r) return false;
-    return true;
-}
+    extern bool isColor3(const uint8_t *pixel, unsigned char r, unsigned char g, unsigned char b) {
+        if (pixel[0] != b) return false;
+        if (pixel[1] != g) return false;
+        if (pixel[2] != r) return false;
+        return true;
+    }
 
-extern bool isColor(const uint8_t *pixel, unsigned char r, unsigned char g, unsigned char b, int tolerance) {
-    if (abs(pixel[0] - b) > tolerance) return false;
-    if (abs(pixel[1] - g) > tolerance) return false;
-    if (abs(pixel[2] - r) > tolerance) return false;
-    return true;
-}
+    extern bool isColor(const uint8_t *pixel, unsigned char r, unsigned char g, unsigned char b, int tolerance) {
+        if (abs(pixel[0] - b) > tolerance) return false;
+        if (abs(pixel[1] - g) > tolerance) return false;
+        if (abs(pixel[2] - r) > tolerance) return false;
+        return true;
+    }
 
-extern bool isPixelColor( Pixel pixel, unsigned char r, unsigned char g, unsigned char b, int tolerance) {
-    if (abs(pixel.r - r) > tolerance) return false;
-    if (abs(pixel.g - g) > tolerance) return false;
-    if (abs(pixel.b - b) > tolerance) return false;
-    return true;
-}
+    extern bool isPixelColor( Pixel pixel, unsigned char r, unsigned char g, unsigned char b, int tolerance) {
+        if (abs(pixel.r - r) > tolerance) return false;
+        if (abs(pixel.g - g) > tolerance) return false;
+        if (abs(pixel.b - b) > tolerance) return false;
+        return true;
+    }
 
-extern bool isPixelPreciseColor( Pixel pixel, unsigned char r, unsigned char g, unsigned char b) {
-    if (pixel.r != r) return false;
-    if (pixel.g != g) return false;
-    if (pixel.b != b) return false;
-    return true;
-}
-extern Pixel getPixel(struct ImageData imageData, int x, int y) {
-    uint8_t *pixel = imageData.imageData + (y * imageData.imageWidth + x)*4;
+    extern bool isPixelPreciseColor( Pixel pixel, unsigned char r, unsigned char g, unsigned char b) {
+        if (pixel.r != r) return false;
+        if (pixel.g != g) return false;
+        if (pixel.b != b) return false;
+        return true;
+    }
+    extern Pixel getPixel(struct ImageData imageData, int x, int y) {
+        uint8_t *pixel = imageData.imageData + (y * imageData.imageWidth + x)*4;
     //int position = (y * imageData.imageWidth + x) * 4;
-    Pixel p;
-    if ((y * imageData.imageWidth + x) * 4+3 < imageData.imageByteLength) {
+        Pixel p;
+        if ((y * imageData.imageWidth + x) * 4+3 < imageData.imageByteLength) {
         //p.r = imageData.imageData[position + 2];
         //p.g = imageData.imageData[position + 1];
         //p.b = imageData.imageData[position + 0];
-        p.r = pixel[2];
-        p.g = pixel[1];
-        p.b = pixel[0];
-        p.exist = true;
-    } else {
-        p.exist = false;
+            p.r = pixel[2];
+            p.g = pixel[1];
+            p.b = pixel[0];
+            p.exist = true;
+        } else {
+            p.exist = false;
+        }
+        return p;
     }
-    return p;
-}
 
-extern uint8_t* getPixel2(struct ImageData imageData, int x, int y) {
-    return imageData.imageData + (y * imageData.imageWidth + x)*4;
-}
-
-extern uint8_t* getPixel3(uint8_t *baseAddress, int x, int y, int width) {
-    return baseAddress + (y * width + x)*4;
-}
-
-
-extern void setPixel( ImageData imageData, int x, int y, int r, int g, int b) {
-    uint8_t *pixel = imageData.imageData + (y * imageData.imageWidth + x)*4;
-    if ((y * imageData.imageWidth + x) * 4+3 < imageData.imageByteLength) {
-        pixel[2] = r;
-        pixel[1] = g;
-        pixel[0] = b;
+    extern uint8_t* getPixel2(struct ImageData imageData, int x, int y) {
+        return imageData.imageData + (y * imageData.imageWidth + x)*4;
     }
-}
 
-extern void drawRect( ImageData imageData, int left, int top, int width, int height, int r, int g, int b) {
+    extern uint8_t* getPixel3(uint8_t *baseAddress, int x, int y, int width) {
+        return baseAddress + (y * width + x)*4;
+    }
+
+
+    extern void setPixel( ImageData imageData, int x, int y, int r, int g, int b) {
+        uint8_t *pixel = imageData.imageData + (y * imageData.imageWidth + x)*4;
+        if ((y * imageData.imageWidth + x) * 4+3 < imageData.imageByteLength) {
+            pixel[2] = r;
+            pixel[1] = g;
+            pixel[0] = b;
+        }
+    }
+
+    extern void drawRect( ImageData imageData, int left, int top, int width, int height, int r, int g, int b) {
     //Top and bottom
-    for (int i = left; i < left+width; i++) {
-        setPixel(imageData, i, top, r, g, b);
-        setPixel(imageData, i, top+height, r, g, b);
-    }
+        for (int i = left; i < left+width; i++) {
+            setPixel(imageData, i, top, r, g, b);
+            setPixel(imageData, i, top+height, r, g, b);
+        }
     //Left and right
-    for (int i = top+1; i < top+height-1; i++) {
-        setPixel(imageData, left, i, r, g, b);
-        setPixel(imageData, left+width, i, r, g, b);
+        for (int i = top+1; i < top+height-1; i++) {
+            setPixel(imageData, left, i, r, g, b);
+            setPixel(imageData, left+width, i, r, g, b);
+        }
     }
-}
 /*
 extern void MyLog(string *format, ...) {
     va_list args;
