@@ -16,13 +16,13 @@
 //  Copyright © 2015 Matthew French. All rights reserved.
 //
 
-ImageData ShopManager::shopBuyableItemTopLeftCornerImageData = makeImageDataFrom([[NSBundle mainBundle] pathForResource:@"Resources/Shop/Buyable Item Top Left Corner" ofType:@"png"]);
-ImageData ShopManager::shopBuyableItemBottomLeftCornerImageData = makeImageDataFrom([[NSBundle mainBundle] pathForResource:@"Resources/Shop/Buyable Item Bottom Left Corner" ofType:@"png"]);
-ImageData ShopManager::shopBuyableItemTopRightCornerImageData = makeImageDataFrom([[NSBundle mainBundle] pathForResource:@"Resources/Shop/Buyable Item Top Right Corner" ofType:@"png"]);
-ImageData ShopManager::shopBuyableItemBottomRightCornerImageData = makeImageDataFrom([[NSBundle mainBundle] pathForResource:@"Resources/Shop/Buyable Item Bottom Right Corner" ofType:@"png"]);
-ImageData ShopManager::shopTopLeftCornerImageData = makeImageDataFrom([[NSBundle mainBundle] pathForResource:@"Resources/Shop/Shop Top Left Corner" ofType:@"png"]);
-ImageData ShopManager::shopAvailableImageData = makeImageDataFrom([[NSBundle mainBundle] pathForResource:@"Resources/Shop/Shop Available" ofType:@"png"]);
-ImageData ShopManager::shopBottomLeftCornerImageData = makeImageDataFrom([[NSBundle mainBundle] pathForResource:@"Resources/Shop/Shop Bottom Left Corner" ofType:@"png"]);
+ImageData ShopManager::shopBuyableItemTopLeftCornerImageData = loadImage("Resources/Shop/Buyable Item Top Left Corner");
+ImageData ShopManager::shopBuyableItemBottomLeftCornerImageData = loadImage("Resources/Shop/Buyable Item Bottom Left Corner.png");
+ImageData ShopManager::shopBuyableItemTopRightCornerImageData = loadImage("Resources/Shop/Buyable Item Top Right Corner.png");
+ImageData ShopManager::shopBuyableItemBottomRightCornerImageData = loadImage("Resources/Shop/Buyable Item Bottom Right Corner.png");
+ImageData ShopManager::shopTopLeftCornerImageData = loadImage("Resources/Shop/Shop Top Left Corner.png");
+ImageData ShopManager::shopAvailableImageData = loadImage("Resources/Shop/Shop Available.png");
+ImageData ShopManager::shopBottomLeftCornerImageData = loadImage("Re\sources/Shop/Shop Bottom Left Corner.png");
 
 ShopManager::ShopManager() {
     /*

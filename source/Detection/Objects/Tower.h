@@ -11,6 +11,7 @@
 
 class Tower {
 public:
+    Tower();
     Position topLeft, topRight, bottomLeft, bottomRight, towerCenter;
     bool detectedTopLeft, detectedBottomLeft, detectedTopRight, detectedBottomRight;
     float health;

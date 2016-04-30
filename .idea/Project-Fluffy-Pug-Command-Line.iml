@@ -5,24 +5,40 @@
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/source/lib/CImg.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/source/Detection/Item Manager/ItemManager.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/Detection/Item Manager/ItemManager.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/source/Detection/Surrender Manager/SurrenderManager.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/Detection/Surrender Manager/SurrenderManager.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/source/Detection/Enemies/EnemyMinionManager.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/source/Detection/Enemies/EnemyChampionManager.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/Detection/Enemies/EnemyTowerManager.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/source/Detection/Enemies/EnemyTowerManager.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/source/Detection/Objects/GenericObject.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/source/Detection/Objects/Minion.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/source/Detection/Objects/Tower.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/source/Detection/Objects/SelfHealth.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/Detection/Enemies/EnemyChampionManager.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/Detection/Enemies/EnemyChampionManager.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/Detection/Enemies/EnemyMinionManager.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/source/Detection/Objects/Champion.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/source/Detection/Allies/AllyMinionManager.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/Detection/Objects/Minion.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/Detection/Objects/Tower.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/Detection/Objects/SelfHealth.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/Detection/Objects/GenericObject.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/Detection/Objects/Position.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/Detection/Objects/Champion.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/Detection/Objects/SelfHealth.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/Detection/Objects/Tower.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/Detection/Objects/GenericObject.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/Detection/Objects/Minion.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/Detection/Allies/SelfChampionManager.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/source/Detection/Allies/SelfChampionManager.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/Detection/Allies/AllyMinionManager.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/Detection/Allies/AllyMinionManager.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/Detection/Allies/AllyChampionManager.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/source/Detection/Allies/AllyChampionManager.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/source/Detection/DetectionManager.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/source/Detection/Ability Manager/AbilityManager.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/Detection/Ability Manager/AbilityManager.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/Detection/DetectionManager.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/source/Detection/Map Manager/MapManager.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/source/Detection/LeagueDetector.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/Detection/Map Manager/MapManager.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/Detection/Shop Manager/ShopManager.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/source/Detection/Shop Manager/ShopManager.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/source/Detection/AutoQueueManager.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/source/main.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/source/Utility.h" isTestSource="false" />
     </content>

@@ -7,7 +7,7 @@
 //
 
 #import "Tower.h"
-#import "Utility.h"
+//#import "Utility.h"
 
 Tower::Tower () {
     //Position topLeft, topRight, bottomLeft, bottomRight, characterCenter;

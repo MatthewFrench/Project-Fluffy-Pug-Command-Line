@@ -25,6 +25,7 @@
 #import "Detection/Objects/Tower.h"
 #import "Detection/Objects/GenericObject.h"
 #import "Detection/Objects/Position.h"
+#include "lib/CImg.h"
 
 using namespace std;
 
@@ -40,6 +41,10 @@ struct Pixel {
     bool exist;
 };
 
+inline ImageData loadImage(string name) {
+    CImg<unsigned char> img(name);
+    return nil;
+}
 inline Position makePosition(int x, int y);
 inline int getRandomInteger(int minimum, int maximum);
 inline  Minion* makeMinionBar( Position topLeft,  Position bottomLeft,  Position topRight,  Position bottomRight, float health);

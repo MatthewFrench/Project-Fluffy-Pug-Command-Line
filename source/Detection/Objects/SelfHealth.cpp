@@ -7,7 +7,7 @@
 //
 
 #import "SelfHealth.h"
-#import "Utility.h"
+//#import "Utility.h"
 
 SelfHealth::SelfHealth () {
     //Position topLeft, topRight, bottomLeft, bottomRight, characterCenter;
