@@ -126,7 +126,7 @@ void SelfChampionManager::validateChampionBars(ImageData imageData, std::vector<
         int detectedCorners = 1;
         for (int j = 0; j < detectedChampionBars->size(); j++) {
             if (j != i) {
-                Champion* champ2 = (*detectedChampionBars)[i];
+                Champion* champ2 = (*detectedChampionBars)[j];
                 if (champ2->topLeft.x == champ->topLeft.x && champ->topLeft.y == champ2-> topLeft.y) {
                     detectedChampionBars->erase(detectedChampionBars->begin() + j);
                     j--;
@@ -176,7 +176,7 @@ void SelfChampionManager::validateSelfHealthBars(ImageData imageData, std::vecto
         int detectedCorners = 1;
         for (int j = 0; j < detectedHealthBars->size(); j++) {
             if (j != i) {
-                SelfHealth* healthBar2 = (*detectedHealthBars)[i];
+                SelfHealth* healthBar2 = (*detectedHealthBars)[j];
                 if (healthBar2->topLeft.x == healthBar->topLeft.x && healthBar->topLeft.y == healthBar2-> topLeft.y) {
                     detectedHealthBars->erase(detectedHealthBars->begin() + j);
                     j--;

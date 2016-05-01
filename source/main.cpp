@@ -71,6 +71,7 @@ double runTestAndOutput(string folder, string pngImageName) {
 	outputImage(image, detection, render1, "Output/Output "+ pngImageName + ".png");
 
 	CImg<unsigned char> render2((folder + pngImageName + ".png").c_str());
+	render2.save_png(("Output/Output " + pngImageName + " Overlay Original.png").c_str());
 	outputImage(image, detection, render2, "Output/Output "+pngImageName + " Overlay.png");
 
 	return simulation_time;
@@ -465,7 +466,7 @@ void outputImage(ImageData image, DetectionManager* detectionManager, CImg<unsig
 	}
 	if (detectionManager->getSurrenderAvailable()) {
 		GenericObject * object = detectionManager->getSurrender();
-		const unsigned char color[] = { 0,0,0, 50 };
+		const unsigned char color[] = { 255,0,0, 50 };
 		render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
 
 		render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);

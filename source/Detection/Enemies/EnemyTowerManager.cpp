@@ -88,7 +88,7 @@ void EnemyTowerManager::validateTowerBars(ImageData imageData, std::vector<Tower
         int detectedCorners = 1;
         for (int j = 0; j < detectedTowerBars->size(); j++) {
             if (j != i) {
-                Tower* tower2 = (*detectedTowerBars)[i];
+                Tower* tower2 = (*detectedTowerBars)[j];
                 if (tower2->topLeft.x == tower->topLeft.x && tower->topLeft.y == tower2-> topLeft.y) {
                     detectedTowerBars->erase(detectedTowerBars->begin() + j);
                     j--;

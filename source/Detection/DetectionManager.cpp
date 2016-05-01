@@ -34,26 +34,123 @@ DetectionManager::DetectionManager() {
 }
 
 void DetectionManager::processDetection(ImageData *image) {
-    processAllyMinionDetection(image);
-    processEnemyMinionDetection(image);
-    processAllyChampionDetection(image);
-    processEnemyChampionDetection(image);
-    processEnemyTowerDetection(image);
-    processSelfChampionDetection(image);
-    processSelfHealthBarDetection(image);
-    processSpellLevelUps(image);
+    //preprocess
+    shopTopLeftCorner = NULL;
+    shopTopLeftCornerShown = false;
+    allyMinions->clear();
+    enemyMinions->clear();
+    allyChampions->clear();
+    enemyChampions->clear();
+    selfChampions->clear();
+    enemyTowers->clear();
+    buyableItems->clear();
+    spell1LevelDots->clear();
+    spell2LevelDots->clear();
+    spell3LevelDots->clear();
+    spell4LevelDots->clear();
+
+
+    for (int x = 0; x < image->imageWidth; x++) {
+        for (int y = 0; y < image->imageHeight; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            processAllyMinionDetection(image, x, y, pixel);
+            processEnemyMinionDetection(image, x, y, pixel);
+            processAllyChampionDetection(image, x, y, pixel);
+            processEnemyChampionDetection(image, x, y, pixel);
+            processEnemyTowerDetection(image, x, y, pixel);
+            processSelfChampionDetection(image, x, y, pixel);
+            processShop(image, x, y, pixel);
+        }
+    }
+
+//Post processing
+    AllyMinionManager::validateMinionBars(*image, allyMinions);
+    EnemyMinionManager::validateMinionBars(*image, enemyMinions);
+    EnemyChampionManager::validateChampionBars(*image, enemyChampions);
+    AllyChampionManager::validateChampionBars(*image, allyChampions);
+    EnemyTowerManager::validateTowerBars(*image, enemyTowers);
+    SelfChampionManager::validateChampionBars(*image, selfChampions);
+
+
+
+//Super specific or small search area so don't group
     processSpellLevelDots(image);
+    processSpellLevelUps(image);
+    processSelfHealthBarDetection(image);
+    processItemActives(image);
+    processShopAvailable(image);
+    processMap(image);
+    processMapShopAndLocation(image);
+    processShopBottomLeftCorner(image);
+    processShopBuyableItems(image);
+    processSurrender(image);
     processSpellActives(image);
     processSummonerSpellActives(image);
-    processItemActives(image);
-    processUsedPotion(image);
-    processShopAvailable(image);
-    processShop(image);
-    processMap(image);
     processTrinketActive(image);
-    processSurrender(image);
+    processUsedPotion(image);
 }
 
+void DetectionManager::processAllyMinionDetection(ImageData *image, int x, int y, uint8_t* pixel) {
+    Minion* minionBar = AllyMinionManager::detectMinionBarAtPixel(*image, pixel, x, y);
+    if (minionBar != NULL) {
+        allyMinions->push_back(minionBar);
+    }
+}
+
+void DetectionManager::processEnemyMinionDetection(ImageData *image, int x, int y, uint8_t* pixel) {
+    Minion* minionBar = EnemyMinionManager::detectMinionBarAtPixel(*image, pixel, x, y);
+    if (minionBar != NULL) {
+        enemyMinions->push_back(minionBar);
+    }
+}
+
+void DetectionManager::processEnemyChampionDetection(ImageData *image, int x, int y, uint8_t* pixel) {
+    Champion* championBar = EnemyChampionManager::detectChampionBarAtPixel(*image, pixel, x, y);
+    if (championBar != NULL) {
+        enemyChampions->push_back(championBar);
+    }
+}
+
+void DetectionManager::processAllyChampionDetection(ImageData *image, int x, int y, uint8_t* pixel) {
+    Champion* championBar = AllyChampionManager::detectChampionBarAtPixel(*image, pixel, x, y);
+    if (championBar != NULL) {
+        allyChampions->push_back(championBar);
+    }
+}
+
+
+void DetectionManager::processEnemyTowerDetection(ImageData *image, int x, int y, uint8_t* pixel) {
+    Tower* towerBar = EnemyTowerManager::detectTowerBarAtPixel(*image, pixel, x, y);
+    if (towerBar != NULL) {
+        enemyTowers->push_back(towerBar);
+    }
+}
+
+void DetectionManager::processSelfChampionDetection(ImageData *image, int x, int y, uint8_t* pixel) {
+    Champion* championBar = SelfChampionManager::detectChampionBarAtPixel(*image, pixel, x, y);
+    if (championBar != NULL) {
+        selfChampions->push_back(championBar);
+    }
+}
+void DetectionManager::processShop(ImageData *image, int x, int y, uint8_t* pixel) {
+    //First detect top left corner, but do it as a slow scan
+
+    //As soon as top left corner is confirmed, do a full scan for bottom left corner
+
+    //As soon as bottom left corner is confirmed, do a full scan for all items between
+
+    //Probably the most expensive search if shop is open
+
+    if (shopTopLeftCorner == NULL) {
+        uint8_t* pixel = getPixel2(*image, x, y);
+        GenericObject* topLeftCorner = ShopManager::detectShopTopLeftCorner(*image, pixel, x, y);
+        if (topLeftCorner != NULL) {
+            shopTopLeftCorner = topLeftCorner;
+            shopTopLeftCornerShown = true;
+        }
+    }
+
+}
 void DetectionManager::processMap(ImageData *image) {
     //First we do an immediate map location search
     //If the map is found them we search for shop and self location
@@ -61,37 +158,35 @@ void DetectionManager::processMap(ImageData *image) {
     Position searchStart = makePosition(image->imageWidth - 200, image->imageHeight - 201);
     Position searchEnd = makePosition(image->imageWidth - 195, image->imageHeight - 197);
 
-    int oldMapX = -1;
-    int oldMapY = -1;
-    if (map != nullptr) {
-        oldMapX = map->topLeft.x;
-        oldMapY = map->topLeft.y;
-    }
-    GenericObject* foundMap = nullptr;
-    GenericObject* foundLocation = nullptr;
-    GenericObject* foundShop = nullptr;
+    GenericObject* foundMap = NULL;
 
-    if (oldMapX != -1) {
-        uint8_t* pixel = getPixel2(*image, oldMapX, oldMapY);
-        foundMap = MapManager::detectMap(*image, pixel, oldMapX, oldMapY);
-    }
-
-    if (foundMap == nullptr) {
-        for (int x = searchStart.x; x < searchEnd.x; x++) {
-            for (int y = searchStart.y; y < searchEnd.y; y++) {
-                uint8_t* pixel = getPixel2(*image, x, y);
-                foundMap = MapManager::detectMap(*image, pixel, x, y);
-                if (foundMap != NULL) {
-                    x = searchEnd.x;
-                    y = searchEnd.y;
-                }
+    for (int x = searchStart.x; x < searchEnd.x; x++) {
+        for (int y = searchStart.y; y < searchEnd.y; y++) {
+            uint8_t* pixel = getPixel2(*image, x, y);
+            foundMap = MapManager::detectMap(*image, pixel, x, y);
+            if (foundMap != NULL) {
+                x = searchEnd.x;
+                y = searchEnd.y;
             }
         }
     }
 
     if (foundMap != NULL) {
+                        //if (map != NULL) delete map;
+        mapVisible = true;
+        map = foundMap;
+    } else {
+        mapVisible = false;
+    }
+}
+void DetectionManager::processMapShopAndLocation(ImageData *image) {
+
+    GenericObject* foundLocation = NULL;
+    GenericObject* foundShop = NULL;
+
+    if (map != NULL) {
                 //Search for location
-        Position searchStart = makePosition(foundMap->topLeft.x, foundMap->topLeft.y);
+        Position searchStart = makePosition(map->topLeft.x, map->topLeft.y);
         Position searchEnd = makePosition(image->imageWidth, image->imageHeight);
         for (int x = searchStart.x; x < searchEnd.x; x++) {
             for (int y = searchStart.y; y < searchEnd.y; y++) {
@@ -133,13 +228,6 @@ void DetectionManager::processMap(ImageData *image) {
         }
     }
 
-    if (foundMap != NULL) {
-                        //if (map != NULL) delete map;
-        mapVisible = true;
-        map = foundMap;
-    } else {
-        mapVisible = false;
-    }
     if (foundLocation != NULL) {
                         //if (mapSelfLocation != NULL) delete mapSelfLocation;
         mapSelfLocationVisible = true;
@@ -158,44 +246,39 @@ void DetectionManager::processMap(ImageData *image) {
         }
     }
 }
-void DetectionManager::processShop(ImageData *image) {
-    //First detect top left corner, but do it as a slow scan
-
-    //As soon as top left corner is confirmed, do a full scan for bottom left corner
-
-    //As soon as bottom left corner is confirmed, do a full scan for all items between
-
-    //Probably the most expensive search if shop is open
+void DetectionManager::processShopBottomLeftCorner(ImageData *image) {
     float leagueGameWidth = image->imageWidth;
     float leagueGameHeight = image->imageHeight;
-
-    GenericObject* topLeftCorner = nullptr;
-    GenericObject* bottomLeftCorner = nullptr;
-
-    for (int x = 0; x < leagueGameWidth; x++) {
-        for (int y = 0; y < leagueGameHeight; y++) {
-            uint8_t* pixel = getPixel2(*image, x, y);
-            topLeftCorner = ShopManager::detectShopTopLeftCorner(*image, pixel, x, y);
-            if (topLeftCorner != NULL) {
-                x = leagueGameWidth;
-                y = leagueGameHeight;
-            }
-        }
-    }
-    if (topLeftCorner != NULL) {
-        for (int x = topLeftCorner->topLeft.x - 5; x < topLeftCorner->topLeft.x + 5; x++) {
-            for (int y = topLeftCorner->topLeft.y + 500; y < leagueGameHeight; y++) {
+    GenericObject* bottomLeftCorner = NULL;
+    if (shopTopLeftCorner != NULL) {
+        for (int x = shopTopLeftCorner->topLeft.x - 5; x < shopTopLeftCorner->topLeft.x + 5; x++) {
+            for (int y = shopTopLeftCorner->topLeft.y + 500; y < leagueGameHeight; y++) {
                 uint8_t* pixel = getPixel2(*image, x, y);
                 bottomLeftCorner = ShopManager::detectShopBottomLeftCorner(*image, pixel, x, y);
                 if (bottomLeftCorner != NULL) {
-                    x = topLeftCorner->topLeft.x + 5;
+                    x = shopTopLeftCorner->topLeft.x + 5;
                     y = leagueGameHeight;
                 }
             }
         }
-        if (bottomLeftCorner != NULL) {
-            Position searchStart = makePosition(topLeftCorner->topLeft.x + 15, topLeftCorner->topLeft.y + 75);
-            Position searchEnd = makePosition(topLeftCorner->topLeft.x + 400, bottomLeftCorner->topLeft.y - 25 - 60);
+    }
+    if (bottomLeftCorner != NULL) {
+        shopBottomLeftCornerShown = true;
+        shopBottomLeftCorner = bottomLeftCorner;
+    } else {
+        shopBottomLeftCornerShown = false;
+    }
+
+}
+void DetectionManager::processShopBuyableItems(ImageData *image) {
+
+    if (shopTopLeftCorner != NULL) {
+
+        if (shopBottomLeftCorner != NULL) {
+
+
+            Position searchStart = makePosition(shopTopLeftCorner->topLeft.x + 15, shopTopLeftCorner->topLeft.y + 75);
+            Position searchEnd = makePosition(shopTopLeftCorner->topLeft.x + 400, shopBottomLeftCorner->topLeft.y - 25 - 60);
             for (int x = searchStart.x; x < searchEnd.x; x++) {
                 for (int y = searchStart.y; y < searchEnd.y; y++) {
                     uint8_t* pixel = getPixel2(*image, x, y);
@@ -223,24 +306,11 @@ void DetectionManager::processShop(ImageData *image) {
 
         }
     }
-
-    if (topLeftCorner != NULL) {
-        shopTopLeftCornerShown = true;
-        shopTopLeftCorner = topLeftCorner;
-    } else {
-        shopTopLeftCornerShown = false;
-    }
-    if (bottomLeftCorner != NULL) {
-        shopBottomLeftCornerShown = true;
-        shopBottomLeftCorner = bottomLeftCorner;
-    } else {
-        shopBottomLeftCornerShown = false;
-    }
 }
 void DetectionManager::processShopAvailable(ImageData *image) {
     Position searchStart = makePosition(629, 739);
     Position searchEnd = makePosition(637, 745);
-    GenericObject* shop = nullptr;
+    GenericObject* shop = NULL;
     for (int x = searchStart.x; x < searchEnd.x; x++) {
         for (int y = searchStart.y; y < searchEnd.y; y++) {
             uint8_t* pixel = getPixel2(*image, x, y);
@@ -265,7 +335,7 @@ void DetectionManager::processUsedPotion(ImageData *image) {
     Position searchStart = makePosition(400, 620);
     Position searchEnd = makePosition(560, 660);
 
-    GenericObject* potionUsed = nullptr;
+    GenericObject* potionUsed = NULL;
     for (int x = searchStart.x; x < searchEnd.x; x++) {
         for (int y = searchStart.y; y < searchEnd.y; y++) {
             uint8_t* pixel = getPixel2(*image, x, y);
@@ -295,8 +365,8 @@ void DetectionManager::processItemActives(ImageData *image) {
 
     potionActiveAvailable = false;
 
-    GenericObject* item = nullptr;
-    GenericObject* potion = nullptr;
+    GenericObject* item = NULL;
+    GenericObject* potion = NULL;
     for (int x = item1Pos.x; x < item1Pos.x + searchWidth; x++) {
         for (int y = item1Pos.y; y < item1Pos.y + searchHeight; y++) {
             uint8_t* pixel = getPixel2(*image, x, y);
@@ -324,8 +394,8 @@ void DetectionManager::processItemActives(ImageData *image) {
         potionOnActive = 1;
     }
 
-    item = nullptr;
-    potion = nullptr;
+    item = NULL;
+    potion = NULL;
     for (int x = item2Pos.x; x < item2Pos.x + searchWidth; x++) {
         for (int y = item2Pos.y; y < item2Pos.y + searchHeight; y++) {
             uint8_t* pixel = getPixel2(*image, x, y);
@@ -353,8 +423,8 @@ void DetectionManager::processItemActives(ImageData *image) {
         potionOnActive = 2;
     }
 
-    item = nullptr;
-    potion = nullptr;
+    item = NULL;
+    potion = NULL;
     for (int x = item3Pos.x; x < item3Pos.x + searchWidth; x++) {
         for (int y = item3Pos.y; y < item3Pos.y + searchHeight; y++) {
             uint8_t* pixel = getPixel2(*image, x, y);
@@ -383,8 +453,8 @@ void DetectionManager::processItemActives(ImageData *image) {
         potionOnActive = 3;
     }
 
-    item = nullptr;
-    potion = nullptr;
+    item = NULL;
+    potion = NULL;
     for (int x = item4Pos.x; x < item4Pos.x + searchWidth; x++) {
         for (int y = item4Pos.y; y < item4Pos.y + searchHeight; y++) {
             uint8_t* pixel = getPixel2(*image, x, y);
@@ -412,8 +482,8 @@ void DetectionManager::processItemActives(ImageData *image) {
         potionOnActive = 4;
     }
 
-    item = nullptr;
-    potion = nullptr;
+    item = NULL;
+    potion = NULL;
     for (int x = item5Pos.x; x < item5Pos.x + searchWidth; x++) {
         for (int y = item5Pos.y; y < item5Pos.y + searchHeight; y++) {
             uint8_t* pixel = getPixel2(*image, x, y);
@@ -441,8 +511,8 @@ void DetectionManager::processItemActives(ImageData *image) {
         potionOnActive = 5;
     }
 
-    item = nullptr;
-    potion = nullptr;
+    item = NULL;
+    potion = NULL;
     for (int x = item6Pos.x; x < item6Pos.x + searchWidth; x++) {
         for (int y = item6Pos.y; y < item6Pos.y + searchHeight; y++) {
             uint8_t* pixel = getPixel2(*image, x, y);
@@ -475,7 +545,7 @@ void DetectionManager::processSurrender(ImageData *image) {
     int searchWidth = 30; int searchHeight = 30;
     Position surrenderPos = makePosition(image->imageWidth - 210, image->imageHeight - 370);
 
-    GenericObject* surrender = nullptr;
+    GenericObject* surrender = NULL;
     for (int x = surrenderPos.x; x < surrenderPos.x + searchWidth; x++) {
         for (int y = surrenderPos.y; y < surrenderPos.y + searchHeight; y++) {
             uint8_t* pixel = getPixel2(*image, x, y);
@@ -499,7 +569,7 @@ void DetectionManager::processTrinketActive(ImageData *image) {
     int searchWidth = 10; int searchHeight = 10;
     Position trinketPos = makePosition(738, 675);
     //Search for trinket to use
-    GenericObject* trinket = nullptr;
+    GenericObject* trinket = NULL;
     for (int x = trinketPos.x; x < trinketPos.x + searchWidth; x++) {
         for (int y = trinketPos.y; y < trinketPos.y + searchHeight; y++) {
             uint8_t* pixel = getPixel2(*image, x, y);
@@ -526,7 +596,7 @@ void DetectionManager::processSpellActives(ImageData *image) {
 
     //Search for first level up
 
-    GenericObject* ability = nullptr;
+    GenericObject* ability = NULL;
     for (int x = level1Pos.x; x < level1Pos.x + searchWidth; x++) {
         for (int y = level1Pos.y; y < level1Pos.y + searchHeight; y++) {
             uint8_t* pixel = getPixel2(*image, x, y);
@@ -544,7 +614,7 @@ void DetectionManager::processSpellActives(ImageData *image) {
         spell1ActiveAvailable = false;
     }
 
-    ability = nullptr;
+    ability = NULL;
     for (int x = level2Pos.x; x < level2Pos.x + searchWidth; x++) {
         for (int y = level2Pos.y; y < level2Pos.y + searchHeight; y++) {
             uint8_t* pixel = getPixel2(*image, x, y);
@@ -562,7 +632,7 @@ void DetectionManager::processSpellActives(ImageData *image) {
         spell2ActiveAvailable = false;
     }
 
-    ability = nullptr;
+    ability = NULL;
     for (int x = level3Pos.x; x < level3Pos.x + searchWidth; x++) {
         for (int y = level3Pos.y; y < level3Pos.y + searchHeight; y++) {
             uint8_t* pixel = getPixel2(*image, x, y);
@@ -581,7 +651,7 @@ void DetectionManager::processSpellActives(ImageData *image) {
         spell3ActiveAvailable = false;
     }
 
-    ability = nullptr;
+    ability = NULL;
     for (int x = level4Pos.x; x < level4Pos.x + searchWidth; x++) {
         for (int y = level4Pos.y; y < level4Pos.y + searchHeight; y++) {
             uint8_t* pixel = getPixel2(*image, x, y);
@@ -606,7 +676,7 @@ void DetectionManager::processSummonerSpellActives(ImageData *image) {
     Position spell1Pos = makePosition(541, 671);
     Position spell2Pos = makePosition(577, 671);
 
-    GenericObject* ability = nullptr;
+    GenericObject* ability = NULL;
     for (int x = spell1Pos.x; x < spell1Pos.x + searchWidth; x++) {
         for (int y = spell1Pos.y; y < spell1Pos.y + searchHeight; y++) {
             uint8_t* pixel = getPixel2(*image, x, y);
@@ -624,7 +694,7 @@ void DetectionManager::processSummonerSpellActives(ImageData *image) {
         summonerSpell1ActiveAvailable = false;
     }
 
-    ability = nullptr;
+    ability = NULL;
     for (int x = spell2Pos.x; x < spell2Pos.x + searchWidth; x++) {
         for (int y = spell2Pos.y; y < spell2Pos.y + searchHeight; y++) {
             uint8_t* pixel = getPixel2(*image, x, y);
@@ -708,7 +778,7 @@ void DetectionManager::processSpellLevelUps(ImageData *image) {
     Position levelUp2Pos = makePosition(396, 634);
     Position levelUp3Pos = makePosition(444, 634);
     Position levelUp4Pos = makePosition(490, 634);
-    GenericObject* levelUp = nullptr;
+    GenericObject* levelUp = NULL;
     for (int x = levelUp1Pos.x; x < levelUp1Pos.x + searchWidth; x++) {
         for (int y = levelUp1Pos.y; y < levelUp1Pos.y + searchHeight; y++) {
             uint8_t* pixel = getPixel2(*image, x, y);
@@ -728,7 +798,7 @@ void DetectionManager::processSpellLevelUps(ImageData *image) {
         spell1LevelUpAvailable = false;
     }
 
-    levelUp = nullptr;
+    levelUp = NULL;
     for (int x = levelUp2Pos.x; x < levelUp2Pos.x + searchWidth; x++) {
         for (int y = levelUp2Pos.y; y < levelUp2Pos.y + searchHeight; y++) {
             uint8_t* pixel = getPixel2(*image, x, y);
@@ -747,7 +817,7 @@ void DetectionManager::processSpellLevelUps(ImageData *image) {
         spell2LevelUpAvailable = false;
     }
 
-    levelUp = nullptr;
+    levelUp = NULL;
     for (int x = levelUp3Pos.x; x < levelUp3Pos.x + searchWidth; x++) {
         for (int y = levelUp3Pos.y; y < levelUp3Pos.y + searchHeight; y++) {
             uint8_t* pixel = getPixel2(*image, x, y);
@@ -767,7 +837,7 @@ void DetectionManager::processSpellLevelUps(ImageData *image) {
         spell3LevelUpAvailable = false;
     }
 
-    levelUp = nullptr;
+    levelUp = NULL;
     for (int x = levelUp4Pos.x; x < levelUp4Pos.x + searchWidth; x++) {
         for (int y = levelUp4Pos.y; y < levelUp4Pos.y + searchHeight; y++) {
             uint8_t* pixel = getPixel2(*image, x, y);
@@ -787,103 +857,6 @@ void DetectionManager::processSpellLevelUps(ImageData *image) {
         spell4LevelUpAvailable = false;
     }
 
-}
-
-void DetectionManager::processAllyMinionDetection(ImageData *image) {
-    float leagueGameWidth = image->imageWidth;
-    float leagueGameHeight = image->imageHeight;
-
-    for (int x = 0; x < leagueGameWidth; x++) {
-        for (int y = 0; y < leagueGameHeight; y++) {
-            uint8_t* pixel = getPixel2(*image, x, y);
-            Minion* minionBar = AllyMinionManager::detectMinionBarAtPixel(*image, pixel, x, y);
-            if (minionBar != NULL) {
-                allyMinions->push_back(minionBar);
-            }
-        }
-    }
-    AllyMinionManager::validateMinionBars(*image, allyMinions);
-}
-
-void DetectionManager::processEnemyMinionDetection(ImageData *image) {
-    float leagueGameWidth = image->imageWidth;
-    float leagueGameHeight = image->imageHeight;
-
-    for (int x = 0; x < leagueGameWidth; x++) {
-        for (int y = 0; y < leagueGameHeight; y++) {
-            uint8_t* pixel = getPixel2(*image, x, y);
-            Minion* minionBar = EnemyMinionManager::detectMinionBarAtPixel(*image, pixel, x, y);
-            if (minionBar != NULL) {
-                enemyMinions->push_back(minionBar);
-            }
-        }
-    }
-    EnemyMinionManager::validateMinionBars(*image, enemyMinions);
-}
-
-void DetectionManager::processEnemyChampionDetection(ImageData *image) {
-    float leagueGameWidth = image->imageWidth;
-    float leagueGameHeight = image->imageHeight;
-
-    for (int x = 0; x < leagueGameWidth; x++) {
-        for (int y = 0; y < leagueGameHeight; y++) {
-            uint8_t* pixel = getPixel2(*image, x, y);
-            Champion* championBar = EnemyChampionManager::detectChampionBarAtPixel(*image, pixel, x, y);
-            if (championBar != NULL) {
-                enemyChampions->push_back(championBar);
-            }
-        }
-    }
-    EnemyChampionManager::validateChampionBars(*image, enemyChampions);
-}
-
-void DetectionManager::processAllyChampionDetection(ImageData *image) {
-    float leagueGameWidth = image->imageWidth;
-    float leagueGameHeight = image->imageHeight;
-
-    for (int x = 0; x < leagueGameWidth; x++) {
-        for (int y = 0; y < leagueGameHeight; y++) {
-            uint8_t* pixel = getPixel2(*image, x, y);
-            Champion* championBar = AllyChampionManager::detectChampionBarAtPixel(*image, pixel, x, y);
-            if (championBar != NULL) {
-                allyChampions->push_back(championBar);
-            }
-        }
-    }
-    AllyChampionManager::validateChampionBars(*image, allyChampions);
-}
-
-
-void DetectionManager::processEnemyTowerDetection(ImageData *image) {
-    float leagueGameWidth = image->imageWidth;
-    float leagueGameHeight = image->imageHeight;
-
-    for (int x = 0; x < leagueGameWidth; x++) {
-        for (int y = 0; y < leagueGameHeight; y++) {
-            uint8_t* pixel = getPixel2(*image, x, y);
-            Tower* towerBar = EnemyTowerManager::detectTowerBarAtPixel(*image, pixel, x, y);
-            if (towerBar != NULL) {
-                enemyTowers->push_back(towerBar);
-            }
-        }
-    }
-    EnemyTowerManager::validateTowerBars(*image, enemyTowers);
-}
-
-void DetectionManager::processSelfChampionDetection(ImageData *image) {
-    float leagueGameWidth = image->imageWidth;
-    float leagueGameHeight = image->imageHeight;
-
-    for (int x = 0; x < leagueGameWidth; x++) {
-        for (int y = 0; y < leagueGameHeight; y++) {
-            uint8_t* pixel = getPixel2(*image, x, y);
-            Champion* championBar = SelfChampionManager::detectChampionBarAtPixel(*image, pixel, x, y);
-            if (championBar != NULL) {
-                selfChampions->push_back(championBar);
-            }
-        }
-    }
-    SelfChampionManager::validateChampionBars(*image, selfChampions);
 }
 
 void DetectionManager::processSelfHealthBarDetection(ImageData *image) {

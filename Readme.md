@@ -1,12 +1,13 @@
 TODO:
-	• Make it more accurate
-	• Make it run on Windows
 	• Increase speed from 0.9 seconds to 0.05 seconds
 	• Parallelize it with OpenMP
-	• Make it output 2 result images, one with image highlighting objects it sees and the other black with only highlighting areas it sees
-	• Make it more accurate, it seems off
+	• Fix self health bar not detecting
+	• Make it run on Windows
+	• Add memory management code
 
 END TODO
+
+Now down to 0.27 seconds from basic loop optimization
 
 USING -Ofast makes it go from 0.9 seconds to 0.37 seconds
 Using -03 makes it 0.42 seconds
@@ -54,3 +55,29 @@ Install libpng : http://downloads.sourceforge.net/gnuwin32/libpng-1.2.37-setup.e
 Done:
 	• Make it run all the tests and show average
 	• Make it draw all the output
+	• Make it output 2 result images, one with image highlighting objects it sees and the other black with only highlighting areas it sees
+	• Make it more accurate, it seems off
+
+
+Detection times for functions:
+1: 0.03624
+2: 0.038837
+3: 0.175876
+4: 0.167454
+5: 0.195984
+6: 0.189339
+7: 0.126035
+8: 6.3e-05
+9: 0.000252
+10: 4.4e-05
+11: 6.3e-05
+12: 5.8e-05
+13: 2.1e-05
+14: 0.001172
+15: 0
+16: 0
+17: 9.2e-05
+18: 3.9e-05
+19: 5e-05
+20: 8e-06
+21: 0.00041

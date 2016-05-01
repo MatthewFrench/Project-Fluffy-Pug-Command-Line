@@ -47,12 +47,16 @@ class DetectionManager {
 public:
     DetectionManager();
     void processDetection(ImageData *image);
-    void processAllyMinionDetection(ImageData *image);
-    void processEnemyMinionDetection(ImageData *image);
-    void processAllyChampionDetection(ImageData *image);
-    void processEnemyChampionDetection(ImageData *image);
-    void processEnemyTowerDetection(ImageData *image);
-    void processSelfChampionDetection(ImageData *image);
+
+
+    void processAllyMinionDetection(ImageData *image, int x, int y, uint8_t* pixel);
+    void processEnemyMinionDetection(ImageData *image, int x, int y, uint8_t* pixel);
+    void processAllyChampionDetection(ImageData *image, int x, int y, uint8_t* pixel);
+    void processEnemyChampionDetection(ImageData *image, int x, int y, uint8_t* pixel);
+    void processEnemyTowerDetection(ImageData *image, int x, int y, uint8_t* pixel);
+    void processSelfChampionDetection(ImageData *image, int x, int y, uint8_t* pixel);
+    void processShop(ImageData *image, int x, int y, uint8_t* pixel);
+
     void processSelfHealthBarDetection(ImageData *image);
     void processSpellLevelUps(ImageData *image);
     void processSpellLevelDots(ImageData *image);
@@ -63,8 +67,10 @@ public:
     void processItemActives(ImageData *image);
     void processUsedPotion(ImageData *image);
     void processShopAvailable(ImageData *image);
-    void processShop(ImageData *image);
+    void processShopBottomLeftCorner(ImageData *image);
+    void processShopBuyableItems(ImageData *image);
     void processMap(ImageData *image);
+    void processMapShopAndLocation(ImageData *image);
     
     std::vector<Minion*>* getAllyMinions();
     std::vector<Minion*>* getEnemyMinions();

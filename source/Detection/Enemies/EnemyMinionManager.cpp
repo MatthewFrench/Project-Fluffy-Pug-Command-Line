@@ -64,7 +64,7 @@ void EnemyMinionManager::validateMinionBars(ImageData imageData, std::vector<Min
         int detectedCorners = 1;
         for (int j = 0; j < detectedMinionBars->size(); j++) {
             if (j != i) {
-                Minion* minion2 = (*detectedMinionBars)[i];
+                Minion* minion2 = (*detectedMinionBars)[j];
                 if (minion2->topLeft.x == minion->topLeft.x && minion->topLeft.y == minion2-> topLeft.y) {
                     detectedMinionBars->erase(detectedMinionBars->begin() + j);
                     j--;

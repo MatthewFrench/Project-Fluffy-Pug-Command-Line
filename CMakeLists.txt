@@ -3,8 +3,8 @@ cmake_minimum_required(VERSION 3.5.1)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED on)
 
-SET(CMAKE_CXX_FLAGS "-O0")
-SET(CMAKE_C_FLAGS "-O0")
+SET(CMAKE_CXX_FLAGS "-Ofast")
+SET(CMAKE_C_FLAGS "-Ofast")
 
 project (artificialIntelligenceBenchmark)
 
