@@ -1,4 +1,20 @@
-﻿• Install libpng
+TODO:
+	• Make it run on Windows
+	• Increase speed from 0.9 seconds to 0.05 seconds
+	• Parallelize it with OpenMP
+	• Make it output 2 result images, one with image highlighting objects it sees and the other black with only highlighting areas it sees
+	• Make it more accurate, it seems off
+
+END TODO
+
+USING -Ofast makes it go from 0.9 seconds to 0.37 seconds
+Using -03 makes it 0.42 seconds
+Using -02 makes it 0.40 seconds
+Using -O1 makes it 0.539053 seconds
+Using -O0 makes it 0.909023 seconds
+
+
+• Install libpng
 • Install imagemagick
 
 I used brew to install libpng and imagemagick on Mac.

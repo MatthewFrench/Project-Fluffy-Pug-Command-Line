@@ -3,6 +3,9 @@ cmake_minimum_required(VERSION 3.5.1)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED on)
 
+SET(CMAKE_CXX_FLAGS "-O0")
+SET(CMAKE_C_FLAGS "-O0")
+
 project (artificialIntelligenceBenchmark)
 
 file(GLOB_RECURSE all_SRC "source/*.cpp" "source/*.h")
