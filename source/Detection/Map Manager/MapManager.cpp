@@ -20,27 +20,27 @@ ImageData MapManager::mapTopLeftCornerImageData = loadImage("Resources/Map/Map T
 
 MapManager::MapManager() {}
 
-GenericObject* MapManager::detectMap(ImageData imageData, uint8_t *pixel, int x, int y) {
+GenericObject* MapManager::detectMap(ImageData* imageData, uint8_t *pixel, int x, int y) {
     GenericObject* object = NULL;
-    if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData.imageWidth, imageData.imageHeight, mapTopLeftCornerImageData, 0.7) >=  0.7) {
+    if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData->imageWidth, imageData->imageHeight, &mapTopLeftCornerImageData, 0.7) >=  0.7) {
         object = new GenericObject();
         object->topLeft.x = x;
         object->topLeft.y = y;
         object->bottomLeft.x = x;
-        object->bottomLeft.y = y + imageData.imageHeight - y;
-        object->topRight.x = x + imageData.imageWidth - x;
+        object->bottomLeft.y = y + imageData->imageHeight - y;
+        object->topRight.x = x + imageData->imageWidth - x;
         object->topRight.y = y;
-        object->bottomRight.x = x + imageData.imageWidth - x;
-        object->bottomRight.y = y + imageData.imageHeight - y;
+        object->bottomRight.x = x + imageData->imageWidth - x;
+        object->bottomRight.y = y + imageData->imageHeight - y;
         object->center.x = (object->topRight.x - object->topLeft.x) / 2 + object->topLeft.x;
         object->center.y = (object->bottomLeft.y - object->topLeft.y) / 2 + object->topLeft.y;
     }
     
     return object;
 }
-GenericObject* MapManager::detectShop(ImageData imageData, uint8_t *pixel, int x, int y) {
+GenericObject* MapManager::detectShop(ImageData* imageData, uint8_t *pixel, int x, int y) {
     GenericObject* object = NULL;
-    if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData.imageWidth, imageData.imageHeight, shopIconImageData, 0.0) >=  0.7) {
+    if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData->imageWidth, imageData->imageHeight, &shopIconImageData, 0.0) >=  0.7) {
         object = new GenericObject();
         object->topLeft.x = x;
         object->topLeft.y = y;
@@ -56,10 +56,10 @@ GenericObject* MapManager::detectShop(ImageData imageData, uint8_t *pixel, int x
     
     return object;
 }
-Position getHorizontalWhiteBar(ImageData imageData, int x, int y) {
+Position getHorizontalWhiteBar(ImageData* imageData, int x, int y) {
     int endX = x;
     int startX = x;
-    for (int x2 = x+1; x2 < imageData.imageWidth; x2++) {
+    for (int x2 = x+1; x2 < imageData->imageWidth; x2++) {
         if (isColor3(getPixel2(imageData, x2, y), 255, 255, 255)) {
             endX = x2;
         } else {
@@ -75,10 +75,10 @@ Position getHorizontalWhiteBar(ImageData imageData, int x, int y) {
     }
     return makePosition(startX, endX);
 }
-Position getVerticalWhiteBar(ImageData imageData, int x, int y) {
+Position getVerticalWhiteBar(ImageData* imageData, int x, int y) {
     int endY = y;
     int startY = y;
-    for (int y2 = y+1; y2 < imageData.imageHeight; y2++) {
+    for (int y2 = y+1; y2 < imageData->imageHeight; y2++) {
         if (isColor3(getPixel2(imageData, x, y2), 255, 255, 255)) {
             endY = y2;
         } else {
@@ -97,7 +97,7 @@ Position getVerticalWhiteBar(ImageData imageData, int x, int y) {
 int getSizeOfBar(Position bar) {
     return bar.y - bar.x;
 }
-GenericObject* MapManager::detectLocation(ImageData imageData, uint8_t *pixel, int x, int y) {
+GenericObject* MapManager::detectLocation(ImageData* imageData, uint8_t *pixel, int x, int y) {
     
     
     

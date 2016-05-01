@@ -21,7 +21,7 @@ AllyMinionManager::AllyMinionManager () {}
 
 //To Validate, at least 2 corners need detected then we detect the health percentage
 
-void AllyMinionManager::validateMinionBars(ImageData imageData, std::vector<Minion*>* detectedMinionBars) {
+void AllyMinionManager::validateMinionBars(ImageData* imageData, std::vector<Minion*>* detectedMinionBars) {
       const float coloredPixelPrecision = 0.96; //0.97
     const float overalImagePrecision = 0.96; //0.97
         const float allyMinionHealthMatch = 0.80; //0.87
@@ -58,9 +58,9 @@ void AllyMinionManager::validateMinionBars(ImageData imageData, std::vector<Mini
         if (minion->health == 0) {
             for (int x = 61; x >= 0; x--) {
                 for (int y = 0; y < healthSegmentImageData.imageHeight; y++) {
-                    if (x + minion->topLeft.x >= 0 && x + minion->topLeft.x < imageData.imageWidth &&
-                        y + minion->topLeft.y >= 0 && y + minion->topLeft.y < imageData.imageHeight) {
-                        uint8_t* healthBarColor = getPixel2(healthSegmentImageData, 0, y);
+                    if (x + minion->topLeft.x >= 0 && x + minion->topLeft.x < imageData->imageWidth &&
+                        y + minion->topLeft.y >= 0 && y + minion->topLeft.y < imageData->imageHeight) {
+                        uint8_t* healthBarColor = getPixel2(&healthSegmentImageData, 0, y);
                         uint8_t* p = getPixel2(imageData, x + minion->topLeft.x, y + minion->topLeft.y);
                         if (getColorPercentage(healthBarColor, p) >= allyMinionHealthMatch) {
                             minion->health = (float)x / 61 * 100;
@@ -84,8 +84,8 @@ void AllyMinionManager::validateMinionBars(ImageData imageData, std::vector<Mini
         bool isWard = false;
         for (int x = 61; x >= 0; x--) {
             for (int yOffset = -3; yOffset <= 1; yOffset++) {
-                if (x + minion->topLeft.x >= 0 && x + minion->topLeft.x < imageData.imageWidth &&
-                    yOffset + minion->topLeft.y >= 0 && yOffset + minion->topLeft.y < imageData.imageHeight) {
+                if (x + minion->topLeft.x >= 0 && x + minion->topLeft.x < imageData->imageWidth &&
+                    yOffset + minion->topLeft.y >= 0 && yOffset + minion->topLeft.y < imageData->imageHeight) {
                     uint8_t*  p = getPixel2(imageData, x + minion->topLeft.x, yOffset + minion->topLeft.y);
                     if (isColor(p, 220, 220, 220, 45)) {
                         isWard = true;
@@ -96,9 +96,9 @@ void AllyMinionManager::validateMinionBars(ImageData imageData, std::vector<Mini
             }
         }
         //Detect if pink ward
-        if (minion->topLeft.x-1 >= 0 && minion->topLeft.x-1 + wardImageData.imageWidth < imageData.imageWidth &&
-            minion->topLeft.y-1 >= 0 && minion->topLeft.y-1 + wardImageData.imageHeight < imageData.imageHeight) {
-        if (getImageAtPixelPercentageOptimizedExact(getPixel2(imageData, minion->topLeft.x-1, minion->topLeft.y-1), minion->topLeft.x-1, minion->topLeft.y-1, imageData.imageWidth, imageData.imageHeight, wardImageData, coloredPixelPrecision) >=  overalImagePrecision) {
+        if (minion->topLeft.x-1 >= 0 && minion->topLeft.x-1 + wardImageData.imageWidth < imageData->imageWidth &&
+            minion->topLeft.y-1 >= 0 && minion->topLeft.y-1 + wardImageData.imageHeight < imageData->imageHeight) {
+        if (getImageAtPixelPercentageOptimizedExact(getPixel2(imageData, minion->topLeft.x-1, minion->topLeft.y-1), minion->topLeft.x-1, minion->topLeft.y-1, imageData->imageWidth, imageData->imageHeight, &wardImageData, coloredPixelPrecision) >=  overalImagePrecision) {
             isWard = true;
         }
         }

@@ -14,8 +14,8 @@ public:
     static ImageData levelUpImageData, levelDotImageData, levelUpDisabledImageData, abilityEnabledImageData, abilityDisabledImageData, enabledSummonerSpellImageData;
     AbilityManager();
     
-    static GenericObject* detectLevelUpAtPixel(ImageData imageData, uint8_t *pixel, int x, int y);
-    static GenericObject* detectLevelDotAtPixel(ImageData imageData, uint8_t *pixel, int x, int y);
-    static GenericObject* detectEnabledAbilityAtPixel(ImageData imageData, uint8_t *pixel, int x, int y);
-    static GenericObject* detectEnabledSummonerSpellAtPixel(ImageData imageData, uint8_t *pixel, int x, int y);
+    static GenericObject* detectLevelUpAtPixel(ImageData* imageData, uint8_t *pixel, int x, int y);
+    static GenericObject* detectLevelDotAtPixel(ImageData* imageData, uint8_t *pixel, int x, int y);
+    static GenericObject* detectEnabledAbilityAtPixel(ImageData* imageData, uint8_t *pixel, int x, int y);
+    static GenericObject* detectEnabledSummonerSpellAtPixel(ImageData* imageData, uint8_t *pixel, int x, int y);
 };

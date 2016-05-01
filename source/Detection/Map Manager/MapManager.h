@@ -15,7 +15,7 @@ public:
     static ImageData mapTopLeftCornerImageData, shopIconImageData;/*, locationTopLeftCornerImageData, locationTopRightCornerImageData, locationBottomLeftCornerImageData, locationBottomRightCornerImageData;*/
     MapManager();
     
-    static GenericObject* detectMap(ImageData imageData, uint8_t *pixel, int x, int y);
-    static GenericObject* detectShop(ImageData imageData, uint8_t *pixel, int x, int y);
-    static GenericObject* detectLocation(ImageData imageData, uint8_t *pixel, int x, int y);
+    static GenericObject* detectMap(ImageData* imageData, uint8_t *pixel, int x, int y);
+    static GenericObject* detectShop(ImageData* imageData, uint8_t *pixel, int x, int y);
+    static GenericObject* detectLocation(ImageData* imageData, uint8_t *pixel, int x, int y);
 };

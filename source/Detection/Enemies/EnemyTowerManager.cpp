@@ -18,7 +18,7 @@ ImageData EnemyTowerManager::healthSegmentImageData = loadImage("Resources/Enemy
 EnemyTowerManager::EnemyTowerManager () {}
 
 //To Validate, at least 2 corners need detected then we detect the health percentage
-void EnemyTowerManager::validateTowerBars(ImageData imageData, std::vector<Tower*>* detectedTowerBars) {
+void EnemyTowerManager::validateTowerBars(ImageData* imageData, std::vector<Tower*>* detectedTowerBars) {
     //Remove duplicates
     for (int i = 0; i < detectedTowerBars->size(); i++) {
         Tower* tower = (*detectedTowerBars)[i];
@@ -50,9 +50,9 @@ void EnemyTowerManager::validateTowerBars(ImageData imageData, std::vector<Tower
         tower->health = 0;
         for (int x = 125; x >= 0; x--) {
             for (int y = 0; y < healthSegmentImageData.imageHeight; y++) {
-                if (x + tower->topLeft.x >= 0 && x + tower->topLeft.x < imageData.imageWidth &&
-                    y + tower->topLeft.y >= 0 && y + tower->topLeft.y < imageData.imageHeight) {
-                uint8_t* healthBarColor = getPixel2(healthSegmentImageData, 0, y);
+                if (x + tower->topLeft.x >= 0 && x + tower->topLeft.x < imageData->imageWidth &&
+                    y + tower->topLeft.y >= 0 && y + tower->topLeft.y < imageData->imageHeight) {
+                uint8_t* healthBarColor = getPixel2(&healthSegmentImageData, 0, y);
                 uint8_t*  p = getPixel2(imageData, x + tower->topLeft.x, y + tower->topLeft.y);
                 if (getColorPercentage(healthBarColor, p) >= 0.85) {
                     tower->health = (float)x / 125 * 100;

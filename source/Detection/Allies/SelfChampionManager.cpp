@@ -23,10 +23,10 @@ SelfChampionManager::SelfChampionManager () {}
 const float SelfHealthBarMaxPercent = 0.75;
 const int SelfHealthBarHeight = 12;
 const int SelfHealthBarWidth = 293;
-SelfHealth* SelfChampionManager::detectSelfHealthBarAtPixel(ImageData imageData, uint8_t *pixel, int x, int y) {
+SelfHealth* SelfChampionManager::detectSelfHealthBarAtPixel(ImageData* imageData, uint8_t *pixel, int x, int y) {
     SelfHealth* healthBar = NULL;
     
-    if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData.imageWidth, imageData.imageHeight, bottomBarLeftSideImageData, SelfHealthBarMaxPercent) >=  SelfHealthBarMaxPercent) {
+    if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData->imageWidth, imageData->imageHeight, &bottomBarLeftSideImageData, SelfHealthBarMaxPercent) >=  SelfHealthBarMaxPercent) {
         int barTopLeftX = x + 15;
         int barTopLeftY = y + 3;
         healthBar = new SelfHealth();
@@ -39,7 +39,7 @@ SelfHealth* SelfChampionManager::detectSelfHealthBarAtPixel(ImageData imageData,
         healthBar->bottomRight.x = barTopLeftX + SelfHealthBarWidth;
         healthBar->bottomRight.y = barTopLeftY + SelfHealthBarHeight;
         healthBar->detectedLeftSide = true;
-    } else if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData.imageWidth, imageData.imageHeight, bottomBarRightSideImageData, SelfHealthBarMaxPercent) >=  SelfHealthBarMaxPercent) {
+    } else if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData->imageWidth, imageData->imageHeight, &bottomBarRightSideImageData, SelfHealthBarMaxPercent) >=  SelfHealthBarMaxPercent) {
         int barTopLeftX = x - SelfHealthBarWidth;
         int barTopLeftY = y + 3;
         healthBar = new SelfHealth();
@@ -58,7 +58,7 @@ SelfHealth* SelfChampionManager::detectSelfHealthBarAtPixel(ImageData imageData,
 }
 
 //To Validate, at least 2 corners need detected then we detect the health percentage
-void SelfChampionManager::validateChampionBars(ImageData imageData, std::vector<Champion*>* detectedChampionBars) {
+void SelfChampionManager::validateChampionBars(ImageData* imageData, std::vector<Champion*>* detectedChampionBars) {
     //Remove duplicates
     for (int i = 0; i < detectedChampionBars->size(); i++) {
         Champion* champ = (*detectedChampionBars)[i];
@@ -89,9 +89,9 @@ void SelfChampionManager::validateChampionBars(ImageData imageData, std::vector<
         Champion* champ = (*detectedChampionBars)[i];
         champ->health = 0;
         for (int x = 103; x >= 0; x--) {
-            if (x + champ->topLeft.x >= 0 && x + champ->topLeft.x < imageData.imageWidth &&
-                champ->topLeft.y >= 0 && champ->topLeft.y < imageData.imageHeight) {
-                if ( getImageAtPixelPercentageOptimizedExact(getPixel2(imageData, champ->topLeft.x + x, champ->topLeft.y), champ->topLeft.x + x, champ->topLeft.y, imageData.imageWidth, imageData.imageHeight, healthSegmentImageData, 0.9) >=  0.9) {
+            if (x + champ->topLeft.x >= 0 && x + champ->topLeft.x < imageData->imageWidth &&
+                champ->topLeft.y >= 0 && champ->topLeft.y < imageData->imageHeight) {
+                if ( getImageAtPixelPercentageOptimizedExact(getPixel2(imageData, champ->topLeft.x + x, champ->topLeft.y), champ->topLeft.x + x, champ->topLeft.y, imageData->imageWidth, imageData->imageHeight, &healthSegmentImageData, 0.9) >=  0.9) {
                     champ->health = (float)x / 103.0 * 100;
                     break;
                 }
@@ -107,7 +107,7 @@ void SelfChampionManager::validateChampionBars(ImageData imageData, std::vector<
 }
 
 //To Validate, at least 2 sides need detected then we detect the health percentage
-void SelfChampionManager::validateSelfHealthBars(ImageData imageData, std::vector<SelfHealth*>* detectedHealthBars) {
+void SelfChampionManager::validateSelfHealthBars(ImageData* imageData, std::vector<SelfHealth*>* detectedHealthBars) {
 
     //Remove duplicates
     for (int i = 0; i < detectedHealthBars->size(); i++) {
@@ -136,11 +136,11 @@ void SelfChampionManager::validateSelfHealthBars(ImageData imageData, std::vecto
     for (int i = 0; i < detectedHealthBars->size(); i++) {
         SelfHealth* healthBar = (*detectedHealthBars)[i];
         healthBar->health = 0;
-        uint8_t* healthColorPixel = getPixel2(bottomBarAverageHealthColorImageData, 0, 0);
+        uint8_t* healthColorPixel = getPixel2(&bottomBarAverageHealthColorImageData, 0, 0);
         for (int x = healthBar->topLeft.x + SelfHealthBarWidth - 1; x >= healthBar->topLeft.x; x--) {
             for (int y = healthBar->topRight.y; y < healthBar->bottomRight.y; y++) {
-                if (x >= 0 && x < imageData.imageWidth &&
-                    y >= 0 && y < imageData.imageHeight) {
+                if (x >= 0 && x < imageData->imageWidth &&
+                    y >= 0 && y < imageData->imageHeight) {
                     if (getColorPercentage(healthColorPixel, getPixel2(imageData, x, y)) >= 0.55) {
                         healthBar->health = (float)(x - healthBar->topLeft.x) / (SelfHealthBarWidth - 1.0) * 100.0;
                         y = healthBar->bottomRight.y+1;

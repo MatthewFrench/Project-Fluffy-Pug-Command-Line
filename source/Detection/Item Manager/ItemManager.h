@@ -14,8 +14,8 @@ public:
     static ImageData trinketItemImageData, itemImageData, potionImageData, usedPotionImageData, usedPotionInnerImageData;
     ItemManager();
     
-    static GenericObject* detectTrinketActiveAtPixel(ImageData imageData, uint8_t *pixel, int x, int y);
-    static GenericObject* detectItemActiveAtPixel(ImageData imageData, uint8_t *pixel, int x, int y);
-    static GenericObject* detectPotionActiveAtPixel(ImageData imageData, uint8_t *pixel, int x, int y);
-    static GenericObject* detectUsedPotionAtPixel(ImageData imageData, uint8_t *pixel, int x, int y);
+    static GenericObject* detectTrinketActiveAtPixel(ImageData* imageData, uint8_t *pixel, int x, int y);
+    static GenericObject* detectItemActiveAtPixel(ImageData* imageData, uint8_t *pixel, int x, int y);
+    static GenericObject* detectPotionActiveAtPixel(ImageData* imageData, uint8_t *pixel, int x, int y);
+    static GenericObject* detectUsedPotionAtPixel(ImageData* imageData, uint8_t *pixel, int x, int y);
 };

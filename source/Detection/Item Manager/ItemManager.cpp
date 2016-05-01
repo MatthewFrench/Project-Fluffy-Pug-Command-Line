@@ -16,9 +16,9 @@ ImageData ItemManager::usedPotionInnerImageData = loadImage("Resources/Item Bar/
 
 ItemManager::ItemManager() {}
 
-GenericObject* ItemManager::detectTrinketActiveAtPixel(ImageData imageData, uint8_t *pixel, int x, int y) {
+GenericObject* ItemManager::detectTrinketActiveAtPixel(ImageData* imageData, uint8_t *pixel, int x, int y) {
     GenericObject* object = NULL;
-    if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData.imageWidth, imageData.imageHeight, trinketItemImageData, 0.7) >=  0.7) {
+    if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData->imageWidth, imageData->imageHeight, &trinketItemImageData, 0.7) >=  0.7) {
         object = new GenericObject();
         object->topLeft.x = x;
         object->topLeft.y = y;
@@ -34,9 +34,9 @@ GenericObject* ItemManager::detectTrinketActiveAtPixel(ImageData imageData, uint
     
     return object;
 }
-GenericObject* ItemManager::detectItemActiveAtPixel(ImageData imageData, uint8_t *pixel, int x, int y) {
+GenericObject* ItemManager::detectItemActiveAtPixel(ImageData* imageData, uint8_t *pixel, int x, int y) {
     GenericObject* object = NULL;
-    if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData.imageWidth, imageData.imageHeight, itemImageData, 0.65) >=  0.65) {
+    if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData->imageWidth, imageData->imageHeight, &itemImageData, 0.65) >=  0.65) {
         object = new GenericObject();
         object->topLeft.x = x;
         object->topLeft.y = y;
@@ -52,9 +52,9 @@ GenericObject* ItemManager::detectItemActiveAtPixel(ImageData imageData, uint8_t
     
     return object;
 }
-GenericObject* ItemManager::detectPotionActiveAtPixel(ImageData imageData, uint8_t *pixel, int x, int y) {
+GenericObject* ItemManager::detectPotionActiveAtPixel(ImageData* imageData, uint8_t *pixel, int x, int y) {
     GenericObject* object = NULL;
-    if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData.imageWidth, imageData.imageHeight, potionImageData, 0.7) >=  0.7) {
+    if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData->imageWidth, imageData->imageHeight, &potionImageData, 0.7) >=  0.7) {
         object = new GenericObject();
         object->topLeft.x = x;
         object->topLeft.y = y;
@@ -70,12 +70,12 @@ GenericObject* ItemManager::detectPotionActiveAtPixel(ImageData imageData, uint8
     
     return object;
 }
-GenericObject* ItemManager::detectUsedPotionAtPixel(ImageData imageData, uint8_t *pixel, int x, int y) {
+GenericObject* ItemManager::detectUsedPotionAtPixel(ImageData* imageData, uint8_t *pixel, int x, int y) {
     GenericObject* object = NULL;
-    if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData.imageWidth, imageData.imageHeight, usedPotionImageData, 0.8) >=  0.8) {
+    if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData->imageWidth, imageData->imageHeight, &usedPotionImageData, 0.8) >=  0.8) {
         
         //Now test if we have at least 50% of the inside somewhat matching the inner potion
-        if (getImageAtPixelPercentageOptimized(getPixel2(imageData, x+1, y+1), x+1, y+1, imageData.imageWidth, imageData.imageHeight, usedPotionInnerImageData, 0.5) >= 0.5) {
+        if (getImageAtPixelPercentageOptimized(getPixel2(imageData, x+1, y+1), x+1, y+1, imageData->imageWidth, imageData->imageHeight, &usedPotionInnerImageData, 0.5) >= 0.5) {
         
             object = new GenericObject();
             object->topLeft.x = x;
