@@ -19,50 +19,12 @@ ImageData AllyMinionManager::healthSegmentImageData = loadImage("Resources/Ally 
 
 AllyMinionManager::AllyMinionManager () {}
 
-const float coloredPixelPrecision = 0.96; //0.97
-const float overalImagePrecision = 0.96; //0.97
-const float allyMinionHealthMatch = 0.80; //0.87
-Minion* AllyMinionManager::detectMinionBarAtPixel(ImageData imageData, uint8_t *pixel, int x, int y) {
-    Minion* minion = NULL;
-    //Look top left corner
-    if (isColor3(pixel, 0, 0, 0)) {
-        if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData.imageWidth, imageData.imageHeight, topLeftImageData, coloredPixelPrecision) >=  overalImagePrecision) {
-            int barTopLeftX = x + 1;
-            int barTopLeftY = y + 1;
-            minion = new Minion();
-            minion->topLeft.x = barTopLeftX;
-            minion->topLeft.y = barTopLeftY;
-            minion->bottomLeft.x = barTopLeftX;
-            minion->bottomLeft.y = barTopLeftY + 4;
-            minion->topRight.x = barTopLeftX + 62;
-            minion->topRight.y = barTopLeftY;
-            minion->bottomRight.x = barTopLeftX + 62;
-            minion->bottomRight.y = barTopLeftY + 4;
-            minion->health = 0;
-            minion->detectedTopLeft = true;
-        } else if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData.imageWidth, imageData.imageHeight, bottomLeftImageData, coloredPixelPrecision) >=  overalImagePrecision) {
-        // Look for bottom left corner
-            int barTopLeftX = x + 1;
-            int barTopLeftY = y - 3;
-            minion = new Minion();
-            minion->topLeft.x = barTopLeftX;
-            minion->topLeft.y = barTopLeftY;
-            minion->bottomLeft.x = barTopLeftX;
-            minion->bottomLeft.y = barTopLeftY + 4;
-            minion->topRight.x = barTopLeftX + 62;
-            minion->topRight.y = barTopLeftY;
-            minion->bottomRight.x = barTopLeftX + 62;
-            minion->bottomRight.y = barTopLeftY + 4;
-            minion->detectedBottomLeft = true;
-            minion->health = 0;
-        }
-    }
-    
-    return minion;
-}
-
 //To Validate, at least 2 corners need detected then we detect the health percentage
+
 void AllyMinionManager::validateMinionBars(ImageData imageData, std::vector<Minion*>* detectedMinionBars) {
+      const float coloredPixelPrecision = 0.96; //0.97
+    const float overalImagePrecision = 0.96; //0.97
+        const float allyMinionHealthMatch = 0.80; //0.87
     
     //Remove duplicates
     for (int i = 0; i < detectedMinionBars->size(); i++) {

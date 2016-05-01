@@ -60,15 +60,15 @@ include CMakeFiles/artificialIntelligenceBenchmark.dir/flags.make
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Ability_Manager/AbilityManager.cpp.o: CMakeFiles/artificialIntelligenceBenchmark.dir/flags.make
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Ability_Manager/AbilityManager.cpp.o: ../source/Detection/Ability\ Manager/AbilityManager.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/Matt/Project-Fluffy-Pug-Command-Line/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Ability_Manager/AbilityManager.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Ability_Manager/AbilityManager.cpp.o -c "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Ability Manager/AbilityManager.cpp"
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Ability_Manager/AbilityManager.cpp.o -c "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Ability Manager/AbilityManager.cpp"
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Ability_Manager/AbilityManager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Ability_Manager/AbilityManager.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Ability Manager/AbilityManager.cpp" > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Ability_Manager/AbilityManager.cpp.i
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Ability Manager/AbilityManager.cpp" > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Ability_Manager/AbilityManager.cpp.i
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Ability_Manager/AbilityManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Ability_Manager/AbilityManager.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Ability Manager/AbilityManager.cpp" -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Ability_Manager/AbilityManager.cpp.s
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Ability Manager/AbilityManager.cpp" -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Ability_Manager/AbilityManager.cpp.s
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Ability_Manager/AbilityManager.cpp.o.requires:
 
@@ -84,15 +84,15 @@ CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Ability_Manager/
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/AllyChampionManager.cpp.o: CMakeFiles/artificialIntelligenceBenchmark.dir/flags.make
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/AllyChampionManager.cpp.o: ../source/Detection/Allies/AllyChampionManager.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/Matt/Project-Fluffy-Pug-Command-Line/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/AllyChampionManager.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/AllyChampionManager.cpp.o -c /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Allies/AllyChampionManager.cpp
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/AllyChampionManager.cpp.o -c /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Allies/AllyChampionManager.cpp
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/AllyChampionManager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/AllyChampionManager.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Allies/AllyChampionManager.cpp > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/AllyChampionManager.cpp.i
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Allies/AllyChampionManager.cpp > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/AllyChampionManager.cpp.i
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/AllyChampionManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/AllyChampionManager.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Allies/AllyChampionManager.cpp -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/AllyChampionManager.cpp.s
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Allies/AllyChampionManager.cpp -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/AllyChampionManager.cpp.s
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/AllyChampionManager.cpp.o.requires:
 
@@ -108,15 +108,15 @@ CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/AllyChamp
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/AllyMinionManager.cpp.o: CMakeFiles/artificialIntelligenceBenchmark.dir/flags.make
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/AllyMinionManager.cpp.o: ../source/Detection/Allies/AllyMinionManager.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/Matt/Project-Fluffy-Pug-Command-Line/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/AllyMinionManager.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/AllyMinionManager.cpp.o -c /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Allies/AllyMinionManager.cpp
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/AllyMinionManager.cpp.o -c /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Allies/AllyMinionManager.cpp
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/AllyMinionManager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/AllyMinionManager.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Allies/AllyMinionManager.cpp > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/AllyMinionManager.cpp.i
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Allies/AllyMinionManager.cpp > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/AllyMinionManager.cpp.i
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/AllyMinionManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/AllyMinionManager.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Allies/AllyMinionManager.cpp -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/AllyMinionManager.cpp.s
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Allies/AllyMinionManager.cpp -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/AllyMinionManager.cpp.s
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/AllyMinionManager.cpp.o.requires:
 
@@ -132,15 +132,15 @@ CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/AllyMinio
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/SelfChampionManager.cpp.o: CMakeFiles/artificialIntelligenceBenchmark.dir/flags.make
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/SelfChampionManager.cpp.o: ../source/Detection/Allies/SelfChampionManager.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/Matt/Project-Fluffy-Pug-Command-Line/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/SelfChampionManager.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/SelfChampionManager.cpp.o -c /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Allies/SelfChampionManager.cpp
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/SelfChampionManager.cpp.o -c /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Allies/SelfChampionManager.cpp
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/SelfChampionManager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/SelfChampionManager.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Allies/SelfChampionManager.cpp > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/SelfChampionManager.cpp.i
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Allies/SelfChampionManager.cpp > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/SelfChampionManager.cpp.i
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/SelfChampionManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/SelfChampionManager.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Allies/SelfChampionManager.cpp -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/SelfChampionManager.cpp.s
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Allies/SelfChampionManager.cpp -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/SelfChampionManager.cpp.s
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/SelfChampionManager.cpp.o.requires:
 
@@ -156,15 +156,15 @@ CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Allies/SelfChamp
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/DetectionManager.cpp.o: CMakeFiles/artificialIntelligenceBenchmark.dir/flags.make
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/DetectionManager.cpp.o: ../source/Detection/DetectionManager.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/Matt/Project-Fluffy-Pug-Command-Line/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/DetectionManager.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/DetectionManager.cpp.o -c /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/DetectionManager.cpp
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/DetectionManager.cpp.o -c /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/DetectionManager.cpp
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/DetectionManager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/DetectionManager.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/DetectionManager.cpp > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/DetectionManager.cpp.i
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/DetectionManager.cpp > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/DetectionManager.cpp.i
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/DetectionManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/DetectionManager.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/DetectionManager.cpp -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/DetectionManager.cpp.s
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/DetectionManager.cpp -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/DetectionManager.cpp.s
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/DetectionManager.cpp.o.requires:
 
@@ -180,15 +180,15 @@ CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/DetectionManager
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyChampionManager.cpp.o: CMakeFiles/artificialIntelligenceBenchmark.dir/flags.make
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyChampionManager.cpp.o: ../source/Detection/Enemies/EnemyChampionManager.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/Matt/Project-Fluffy-Pug-Command-Line/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyChampionManager.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyChampionManager.cpp.o -c /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Enemies/EnemyChampionManager.cpp
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyChampionManager.cpp.o -c /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Enemies/EnemyChampionManager.cpp
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyChampionManager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyChampionManager.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Enemies/EnemyChampionManager.cpp > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyChampionManager.cpp.i
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Enemies/EnemyChampionManager.cpp > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyChampionManager.cpp.i
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyChampionManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyChampionManager.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Enemies/EnemyChampionManager.cpp -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyChampionManager.cpp.s
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Enemies/EnemyChampionManager.cpp -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyChampionManager.cpp.s
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyChampionManager.cpp.o.requires:
 
@@ -204,15 +204,15 @@ CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyCha
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyMinionManager.cpp.o: CMakeFiles/artificialIntelligenceBenchmark.dir/flags.make
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyMinionManager.cpp.o: ../source/Detection/Enemies/EnemyMinionManager.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/Matt/Project-Fluffy-Pug-Command-Line/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyMinionManager.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyMinionManager.cpp.o -c /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Enemies/EnemyMinionManager.cpp
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyMinionManager.cpp.o -c /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Enemies/EnemyMinionManager.cpp
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyMinionManager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyMinionManager.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Enemies/EnemyMinionManager.cpp > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyMinionManager.cpp.i
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Enemies/EnemyMinionManager.cpp > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyMinionManager.cpp.i
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyMinionManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyMinionManager.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Enemies/EnemyMinionManager.cpp -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyMinionManager.cpp.s
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Enemies/EnemyMinionManager.cpp -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyMinionManager.cpp.s
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyMinionManager.cpp.o.requires:
 
@@ -228,15 +228,15 @@ CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyMin
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyTowerManager.cpp.o: CMakeFiles/artificialIntelligenceBenchmark.dir/flags.make
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyTowerManager.cpp.o: ../source/Detection/Enemies/EnemyTowerManager.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/Matt/Project-Fluffy-Pug-Command-Line/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyTowerManager.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyTowerManager.cpp.o -c /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Enemies/EnemyTowerManager.cpp
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyTowerManager.cpp.o -c /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Enemies/EnemyTowerManager.cpp
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyTowerManager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyTowerManager.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Enemies/EnemyTowerManager.cpp > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyTowerManager.cpp.i
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Enemies/EnemyTowerManager.cpp > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyTowerManager.cpp.i
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyTowerManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyTowerManager.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Enemies/EnemyTowerManager.cpp -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyTowerManager.cpp.s
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Enemies/EnemyTowerManager.cpp -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyTowerManager.cpp.s
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyTowerManager.cpp.o.requires:
 
@@ -252,15 +252,15 @@ CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Enemies/EnemyTow
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Item_Manager/ItemManager.cpp.o: CMakeFiles/artificialIntelligenceBenchmark.dir/flags.make
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Item_Manager/ItemManager.cpp.o: ../source/Detection/Item\ Manager/ItemManager.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/Matt/Project-Fluffy-Pug-Command-Line/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Item_Manager/ItemManager.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Item_Manager/ItemManager.cpp.o -c "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Item Manager/ItemManager.cpp"
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Item_Manager/ItemManager.cpp.o -c "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Item Manager/ItemManager.cpp"
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Item_Manager/ItemManager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Item_Manager/ItemManager.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Item Manager/ItemManager.cpp" > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Item_Manager/ItemManager.cpp.i
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Item Manager/ItemManager.cpp" > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Item_Manager/ItemManager.cpp.i
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Item_Manager/ItemManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Item_Manager/ItemManager.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Item Manager/ItemManager.cpp" -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Item_Manager/ItemManager.cpp.s
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Item Manager/ItemManager.cpp" -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Item_Manager/ItemManager.cpp.s
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Item_Manager/ItemManager.cpp.o.requires:
 
@@ -276,15 +276,15 @@ CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Item_Manager/Ite
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Map_Manager/MapManager.cpp.o: CMakeFiles/artificialIntelligenceBenchmark.dir/flags.make
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Map_Manager/MapManager.cpp.o: ../source/Detection/Map\ Manager/MapManager.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/Matt/Project-Fluffy-Pug-Command-Line/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Map_Manager/MapManager.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Map_Manager/MapManager.cpp.o -c "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Map Manager/MapManager.cpp"
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Map_Manager/MapManager.cpp.o -c "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Map Manager/MapManager.cpp"
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Map_Manager/MapManager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Map_Manager/MapManager.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Map Manager/MapManager.cpp" > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Map_Manager/MapManager.cpp.i
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Map Manager/MapManager.cpp" > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Map_Manager/MapManager.cpp.i
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Map_Manager/MapManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Map_Manager/MapManager.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Map Manager/MapManager.cpp" -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Map_Manager/MapManager.cpp.s
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Map Manager/MapManager.cpp" -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Map_Manager/MapManager.cpp.s
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Map_Manager/MapManager.cpp.o.requires:
 
@@ -300,15 +300,15 @@ CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Map_Manager/MapM
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Champion.cpp.o: CMakeFiles/artificialIntelligenceBenchmark.dir/flags.make
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Champion.cpp.o: ../source/Detection/Objects/Champion.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/Matt/Project-Fluffy-Pug-Command-Line/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Champion.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Champion.cpp.o -c /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Objects/Champion.cpp
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Champion.cpp.o -c /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Objects/Champion.cpp
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Champion.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Champion.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Objects/Champion.cpp > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Champion.cpp.i
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Objects/Champion.cpp > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Champion.cpp.i
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Champion.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Champion.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Objects/Champion.cpp -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Champion.cpp.s
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Objects/Champion.cpp -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Champion.cpp.s
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Champion.cpp.o.requires:
 
@@ -324,15 +324,15 @@ CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Champion
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/GenericObject.cpp.o: CMakeFiles/artificialIntelligenceBenchmark.dir/flags.make
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/GenericObject.cpp.o: ../source/Detection/Objects/GenericObject.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/Matt/Project-Fluffy-Pug-Command-Line/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/GenericObject.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/GenericObject.cpp.o -c /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Objects/GenericObject.cpp
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/GenericObject.cpp.o -c /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Objects/GenericObject.cpp
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/GenericObject.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/GenericObject.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Objects/GenericObject.cpp > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/GenericObject.cpp.i
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Objects/GenericObject.cpp > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/GenericObject.cpp.i
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/GenericObject.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/GenericObject.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Objects/GenericObject.cpp -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/GenericObject.cpp.s
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Objects/GenericObject.cpp -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/GenericObject.cpp.s
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/GenericObject.cpp.o.requires:
 
@@ -348,15 +348,15 @@ CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/GenericO
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Minion.cpp.o: CMakeFiles/artificialIntelligenceBenchmark.dir/flags.make
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Minion.cpp.o: ../source/Detection/Objects/Minion.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/Matt/Project-Fluffy-Pug-Command-Line/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Minion.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Minion.cpp.o -c /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Objects/Minion.cpp
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Minion.cpp.o -c /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Objects/Minion.cpp
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Minion.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Minion.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Objects/Minion.cpp > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Minion.cpp.i
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Objects/Minion.cpp > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Minion.cpp.i
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Minion.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Minion.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Objects/Minion.cpp -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Minion.cpp.s
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Objects/Minion.cpp -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Minion.cpp.s
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Minion.cpp.o.requires:
 
@@ -372,15 +372,15 @@ CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Minion.c
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/SelfHealth.cpp.o: CMakeFiles/artificialIntelligenceBenchmark.dir/flags.make
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/SelfHealth.cpp.o: ../source/Detection/Objects/SelfHealth.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/Matt/Project-Fluffy-Pug-Command-Line/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/SelfHealth.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/SelfHealth.cpp.o -c /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Objects/SelfHealth.cpp
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/SelfHealth.cpp.o -c /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Objects/SelfHealth.cpp
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/SelfHealth.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/SelfHealth.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Objects/SelfHealth.cpp > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/SelfHealth.cpp.i
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Objects/SelfHealth.cpp > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/SelfHealth.cpp.i
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/SelfHealth.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/SelfHealth.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Objects/SelfHealth.cpp -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/SelfHealth.cpp.s
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Objects/SelfHealth.cpp -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/SelfHealth.cpp.s
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/SelfHealth.cpp.o.requires:
 
@@ -396,15 +396,15 @@ CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/SelfHeal
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Tower.cpp.o: CMakeFiles/artificialIntelligenceBenchmark.dir/flags.make
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Tower.cpp.o: ../source/Detection/Objects/Tower.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/Matt/Project-Fluffy-Pug-Command-Line/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Tower.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Tower.cpp.o -c /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Objects/Tower.cpp
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Tower.cpp.o -c /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Objects/Tower.cpp
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Tower.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Tower.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Objects/Tower.cpp > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Tower.cpp.i
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Objects/Tower.cpp > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Tower.cpp.i
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Tower.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Tower.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Objects/Tower.cpp -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Tower.cpp.s
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Objects/Tower.cpp -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Tower.cpp.s
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Tower.cpp.o.requires:
 
@@ -420,15 +420,15 @@ CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Objects/Tower.cp
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Shop_Manager/ShopManager.cpp.o: CMakeFiles/artificialIntelligenceBenchmark.dir/flags.make
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Shop_Manager/ShopManager.cpp.o: ../source/Detection/Shop\ Manager/ShopManager.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/Matt/Project-Fluffy-Pug-Command-Line/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Shop_Manager/ShopManager.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Shop_Manager/ShopManager.cpp.o -c "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Shop Manager/ShopManager.cpp"
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Shop_Manager/ShopManager.cpp.o -c "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Shop Manager/ShopManager.cpp"
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Shop_Manager/ShopManager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Shop_Manager/ShopManager.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Shop Manager/ShopManager.cpp" > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Shop_Manager/ShopManager.cpp.i
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Shop Manager/ShopManager.cpp" > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Shop_Manager/ShopManager.cpp.i
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Shop_Manager/ShopManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Shop_Manager/ShopManager.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Shop Manager/ShopManager.cpp" -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Shop_Manager/ShopManager.cpp.s
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Shop Manager/ShopManager.cpp" -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Shop_Manager/ShopManager.cpp.s
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Shop_Manager/ShopManager.cpp.o.requires:
 
@@ -444,15 +444,15 @@ CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Shop_Manager/Sho
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Surrender_Manager/SurrenderManager.cpp.o: CMakeFiles/artificialIntelligenceBenchmark.dir/flags.make
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Surrender_Manager/SurrenderManager.cpp.o: ../source/Detection/Surrender\ Manager/SurrenderManager.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/Matt/Project-Fluffy-Pug-Command-Line/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Surrender_Manager/SurrenderManager.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Surrender_Manager/SurrenderManager.cpp.o -c "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Surrender Manager/SurrenderManager.cpp"
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Surrender_Manager/SurrenderManager.cpp.o -c "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Surrender Manager/SurrenderManager.cpp"
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Surrender_Manager/SurrenderManager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Surrender_Manager/SurrenderManager.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Surrender Manager/SurrenderManager.cpp" > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Surrender_Manager/SurrenderManager.cpp.i
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Surrender Manager/SurrenderManager.cpp" > CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Surrender_Manager/SurrenderManager.cpp.i
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Surrender_Manager/SurrenderManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Surrender_Manager/SurrenderManager.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Surrender Manager/SurrenderManager.cpp" -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Surrender_Manager/SurrenderManager.cpp.s
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Surrender Manager/SurrenderManager.cpp" -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Surrender_Manager/SurrenderManager.cpp.s
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Surrender_Manager/SurrenderManager.cpp.o.requires:
 
@@ -468,15 +468,15 @@ CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Surrender_Manage
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/main.cpp.o: CMakeFiles/artificialIntelligenceBenchmark.dir/flags.make
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/main.cpp.o: ../source/main.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/Matt/Project-Fluffy-Pug-Command-Line/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/artificialIntelligenceBenchmark.dir/source/main.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/main.cpp.o -c /Users/Matt/Project-Fluffy-Pug-Command-Line/source/main.cpp
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/main.cpp.o -c /Users/Matt/Project-Fluffy-Pug-Command-Line/source/main.cpp
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/artificialIntelligenceBenchmark.dir/source/main.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Matt/Project-Fluffy-Pug-Command-Line/source/main.cpp > CMakeFiles/artificialIntelligenceBenchmark.dir/source/main.cpp.i
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Matt/Project-Fluffy-Pug-Command-Line/source/main.cpp > CMakeFiles/artificialIntelligenceBenchmark.dir/source/main.cpp.i
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/artificialIntelligenceBenchmark.dir/source/main.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Matt/Project-Fluffy-Pug-Command-Line/source/main.cpp -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/main.cpp.s
+	/usr/local/Cellar/clang-omp/2015-04-01/libexec/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Matt/Project-Fluffy-Pug-Command-Line/source/main.cpp -o CMakeFiles/artificialIntelligenceBenchmark.dir/source/main.cpp.s
 
 CMakeFiles/artificialIntelligenceBenchmark.dir/source/main.cpp.o.requires:
 

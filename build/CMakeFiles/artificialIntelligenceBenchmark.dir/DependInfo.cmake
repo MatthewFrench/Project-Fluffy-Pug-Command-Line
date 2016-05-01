@@ -23,7 +23,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Surrender Manager/SurrenderManager.cpp" "/Users/Matt/Project-Fluffy-Pug-Command-Line/build/CMakeFiles/artificialIntelligenceBenchmark.dir/source/Detection/Surrender_Manager/SurrenderManager.cpp.o"
   "/Users/Matt/Project-Fluffy-Pug-Command-Line/source/main.cpp" "/Users/Matt/Project-Fluffy-Pug-Command-Line/build/CMakeFiles/artificialIntelligenceBenchmark.dir/source/main.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "AppleClang")
+set(CMAKE_CXX_COMPILER_ID "Clang")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH

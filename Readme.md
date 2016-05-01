@@ -7,6 +7,25 @@ TODO:
 
 END TODO
 
+4 core machine
+
+Replacing struct pass with pointer pass: 0.106355
+
+Pulling the heavy detection out of separate functions: 0.110222
+
+Using small pixel increment optimization: 0.136431
+
+Using 256 threads: 0.148011
+Using 128 threads: 0.14607
+Using 64 threads: 0.146292
+Using 32 threads: 0.146848
+Using 16 threads: 0.147312
+Using 8 threads : 0.149097
+Using 7 threads : 0.150353
+Using 6 threads : 0.149025
+Using 5 threads : 0.1542
+Using 4 threads on OpenMP down to 0.162659 seconds
+
 Now down to 0.27 seconds from basic loop optimization
 
 USING -Ofast makes it go from 0.9 seconds to 0.37 seconds
@@ -18,6 +37,9 @@ Using -O0 makes it 0.909023 seconds
 
 • Install libpng
 • Install imagemagick
+
+On Mac install clang-omp using brew.
+When running CMake, set the compiler to the clang-omp. /usr/local/Cellar/clang-omp/2015-04-01
 
 I used brew to install libpng and imagemagick on Mac.
 

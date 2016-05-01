@@ -18,6 +18,7 @@
 #include "Shop Manager/ShopManager.h"
 #include "Map Manager/MapManager.h"
 #include "Surrender Manager/SurrenderManager.h"
+#include <omp.h>
 
 DetectionManager::DetectionManager() {
     allyMinions = new std::vector<Minion*>();
@@ -49,10 +50,77 @@ void DetectionManager::processDetection(ImageData *image) {
     spell3LevelDots->clear();
     spell4LevelDots->clear();
 
+    #pragma omp parallel num_threads(128)
+    {
+        int perThread = image->imageWidth * image->imageHeight / omp_get_num_threads();
+        int start = omp_get_thread_num() * perThread;
+        int end = (omp_get_thread_num()+1) * perThread;
 
-    for (int x = 0; x < image->imageWidth; x++) {
-        for (int y = 0; y < image->imageHeight; y++) {
-            uint8_t* pixel = getPixel2(*image, x, y);
+        int x = start % (image->imageWidth);
+        int y = start / (image->imageWidth);
+
+        uint8_t* pixel = getPixel2(*image, x, y);
+
+        Minion* minionBar;
+        Champion* championBar;
+        Tower* towerBar;
+        GenericObject* topLeftCorner;
+
+        for (int xy = start; xy < end; ++xy) {
+            if (x >= image->imageWidth) {
+                x = 0;
+                y++;
+            }
+
+//Ally minion detection
+    minionBar = AllyMinionManager::detectMinionBarAtPixel(image, pixel, x, y);
+    if (minionBar != NULL) {
+        #pragma omp critical (addAllyMinion)
+        allyMinions->push_back(minionBar);
+    }
+//Enemy minion detection
+    minionBar = EnemyMinionManager::detectMinionBarAtPixel(image, pixel, x, y);
+    if (minionBar != NULL) {
+        #pragma omp critical (addEnemyMinion)
+        enemyMinions->push_back(minionBar);
+    }
+//Enemy champion detection
+    championBar = EnemyChampionManager::detectChampionBarAtPixel(image, pixel, x, y);
+    if (championBar != NULL) {
+        #pragma omp critical (addEnemyChampion)
+        enemyChampions->push_back(championBar);
+    }
+//Ally champion detection
+    championBar = AllyChampionManager::detectChampionBarAtPixel(image, pixel, x, y);
+    if (championBar != NULL) {
+        #pragma omp critical (addAllyChampion)
+        allyChampions->push_back(championBar);
+    }
+//Enemy tower detection
+    towerBar = EnemyTowerManager::detectTowerBarAtPixel(image, pixel, x, y);
+    if (towerBar != NULL) {
+        #pragma omp critical (addEnemyTower)
+        enemyTowers->push_back(towerBar);
+    }
+//Self champion detection
+    championBar = SelfChampionManager::detectChampionBarAtPixel(image, pixel, x, y);
+    if (championBar != NULL) {
+        #pragma omp critical (addSelfChampion)
+        selfChampions->push_back(championBar);
+    }
+    //Shop window detection
+    if (shopTopLeftCorner == NULL) {
+        uint8_t* pixel = getPixel2(*image, x, y);
+        topLeftCorner = ShopManager::detectShopTopLeftCorner(image, pixel, x, y);
+        if (topLeftCorner != NULL) {
+            shopTopLeftCorner = topLeftCorner;
+            shopTopLeftCornerShown = true;
+        }
+    }
+
+
+
+/*
             processAllyMinionDetection(image, x, y, pixel);
             processEnemyMinionDetection(image, x, y, pixel);
             processAllyChampionDetection(image, x, y, pixel);
@@ -60,6 +128,10 @@ void DetectionManager::processDetection(ImageData *image) {
             processEnemyTowerDetection(image, x, y, pixel);
             processSelfChampionDetection(image, x, y, pixel);
             processShop(image, x, y, pixel);
+*/
+
+            x += 1;
+            pixel += 4;
         }
     }
 
@@ -91,44 +163,50 @@ void DetectionManager::processDetection(ImageData *image) {
 }
 
 void DetectionManager::processAllyMinionDetection(ImageData *image, int x, int y, uint8_t* pixel) {
-    Minion* minionBar = AllyMinionManager::detectMinionBarAtPixel(*image, pixel, x, y);
+    Minion* minionBar = AllyMinionManager::detectMinionBarAtPixel(image, pixel, x, y);
     if (minionBar != NULL) {
+        #pragma omp critical (addAllyMinion)
         allyMinions->push_back(minionBar);
     }
 }
 
 void DetectionManager::processEnemyMinionDetection(ImageData *image, int x, int y, uint8_t* pixel) {
-    Minion* minionBar = EnemyMinionManager::detectMinionBarAtPixel(*image, pixel, x, y);
+    Minion* minionBar = EnemyMinionManager::detectMinionBarAtPixel(image, pixel, x, y);
     if (minionBar != NULL) {
+        #pragma omp critical (addEnemyMinion)
         enemyMinions->push_back(minionBar);
     }
 }
 
 void DetectionManager::processEnemyChampionDetection(ImageData *image, int x, int y, uint8_t* pixel) {
-    Champion* championBar = EnemyChampionManager::detectChampionBarAtPixel(*image, pixel, x, y);
+    Champion* championBar = EnemyChampionManager::detectChampionBarAtPixel(image, pixel, x, y);
     if (championBar != NULL) {
+        #pragma omp critical (addEnemyChampion)
         enemyChampions->push_back(championBar);
     }
 }
 
 void DetectionManager::processAllyChampionDetection(ImageData *image, int x, int y, uint8_t* pixel) {
-    Champion* championBar = AllyChampionManager::detectChampionBarAtPixel(*image, pixel, x, y);
+    Champion* championBar = AllyChampionManager::detectChampionBarAtPixel(image, pixel, x, y);
     if (championBar != NULL) {
+        #pragma omp critical (addAllyChampion)
         allyChampions->push_back(championBar);
     }
 }
 
 
 void DetectionManager::processEnemyTowerDetection(ImageData *image, int x, int y, uint8_t* pixel) {
-    Tower* towerBar = EnemyTowerManager::detectTowerBarAtPixel(*image, pixel, x, y);
+    Tower* towerBar = EnemyTowerManager::detectTowerBarAtPixel(image, pixel, x, y);
     if (towerBar != NULL) {
+        #pragma omp critical (addEnemyTower)
         enemyTowers->push_back(towerBar);
     }
 }
 
 void DetectionManager::processSelfChampionDetection(ImageData *image, int x, int y, uint8_t* pixel) {
-    Champion* championBar = SelfChampionManager::detectChampionBarAtPixel(*image, pixel, x, y);
+    Champion* championBar = SelfChampionManager::detectChampionBarAtPixel(image, pixel, x, y);
     if (championBar != NULL) {
+        #pragma omp critical (addSelfChampion)
         selfChampions->push_back(championBar);
     }
 }
@@ -143,7 +221,7 @@ void DetectionManager::processShop(ImageData *image, int x, int y, uint8_t* pixe
 
     if (shopTopLeftCorner == NULL) {
         uint8_t* pixel = getPixel2(*image, x, y);
-        GenericObject* topLeftCorner = ShopManager::detectShopTopLeftCorner(*image, pixel, x, y);
+        GenericObject* topLeftCorner = ShopManager::detectShopTopLeftCorner(image, pixel, x, y);
         if (topLeftCorner != NULL) {
             shopTopLeftCorner = topLeftCorner;
             shopTopLeftCornerShown = true;

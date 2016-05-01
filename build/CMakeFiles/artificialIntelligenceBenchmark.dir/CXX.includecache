@@ -75,6 +75,8 @@ Map Manager/MapManager.h
 /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Map Manager/MapManager.h
 Surrender Manager/SurrenderManager.h
 /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/Surrender Manager/SurrenderManager.h
+omp.h
+-
 
 /Users/Matt/Project-Fluffy-Pug-Command-Line/source/Detection/DetectionManager.h
 ../Utility.h
