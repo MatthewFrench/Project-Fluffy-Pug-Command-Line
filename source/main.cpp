@@ -1,11 +1,13 @@
 #define cimg_display 0
+#define cimg_use_png
 #include "lib/CImg.h"
 #include "Utility.h"
 #include "Detection/DetectionManager.h"
 
 using namespace cimg_library; 
 
-void outputImages(ImageData image, DetectionManager* detectionManager);
+void printDetected(DetectionManager* detectionManager);
+void outputImage(ImageData image, DetectionManager* detection);
 
 int main() {
 	ImageData image = loadImage("Test1.png");
@@ -18,6 +20,90 @@ int main() {
 
 	simulation_time = read_timer( ) - simulation_time;
 
+
+	printDetected(detection);
+	printf("-------------------\n");
+	printf("Finished detection in %g seconds!\n", simulation_time);
+
+	outputImage(image, detection);
+
+	return(0);
+}
+
+void outputImage(ImageData image, DetectionManager* detectionManager) {
+	CImg<unsigned char> render(image.imageWidth,image.imageHeight,1,4);
+
+	render.fill(0);
+
+	for (int i = 0; i < detectionManager->getAllyMinions()->size(); i++) {
+		Minion* minion = (*(detectionManager->getAllyMinions()))[i];
+		const unsigned char color[] = { 0,0,255, 255 };
+		const unsigned char colorAlpha[] = { 0,0,255, 50 };
+		render.draw_rectangle(minion->topLeft.x, minion->topLeft.y, minion->bottomRight.x, minion->bottomRight.y, colorAlpha);
+ 		render.draw_line(minion->topLeft.x, minion->topLeft.y, minion->topRight.x, minion->topRight.y,color);
+ 		render.draw_line(minion->bottomLeft.x, minion->bottomLeft.y, minion->bottomRight.x, minion->bottomRight.y,color);
+ 		render.draw_line(minion->topLeft.x, minion->topLeft.y, minion->bottomLeft.x, minion->bottomLeft.y,color);
+ 		render.draw_line(minion->topRight.x, minion->topRight.y, minion->bottomRight.x, minion->bottomRight.y,color);
+	}
+
+	for (int i = 0; i < detectionManager->getEnemyMinions()->size(); i++) {
+		Minion* minion = (*(detectionManager->getEnemyMinions()))[i];
+		const unsigned char color[] = { 255,0,0, 255 };
+ 		const unsigned char colorAlpha[] = { 255,0,0, 50 };
+		render.draw_rectangle(minion->topLeft.x, minion->topLeft.y, minion->bottomRight.x, minion->bottomRight.y, colorAlpha);
+ 		render.draw_line(minion->topLeft.x, minion->topLeft.y, minion->topRight.x, minion->topRight.y,color);
+ 		render.draw_line(minion->bottomLeft.x, minion->bottomLeft.y, minion->bottomRight.x, minion->bottomRight.y,color);
+ 		render.draw_line(minion->topLeft.x, minion->topLeft.y, minion->bottomLeft.x, minion->bottomLeft.y,color);
+ 		render.draw_line(minion->topRight.x, minion->topRight.y, minion->bottomRight.x, minion->bottomRight.y,color);
+	}
+
+	for (int i = 0; i < detectionManager->getAllyChampions()->size(); i++) {
+		Champion* champion = (*(detectionManager->getAllyChampions()))[i];
+		const unsigned char color[] = { 0,0,255, 255 };
+ 		const unsigned char colorAlpha[] = { 0,0,255, 50 };
+		render.draw_rectangle(champion->topLeft.x, champion->topLeft.y, champion->bottomRight.x, champion->bottomRight.y, colorAlpha);
+ 		render.draw_line(champion->topLeft.x, champion->topLeft.y, champion->topRight.x, champion->topRight.y,color);
+ 		render.draw_line(champion->bottomLeft.x, champion->bottomLeft.y, champion->bottomRight.x, champion->bottomRight.y,color);
+ 		render.draw_line(champion->topLeft.x, champion->topLeft.y, champion->bottomLeft.x, champion->bottomLeft.y,color);
+ 		render.draw_line(champion->topRight.x, champion->topRight.y, champion->bottomRight.x, champion->bottomRight.y,color);
+	}
+
+	for (int i = 0; i < detectionManager->getEnemyChampions()->size(); i++) {
+		Champion* champion = (*(detectionManager->getEnemyChampions()))[i];
+		const unsigned char color[] = { 255,0,0, 255 };
+ 		const unsigned char colorAlpha[] = { 255,0,0, 50 };
+		render.draw_rectangle(champion->topLeft.x, champion->topLeft.y, champion->bottomRight.x, champion->bottomRight.y, colorAlpha);
+ 		render.draw_line(champion->topLeft.x, champion->topLeft.y, champion->topRight.x, champion->topRight.y,color);
+ 		render.draw_line(champion->bottomLeft.x, champion->bottomLeft.y, champion->bottomRight.x, champion->bottomRight.y,color);
+ 		render.draw_line(champion->topLeft.x, champion->topLeft.y, champion->bottomLeft.x, champion->bottomLeft.y,color);
+ 		render.draw_line(champion->topRight.x, champion->topRight.y, champion->bottomRight.x, champion->bottomRight.y,color);
+	}
+	for (int i = 0; i < detectionManager->getEnemyTowers()->size(); i++) {
+		Tower* tower = (*(detectionManager->getEnemyTowers()))[i];
+		const unsigned char color[] = { 255,0,0, 255 };
+ 		const unsigned char colorAlpha[] = { 255,0,0, 50 };
+		render.draw_rectangle(tower->topLeft.x, tower->topLeft.y, tower->bottomRight.x, tower->bottomRight.y, colorAlpha);
+ 		render.draw_line(tower->topLeft.x, tower->topLeft.y, tower->topRight.x, tower->topRight.y,color);
+ 		render.draw_line(tower->bottomLeft.x, tower->bottomLeft.y, tower->bottomRight.x, tower->bottomRight.y,color);
+ 		render.draw_line(tower->topLeft.x, tower->topLeft.y, tower->bottomLeft.x, tower->bottomLeft.y,color);
+ 		render.draw_line(tower->topRight.x, tower->topRight.y, tower->bottomRight.x, tower->bottomRight.y,color);
+	}
+	for (int i = 0; i < detectionManager->getSelfChampions()->size(); i++) {
+		Champion* champion = (*(detectionManager->getSelfChampions()))[i];
+		const unsigned char color[] = { 0,255,0, 255 };
+ 		const unsigned char colorAlpha[] = { 0,255,0, 50 };
+		render.draw_rectangle(champion->topLeft.x, champion->topLeft.y, champion->bottomRight.x, champion->bottomRight.y, colorAlpha);
+ 		render.draw_line(champion->topLeft.x, champion->topLeft.y, champion->topRight.x, champion->topRight.y,color);
+ 		render.draw_line(champion->bottomLeft.x, champion->bottomLeft.y, champion->bottomRight.x, champion->bottomRight.y,color);
+ 		render.draw_line(champion->topLeft.x, champion->topLeft.y, champion->bottomLeft.x, champion->bottomLeft.y,color);
+ 		render.draw_line(champion->topRight.x, champion->topRight.y, champion->bottomRight.x, champion->bottomRight.y,color);
+	}
+
+
+	render.save_png("Output.png");
+}
+
+void printDetected(DetectionManager* detection) {
 	printf("Detected: \n");
 	if (detection->getAllyMinions()->size() > 0) {
 		printf("\t%lu ally minions\n", detection->getAllyMinions()->size());
@@ -127,17 +213,4 @@ int main() {
 	if (detection->getSurrenderAvailable()) {
 		printf("\tSurrender is visible\n");
 	}
-	printf("-------------------\n");
-	printf("Finished detection in %g seconds!\n", simulation_time);
-
-	outputImages(image, detection);
-
-	return(0);
-}
-
-void outputImages(ImageData image, DetectionManager* detectionManager) {
-	//CImg<float> image(100,100,1,3,0);
-	//const float color[] = {1.0,1.0,0.0};
-	//image.draw_point(50,50,color);
-	//image.save("file.bmp");
 }

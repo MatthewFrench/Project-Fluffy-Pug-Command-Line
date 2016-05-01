@@ -1,4 +1,7 @@
 TODO:
+	• Make it run all the tests and show average
+	• Make it draw all the output
+	• Make it more accurate
 	• Make it run on Windows
 	• Increase speed from 0.9 seconds to 0.05 seconds
 	• Parallelize it with OpenMP

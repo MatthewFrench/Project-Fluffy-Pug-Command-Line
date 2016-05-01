@@ -48646,6 +48646,8 @@ namespace cimg_library_suffixed {
 
     const CImg<T>& _save_png(std::FILE *const file, const char *const filename,
                              const unsigned int bytes_per_pixel=0) const {
+
+
       if (!file && !filename)
         throw CImgArgumentException(_cimg_instance
                                     "save_png(): Specified filename is (null).",
