@@ -89,8 +89,7 @@ inline ImageData loadImage(string name) {
             }
         }
     }
-
-    return makeImageData(data, image.width(), image.height());
+    return makeImageData(data, image.width(), image.height());;
 }
 inline Position makePosition(int x, int y);
 inline int getRandomInteger(int minimum, int maximum);

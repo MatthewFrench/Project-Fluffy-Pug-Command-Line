@@ -7,7 +7,7 @@
 using namespace cimg_library; 
 
 void printDetected(DetectionManager* detectionManager);
-void outputImage(ImageData image, DetectionManager* detection);
+void outputImage(ImageData image, DetectionManager* detection, CImg<unsigned char> render, string name);
 
 int main() {
 	ImageData image = loadImage("Test1.png");
@@ -25,21 +25,23 @@ int main() {
 	printf("-------------------\n");
 	printf("Finished detection in %g seconds!\n", simulation_time);
 
-	outputImage(image, detection);
+	CImg<unsigned char> render1(image.imageWidth,image.imageHeight,1,4);
+	render1.fill(0);
+	outputImage(image, detection, render1, "Output.png");
+
+	CImg<unsigned char> render2("Test1.png");
+	outputImage(image, detection, render2, "OutputOverlay.png");
 
 	return(0);
 }
 
-void outputImage(ImageData image, DetectionManager* detectionManager) {
-	CImg<unsigned char> render(image.imageWidth,image.imageHeight,1,4);
-
-	render.fill(0);
-
+void outputImage(ImageData image, DetectionManager* detectionManager, CImg<unsigned char> render, string name) {
 	for (int i = 0; i < detectionManager->getAllyMinions()->size(); i++) {
 		Minion* minion = (*(detectionManager->getAllyMinions()))[i];
 		const unsigned char color[] = { 0,0,255, 255 };
-		const unsigned char colorAlpha[] = { 0,0,255, 50 };
-		render.draw_rectangle(minion->topLeft.x, minion->topLeft.y, minion->bottomRight.x, minion->bottomRight.y, colorAlpha);
+		const unsigned char colorAlpha[] = { 0,0,255, 255 };
+		double across = minion->health/100.0 * (minion->bottomRight.x - minion->topLeft.x) + minion->topLeft.x;
+		render.draw_rectangle(minion->topLeft.x, minion->topLeft.y, across, minion->bottomRight.y, colorAlpha);
  		render.draw_line(minion->topLeft.x, minion->topLeft.y, minion->topRight.x, minion->topRight.y,color);
  		render.draw_line(minion->bottomLeft.x, minion->bottomLeft.y, minion->bottomRight.x, minion->bottomRight.y,color);
  		render.draw_line(minion->topLeft.x, minion->topLeft.y, minion->bottomLeft.x, minion->bottomLeft.y,color);
@@ -50,7 +52,8 @@ void outputImage(ImageData image, DetectionManager* detectionManager) {
 		Minion* minion = (*(detectionManager->getEnemyMinions()))[i];
 		const unsigned char color[] = { 255,0,0, 255 };
  		const unsigned char colorAlpha[] = { 255,0,0, 50 };
-		render.draw_rectangle(minion->topLeft.x, minion->topLeft.y, minion->bottomRight.x, minion->bottomRight.y, colorAlpha);
+		double across = minion->health/100.0 * (minion->bottomRight.x - minion->topLeft.x) + minion->topLeft.x;
+		render.draw_rectangle(minion->topLeft.x, minion->topLeft.y, across, minion->bottomRight.y, colorAlpha);
  		render.draw_line(minion->topLeft.x, minion->topLeft.y, minion->topRight.x, minion->topRight.y,color);
  		render.draw_line(minion->bottomLeft.x, minion->bottomLeft.y, minion->bottomRight.x, minion->bottomRight.y,color);
  		render.draw_line(minion->topLeft.x, minion->topLeft.y, minion->bottomLeft.x, minion->bottomLeft.y,color);
@@ -61,7 +64,8 @@ void outputImage(ImageData image, DetectionManager* detectionManager) {
 		Champion* champion = (*(detectionManager->getAllyChampions()))[i];
 		const unsigned char color[] = { 0,0,255, 255 };
  		const unsigned char colorAlpha[] = { 0,0,255, 50 };
-		render.draw_rectangle(champion->topLeft.x, champion->topLeft.y, champion->bottomRight.x, champion->bottomRight.y, colorAlpha);
+		double across = champion->health/100.0 * (champion->bottomRight.x - champion->topLeft.x) + champion->topLeft.x;
+		render.draw_rectangle(champion->topLeft.x, champion->topLeft.y, across, champion->bottomRight.y, colorAlpha);
  		render.draw_line(champion->topLeft.x, champion->topLeft.y, champion->topRight.x, champion->topRight.y,color);
  		render.draw_line(champion->bottomLeft.x, champion->bottomLeft.y, champion->bottomRight.x, champion->bottomRight.y,color);
  		render.draw_line(champion->topLeft.x, champion->topLeft.y, champion->bottomLeft.x, champion->bottomLeft.y,color);
@@ -72,7 +76,8 @@ void outputImage(ImageData image, DetectionManager* detectionManager) {
 		Champion* champion = (*(detectionManager->getEnemyChampions()))[i];
 		const unsigned char color[] = { 255,0,0, 255 };
  		const unsigned char colorAlpha[] = { 255,0,0, 50 };
-		render.draw_rectangle(champion->topLeft.x, champion->topLeft.y, champion->bottomRight.x, champion->bottomRight.y, colorAlpha);
+		double across = champion->health/100.0 * (champion->bottomRight.x - champion->topLeft.x) + champion->topLeft.x;
+		render.draw_rectangle(champion->topLeft.x, champion->topLeft.y, across, champion->bottomRight.y, colorAlpha);
  		render.draw_line(champion->topLeft.x, champion->topLeft.y, champion->topRight.x, champion->topRight.y,color);
  		render.draw_line(champion->bottomLeft.x, champion->bottomLeft.y, champion->bottomRight.x, champion->bottomRight.y,color);
  		render.draw_line(champion->topLeft.x, champion->topLeft.y, champion->bottomLeft.x, champion->bottomLeft.y,color);
@@ -82,7 +87,8 @@ void outputImage(ImageData image, DetectionManager* detectionManager) {
 		Tower* tower = (*(detectionManager->getEnemyTowers()))[i];
 		const unsigned char color[] = { 255,0,0, 255 };
  		const unsigned char colorAlpha[] = { 255,0,0, 50 };
-		render.draw_rectangle(tower->topLeft.x, tower->topLeft.y, tower->bottomRight.x, tower->bottomRight.y, colorAlpha);
+		double across = tower->health/100.0 * (tower->bottomRight.x - tower->topLeft.x) + tower->topLeft.x;
+		render.draw_rectangle(tower->topLeft.x, tower->topLeft.y, across, tower->bottomRight.y, colorAlpha);
  		render.draw_line(tower->topLeft.x, tower->topLeft.y, tower->topRight.x, tower->topRight.y,color);
  		render.draw_line(tower->bottomLeft.x, tower->bottomLeft.y, tower->bottomRight.x, tower->bottomRight.y,color);
  		render.draw_line(tower->topLeft.x, tower->topLeft.y, tower->bottomLeft.x, tower->bottomLeft.y,color);
@@ -92,15 +98,99 @@ void outputImage(ImageData image, DetectionManager* detectionManager) {
 		Champion* champion = (*(detectionManager->getSelfChampions()))[i];
 		const unsigned char color[] = { 0,255,0, 255 };
  		const unsigned char colorAlpha[] = { 0,255,0, 50 };
-		render.draw_rectangle(champion->topLeft.x, champion->topLeft.y, champion->bottomRight.x, champion->bottomRight.y, colorAlpha);
+		double across = champion->health/100.0 * (champion->bottomRight.x - champion->topLeft.x) + champion->topLeft.x;
+		render.draw_rectangle(champion->topLeft.x, champion->topLeft.y, across, champion->bottomRight.y, colorAlpha);
  		render.draw_line(champion->topLeft.x, champion->topLeft.y, champion->topRight.x, champion->topRight.y,color);
  		render.draw_line(champion->bottomLeft.x, champion->bottomLeft.y, champion->bottomRight.x, champion->bottomRight.y,color);
  		render.draw_line(champion->topLeft.x, champion->topLeft.y, champion->bottomLeft.x, champion->bottomLeft.y,color);
  		render.draw_line(champion->topRight.x, champion->topRight.y, champion->bottomRight.x, champion->bottomRight.y,color);
 	}
 
+	if (spell1LevelUpAvailable) {
+//spell1LevelUp
+	}
+	if (spell2LevelUpAvailable) {
 
-	render.save_png("Output.png");
+	}
+	if (spell3LevelUpAvailable) {
+
+	}
+	if (spell4LevelUpAvailable) {
+
+	}
+	//spell1LevelDots
+	//spell2LevelDots
+	//spell3LevelDots
+	//spell4LevelDots;
+	if (spell1ActiveAvailable) {
+//spell1Active
+	}
+	if (spell2ActiveAvailable) {
+
+	}
+	if (spell3ActiveAvailable) {
+
+	}
+	if (spell4ActiveAvailable) {
+
+	}
+	if (summonerSpell1ActiveAvailable) {
+//summonerSpell1Active
+	}
+	if (summonerSpell2ActiveAvailable) {
+
+	}
+	if (trinketActiveAvailable) {
+		//trinketActive
+	}
+	if (item1ActiveAvailable) {
+		//item1Active
+	}
+	if (item2ActiveAvailable) {
+	}
+	if (item3ActiveAvailable) {
+	}
+	if (item4ActiveAvailable) {
+	}
+	if (item5ActiveAvailable) {
+	}
+	if (item6ActiveAvailable) {
+	}
+	if (potionActiveAvailable) {
+//potionActive
+	}
+	if (potionBeingUsedShown) {
+		//potionBeingUsed
+	}
+	if (shopAvailableShown) {
+		//shopAvailable
+	}
+	if (shopTopLeftCornerShown) {
+//shopTopLeftCorner
+	}
+	if (shopBottomLeftCornerShown) {
+		//shopBottomLeftCorner
+	}
+	if (detectionManager->buyableItems->size() > 0) {
+
+	}
+	if (mapVisible) {
+//map
+	}
+	if (mapShopVisible) {
+//mapShop
+	}
+	if (mapSelfLocationVisible) {
+		//mapSelfLocation
+	}
+	if (selfHealthBarVisible) {
+		//selfHealthBar
+	}
+	if (surrenderAvailable) {
+		//surrenderActive
+	}
+
+	render.save_png(name.c_str());
 }
 
 void printDetected(DetectionManager* detection) {
