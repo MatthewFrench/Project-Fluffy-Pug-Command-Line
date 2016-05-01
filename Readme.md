@@ -1,6 +1,4 @@
 TODO:
-	• Make it run all the tests and show average
-	• Make it draw all the output
 	• Make it more accurate
 	• Make it run on Windows
 	• Increase speed from 0.9 seconds to 0.05 seconds
@@ -51,3 +49,8 @@ copy C:\tools\mingw64\bin\mingw32-make.exe C:\tools\mingw64\bin\make.exe
 Install CMake : https://cmake.org/download/
 
 Install libpng : http://downloads.sourceforge.net/gnuwin32/libpng-1.2.37-setup.exe
+
+
+Done:
+	• Make it run all the tests and show average
+	• Make it draw all the output

@@ -65,7 +65,7 @@ double runTestAndOutput(string folder, string pngImageName) {
 	printDetected(detection);
 	
 	printf("Finished single image detection in %g seconds!\n", simulation_time);
-printf("-------------------\n");
+	printf("-------------------\n");
 	CImg<unsigned char> render1(image.imageWidth,image.imageHeight,1,4);
 	render1.fill(0);
 	outputImage(image, detection, render1, "Output/Output "+ pngImageName + ".png");
@@ -83,132 +83,396 @@ void outputImage(ImageData image, DetectionManager* detectionManager, CImg<unsig
 		const unsigned char colorAlpha[] = { 0,0,255, 255 };
 		double across = minion->health/100.0 * (minion->bottomRight.x - minion->topLeft.x) + minion->topLeft.x;
 		render.draw_rectangle(minion->topLeft.x, minion->topLeft.y, across, minion->bottomRight.y, colorAlpha);
- 		render.draw_line(minion->topLeft.x, minion->topLeft.y, minion->topRight.x, minion->topRight.y,color);
- 		render.draw_line(minion->bottomLeft.x, minion->bottomLeft.y, minion->bottomRight.x, minion->bottomRight.y,color);
- 		render.draw_line(minion->topLeft.x, minion->topLeft.y, minion->bottomLeft.x, minion->bottomLeft.y,color);
- 		render.draw_line(minion->topRight.x, minion->topRight.y, minion->bottomRight.x, minion->bottomRight.y,color);
+		render.draw_line(minion->topLeft.x, minion->topLeft.y, minion->topRight.x, minion->topRight.y,color);
+		render.draw_line(minion->bottomLeft.x, minion->bottomLeft.y, minion->bottomRight.x, minion->bottomRight.y,color);
+		render.draw_line(minion->topLeft.x, minion->topLeft.y, minion->bottomLeft.x, minion->bottomLeft.y,color);
+		render.draw_line(minion->topRight.x, minion->topRight.y, minion->bottomRight.x, minion->bottomRight.y,color);
 	}
 
 	for (int i = 0; i < detectionManager->getEnemyMinions()->size(); i++) {
 		Minion* minion = (*(detectionManager->getEnemyMinions()))[i];
 		const unsigned char color[] = { 255,0,0, 255 };
- 		const unsigned char colorAlpha[] = { 255,0,0, 50 };
+		const unsigned char colorAlpha[] = { 255,0,0, 50 };
 		double across = minion->health/100.0 * (minion->bottomRight.x - minion->topLeft.x) + minion->topLeft.x;
 		render.draw_rectangle(minion->topLeft.x, minion->topLeft.y, across, minion->bottomRight.y, colorAlpha);
- 		render.draw_line(minion->topLeft.x, minion->topLeft.y, minion->topRight.x, minion->topRight.y,color);
- 		render.draw_line(minion->bottomLeft.x, minion->bottomLeft.y, minion->bottomRight.x, minion->bottomRight.y,color);
- 		render.draw_line(minion->topLeft.x, minion->topLeft.y, minion->bottomLeft.x, minion->bottomLeft.y,color);
- 		render.draw_line(minion->topRight.x, minion->topRight.y, minion->bottomRight.x, minion->bottomRight.y,color);
+		render.draw_line(minion->topLeft.x, minion->topLeft.y, minion->topRight.x, minion->topRight.y,color);
+		render.draw_line(minion->bottomLeft.x, minion->bottomLeft.y, minion->bottomRight.x, minion->bottomRight.y,color);
+		render.draw_line(minion->topLeft.x, minion->topLeft.y, minion->bottomLeft.x, minion->bottomLeft.y,color);
+		render.draw_line(minion->topRight.x, minion->topRight.y, minion->bottomRight.x, minion->bottomRight.y,color);
 	}
 
 	for (int i = 0; i < detectionManager->getAllyChampions()->size(); i++) {
 		Champion* champion = (*(detectionManager->getAllyChampions()))[i];
 		const unsigned char color[] = { 0,0,255, 255 };
- 		const unsigned char colorAlpha[] = { 0,0,255, 50 };
+		const unsigned char colorAlpha[] = { 0,0,255, 50 };
 		double across = champion->health/100.0 * (champion->bottomRight.x - champion->topLeft.x) + champion->topLeft.x;
 		render.draw_rectangle(champion->topLeft.x, champion->topLeft.y, across, champion->bottomRight.y, colorAlpha);
- 		render.draw_line(champion->topLeft.x, champion->topLeft.y, champion->topRight.x, champion->topRight.y,color);
- 		render.draw_line(champion->bottomLeft.x, champion->bottomLeft.y, champion->bottomRight.x, champion->bottomRight.y,color);
- 		render.draw_line(champion->topLeft.x, champion->topLeft.y, champion->bottomLeft.x, champion->bottomLeft.y,color);
- 		render.draw_line(champion->topRight.x, champion->topRight.y, champion->bottomRight.x, champion->bottomRight.y,color);
+		render.draw_line(champion->topLeft.x, champion->topLeft.y, champion->topRight.x, champion->topRight.y,color);
+		render.draw_line(champion->bottomLeft.x, champion->bottomLeft.y, champion->bottomRight.x, champion->bottomRight.y,color);
+		render.draw_line(champion->topLeft.x, champion->topLeft.y, champion->bottomLeft.x, champion->bottomLeft.y,color);
+		render.draw_line(champion->topRight.x, champion->topRight.y, champion->bottomRight.x, champion->bottomRight.y,color);
 	}
 
 	for (int i = 0; i < detectionManager->getEnemyChampions()->size(); i++) {
 		Champion* champion = (*(detectionManager->getEnemyChampions()))[i];
 		const unsigned char color[] = { 255,0,0, 255 };
- 		const unsigned char colorAlpha[] = { 255,0,0, 50 };
+		const unsigned char colorAlpha[] = { 255,0,0, 50 };
 		double across = champion->health/100.0 * (champion->bottomRight.x - champion->topLeft.x) + champion->topLeft.x;
 		render.draw_rectangle(champion->topLeft.x, champion->topLeft.y, across, champion->bottomRight.y, colorAlpha);
- 		render.draw_line(champion->topLeft.x, champion->topLeft.y, champion->topRight.x, champion->topRight.y,color);
- 		render.draw_line(champion->bottomLeft.x, champion->bottomLeft.y, champion->bottomRight.x, champion->bottomRight.y,color);
- 		render.draw_line(champion->topLeft.x, champion->topLeft.y, champion->bottomLeft.x, champion->bottomLeft.y,color);
- 		render.draw_line(champion->topRight.x, champion->topRight.y, champion->bottomRight.x, champion->bottomRight.y,color);
+		render.draw_line(champion->topLeft.x, champion->topLeft.y, champion->topRight.x, champion->topRight.y,color);
+		render.draw_line(champion->bottomLeft.x, champion->bottomLeft.y, champion->bottomRight.x, champion->bottomRight.y,color);
+		render.draw_line(champion->topLeft.x, champion->topLeft.y, champion->bottomLeft.x, champion->bottomLeft.y,color);
+		render.draw_line(champion->topRight.x, champion->topRight.y, champion->bottomRight.x, champion->bottomRight.y,color);
 	}
 	for (int i = 0; i < detectionManager->getEnemyTowers()->size(); i++) {
 		Tower* tower = (*(detectionManager->getEnemyTowers()))[i];
 		const unsigned char color[] = { 255,0,0, 255 };
- 		const unsigned char colorAlpha[] = { 255,0,0, 50 };
+		const unsigned char colorAlpha[] = { 255,0,0, 50 };
 		double across = tower->health/100.0 * (tower->bottomRight.x - tower->topLeft.x) + tower->topLeft.x;
 		render.draw_rectangle(tower->topLeft.x, tower->topLeft.y, across, tower->bottomRight.y, colorAlpha);
- 		render.draw_line(tower->topLeft.x, tower->topLeft.y, tower->topRight.x, tower->topRight.y,color);
- 		render.draw_line(tower->bottomLeft.x, tower->bottomLeft.y, tower->bottomRight.x, tower->bottomRight.y,color);
- 		render.draw_line(tower->topLeft.x, tower->topLeft.y, tower->bottomLeft.x, tower->bottomLeft.y,color);
- 		render.draw_line(tower->topRight.x, tower->topRight.y, tower->bottomRight.x, tower->bottomRight.y,color);
+		render.draw_line(tower->topLeft.x, tower->topLeft.y, tower->topRight.x, tower->topRight.y,color);
+		render.draw_line(tower->bottomLeft.x, tower->bottomLeft.y, tower->bottomRight.x, tower->bottomRight.y,color);
+		render.draw_line(tower->topLeft.x, tower->topLeft.y, tower->bottomLeft.x, tower->bottomLeft.y,color);
+		render.draw_line(tower->topRight.x, tower->topRight.y, tower->bottomRight.x, tower->bottomRight.y,color);
 	}
 	for (int i = 0; i < detectionManager->getSelfChampions()->size(); i++) {
 		Champion* champion = (*(detectionManager->getSelfChampions()))[i];
 		const unsigned char color[] = { 0,255,0, 255 };
- 		const unsigned char colorAlpha[] = { 0,255,0, 50 };
+		const unsigned char colorAlpha[] = { 0,255,0, 50 };
 		double across = champion->health/100.0 * (champion->bottomRight.x - champion->topLeft.x) + champion->topLeft.x;
 		render.draw_rectangle(champion->topLeft.x, champion->topLeft.y, across, champion->bottomRight.y, colorAlpha);
- 		render.draw_line(champion->topLeft.x, champion->topLeft.y, champion->topRight.x, champion->topRight.y,color);
- 		render.draw_line(champion->bottomLeft.x, champion->bottomLeft.y, champion->bottomRight.x, champion->bottomRight.y,color);
- 		render.draw_line(champion->topLeft.x, champion->topLeft.y, champion->bottomLeft.x, champion->bottomLeft.y,color);
- 		render.draw_line(champion->topRight.x, champion->topRight.y, champion->bottomRight.x, champion->bottomRight.y,color);
+		render.draw_line(champion->topLeft.x, champion->topLeft.y, champion->topRight.x, champion->topRight.y,color);
+		render.draw_line(champion->bottomLeft.x, champion->bottomLeft.y, champion->bottomRight.x, champion->bottomRight.y,color);
+		render.draw_line(champion->topLeft.x, champion->topLeft.y, champion->bottomLeft.x, champion->bottomLeft.y,color);
+		render.draw_line(champion->topRight.x, champion->topRight.y, champion->bottomRight.x, champion->bottomRight.y,color);
 	}
- /*
-bool getSelfHealthBarVisible();
-    SelfHealth* getSelfHealthBar();
-    bool getSpell1LevelUpVisible();
-    bool getSpell2LevelUpVisible();
-    bool getSpell3LevelUpVisible();
-    bool getSpell4LevelUpVisible();
-    GenericObject* getSpell1LevelUp();
-    GenericObject* getSpell2LevelUp();
-    GenericObject* getSpell3LevelUp();
-    GenericObject* getSpell4LevelUp();
-    std::vector<GenericObject*>* getSpell1LevelDots();
-    std::vector<GenericObject*>* getSpell2LevelDots();
-    std::vector<GenericObject*>* getSpell3LevelDots();
-    std::vector<GenericObject*>* getSpell4LevelDots();
-    int getCurrentLevel();
-    bool getSpell1Available();
-    bool getSpell2Available();
-    bool getSpell3Available();
-    bool getSpell4Available();
-    GenericObject* getSpell1();
-    GenericObject* getSpell2();
-    GenericObject* getSpell3();
-    GenericObject* getSpell4();
-    bool getSummonerSpell1Available();
-    bool getSummonerSpell2Available();
-    GenericObject* getSummonerSpell1();
-    GenericObject* getSummonerSpell2();
-    bool getTrinketActiveAvailable();
-    GenericObject* getTrinketActive();
-    bool getItem1ActiveAvailable();
-    bool getItem2ActiveAvailable();
-    bool getItem3ActiveAvailable();
-    bool getItem4ActiveAvailable();
-    bool getItem5ActiveAvailable();
-    bool getItem6ActiveAvailable();
-    GenericObject* getItem1Active();
-    GenericObject* getItem2Active();
-    GenericObject* getItem3Active();
-    GenericObject* getItem4Active();
-    GenericObject* getItem5Active();
-    GenericObject* getItem6Active();
-    bool getPotionActiveAvailable();
-    GenericObject* getPotionActive();
-    bool getPotionBeingUsedVisible();
-    GenericObject* getPotionBeingUsed();
-    bool getShopAvailable();
-    GenericObject* getShopAvailableObject();
-    bool getShopTopLeftCornerVisible();
-    GenericObject* getShopTopLeftCorner();
-    bool getShopBottomLeftCornerVisible();
-    GenericObject* getShopBottomleftCorner();
-    std::vector<GenericObject*>* getBuyableItems();
-    bool getMapVisible();
-    GenericObject* getMap();
-    bool getMapShopVisible();
-    GenericObject* getMapShop();
-    bool getMapLocationVisible();
-    GenericObject* getMapLocation();
-    bool getSurrenderAvailable();
-    GenericObject* getSurrender();
-    int getPotionActiveItemSlot();
- */
+	if (detectionManager->getSelfHealthBarVisible()) {
+		SelfHealth* healthBar = detectionManager->getSelfHealthBar();
+		const unsigned char color[] = { 0,255,0, 255 };
+		const unsigned char colorAlpha[] = { 0,255,0, 50 };
+		double across = healthBar->health/100.0 * (healthBar->bottomRight.x - healthBar->topLeft.x) + healthBar->topLeft.x;
+		render.draw_rectangle(healthBar->topLeft.x, healthBar->topLeft.y, across, healthBar->bottomRight.y, colorAlpha);
+		render.draw_line(healthBar->topLeft.x, healthBar->topLeft.y, healthBar->topRight.x, healthBar->topRight.y,color);
+		render.draw_line(healthBar->bottomLeft.x, healthBar->bottomLeft.y, healthBar->bottomRight.x, healthBar->bottomRight.y,color);
+		render.draw_line(healthBar->topLeft.x, healthBar->topLeft.y, healthBar->bottomLeft.x, healthBar->bottomLeft.y,color);
+		render.draw_line(healthBar->topRight.x, healthBar->topRight.y, healthBar->bottomRight.x, healthBar->bottomRight.y,color);
+	}
+	const unsigned char border[] = { 255,255,255, 100 };
+	if (detectionManager->getSpell1LevelUpVisible()) {
+		GenericObject * object = detectionManager->getSpell1LevelUp();
+		const unsigned char color[] = { 0,0,0, 50 };
+		render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+		render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+		render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+	}
+	if (detectionManager->getSpell2LevelUpVisible()) {
+		GenericObject * object = detectionManager->getSpell2LevelUp();
+		const unsigned char color[] = { 0,0,0, 50 };
+		render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+		render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+		render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+	}
+	if (detectionManager->getSpell3LevelUpVisible()) {
+		GenericObject * object = detectionManager->getSpell3LevelUp();
+		const unsigned char color[] = { 0,0,0, 50 };
+		render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+		render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+		render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+	}
+	if (detectionManager->getSpell4LevelUpVisible()) {
+		GenericObject * object = detectionManager->getSpell4LevelUp();
+		const unsigned char color[] = { 0,0,0, 50 };
+		render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+		render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+		render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+	}
+	if (detectionManager->getCurrentLevel() > 0) {
+		for (int i = 0; i < detectionManager->getSpell1LevelDots()->size(); i++) {
+			GenericObject* object = (*(detectionManager->getSpell1LevelDots()))[i];
+			const unsigned char color[] = { 0,0,0, 50 };
+			render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+			render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+			render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+			render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+			render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+		}
+		for (int i = 0; i < detectionManager->getSpell2LevelDots()->size(); i++) {
+			GenericObject* object = (*(detectionManager->getSpell2LevelDots()))[i];
+			const unsigned char color[] = { 0,0,0, 50 };
+			render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+			render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+			render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+			render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+			render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+		}
+		for (int i = 0; i < detectionManager->getSpell3LevelDots()->size(); i++) {
+			GenericObject* object = (*(detectionManager->getSpell3LevelDots()))[i];
+			const unsigned char color[] = { 0,0,0, 50 };
+			render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+			render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+			render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+			render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+			render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+		}
+		for (int i = 0; i < detectionManager->getSpell4LevelDots()->size(); i++) {
+			GenericObject* object = (*(detectionManager->getSpell4LevelDots()))[i];
+			const unsigned char color[] = { 0,0,0, 50 };
+			render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+			render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+			render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+			render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+			render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+		}
+	}
+	if (detectionManager->getSpell1Available()) {
+		GenericObject * object = detectionManager->getSpell1();
+		const unsigned char color[] = { 0,0,0, 50 };
+		render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+		render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+		render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+	}
+	if (detectionManager->getSpell2Available()) {
+		GenericObject * object = detectionManager->getSpell2();
+		const unsigned char color[] = { 0,0,0, 50 };
+		render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+		render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+		render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+	}
+	if (detectionManager->getSpell3Available()) {
+		GenericObject * object = detectionManager->getSpell3();
+		const unsigned char color[] = { 0,0,0, 50 };
+		render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+		render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+		render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+	}
+	if (detectionManager->getSpell4Available()) {
+		GenericObject * object = detectionManager->getSpell4();
+		const unsigned char color[] = { 0,0,0, 50 };
+		render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+		render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+		render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+	}
+	if (detectionManager->getSummonerSpell1Available()) {
+		GenericObject * object = detectionManager->getSummonerSpell1();
+		const unsigned char color[] = { 0,0,0, 50 };
+		render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+		render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+		render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+	}
+	if (detectionManager->getSummonerSpell2Available()) {
+		GenericObject * object = detectionManager->getSummonerSpell2();
+		const unsigned char color[] = { 0,0,0, 50 };
+		render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+		render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+		render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+	}
+	if (detectionManager->getTrinketActiveAvailable()) {
+		GenericObject * object = detectionManager->getTrinketActive();
+		const unsigned char color[] = { 0,0,0, 50 };
+		render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+		render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+		render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+	}
+	if (detectionManager->getItem1ActiveAvailable()) {
+		GenericObject * object = detectionManager->getItem1Active();
+		const unsigned char color[] = { 0,0,0, 50 };
+		render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+		render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+		render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+	}
+	if (detectionManager->getItem2ActiveAvailable()) {
+		GenericObject * object = detectionManager->getItem2Active();
+		const unsigned char color[] = { 0,0,0, 50 };
+		render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+		render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+		render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+	}
+	if (detectionManager->getItem3ActiveAvailable()) {
+		GenericObject * object = detectionManager->getItem3Active();
+		const unsigned char color[] = { 0,0,0, 50 };
+		render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+		render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+		render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+	}
+	if (detectionManager->getItem4ActiveAvailable()) {
+		GenericObject * object = detectionManager->getItem4Active();
+		const unsigned char color[] = { 0,0,0, 50 };
+		render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+		render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+		render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+	}
+	if (detectionManager->getItem5ActiveAvailable()) {
+		GenericObject * object = detectionManager->getItem5Active();
+		const unsigned char color[] = { 0,0,0, 50 };
+		render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+		render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+		render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+	}
+	if (detectionManager->getItem6ActiveAvailable()) {
+		GenericObject * object = detectionManager->getItem6Active();
+		const unsigned char color[] = { 0,0,0, 50 };
+		render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+		render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+		render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+	}
+	if (detectionManager->getPotionActiveAvailable()) {
+		GenericObject * object = detectionManager->getPotionActive();
+		const unsigned char color[] = { 0,0,0, 50 };
+		render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+		render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+		render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+	}
+	if (detectionManager->getPotionBeingUsedVisible()) {
+		GenericObject * object = detectionManager->getPotionBeingUsed();
+		const unsigned char color[] = { 0,0,0, 50 };
+		render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+		render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+		render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+	}
+	if (detectionManager->getShopAvailable()) {
+		GenericObject * object = detectionManager->getShopAvailableObject();
+		const unsigned char color[] = { 0,0,0, 50 };
+		render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+		render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+		render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+	}
+	if (detectionManager->getShopTopLeftCornerVisible()) {
+		GenericObject * object = detectionManager->getShopTopLeftCorner();
+		const unsigned char color[] = { 0,0,0, 50 };
+		render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+		render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+		render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+	}
+	if (detectionManager->getShopBottomLeftCornerVisible()) {
+		GenericObject * object = detectionManager->getShopBottomleftCorner();
+		const unsigned char color[] = { 0,0,0, 50 };
+		render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+		render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+		render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+	}
+	if (detectionManager->getBuyableItems()->size() > 0) {
+		for (int i = 0; i < detectionManager->getBuyableItems()->size(); i++) {
+			GenericObject* object = (*(detectionManager->getBuyableItems()))[i];
+			const unsigned char color[] = { 0,0,0, 50 };
+			render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+			render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+			render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+			render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+			render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+		}
+	}
+	if (detectionManager->getMapVisible()) {
+		GenericObject * object = detectionManager->getMap();
+		const unsigned char color[] = { 100,0,0, 50 };
+		render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+		render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+		render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+	}
+	if (detectionManager->getMapShopVisible()) {
+		GenericObject * object = detectionManager->getMapShop();
+		const unsigned char color[] = { 0,100,0, 50 };
+		render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+		render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+		render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+	}
+	if (detectionManager->getMapLocationVisible()) {
+		GenericObject * object = detectionManager->getMapLocation();
+		const unsigned char color[] = { 0,0,100, 50 };
+		render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+		render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+		render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+	}
+	if (detectionManager->getSurrenderAvailable()) {
+		GenericObject * object = detectionManager->getSurrender();
+		const unsigned char color[] = { 0,0,0, 50 };
+		render.draw_rectangle(object->topLeft.x, object->topLeft.y, object->bottomRight.x, object->bottomRight.y, color);
+
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->topRight.x, object->topRight.y,border);
+		render.draw_line(object->bottomLeft.x, object->bottomLeft.y, object->bottomRight.x, object->bottomRight.y,border);
+		render.draw_line(object->topLeft.x, object->topLeft.y, object->bottomLeft.x, object->bottomLeft.y,border);
+		render.draw_line(object->topRight.x, object->topRight.y, object->bottomRight.x, object->bottomRight.y,border);
+	}
 
 	render.save_png(name.c_str());
 }
