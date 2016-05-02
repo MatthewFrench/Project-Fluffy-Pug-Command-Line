@@ -7,7 +7,28 @@ TODO:
 
 END TODO
 
+5.6 times faster
+
+New Code with OpenMP on GCC compiler : 0.0883386 seconds
+Old code full screen serial on GCC compiler: 0.49335 seconds
+
+New Code with Grand Central Dispatch on Clang : 0.125543 seconds
+Old Code full screen scan serial on Clang : 0.391021 seconds
+
+
+
+
+New Code In the AI takes 0.23 seconds on a single core
+
+Time on Fluffy Pug: 0.38 seconds
+Scanning full screen with grand central dispatch but uses full CPU
+
+Time on Fluffy Pug is: 0.040749 seconds
+That's only scanning 1/60th of the screen.
+
 4 core machine
+
+Getting 0.095 seconds but only using 2 cores. Full screen scanning.
 
 Replacing struct pass with pointer pass: 0.106355
 
