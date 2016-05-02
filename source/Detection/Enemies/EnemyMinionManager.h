@@ -26,8 +26,9 @@ public:
     static constexpr float overalImagePrecision = 0.96; //0.97
     inline static Minion* detectMinionBarAtPixel(ImageData* imageData, uint8_t *pixel, int x, int y) {
         if (isColor3(pixel, 0, 0, 0)) {
+            float percent;
         //Look top left corner
-            if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData->imageWidth, imageData->imageHeight, &topLeftImageData, coloredPixelPrecision) >=  overalImagePrecision) {
+            if (percent = getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData->imageWidth, imageData->imageHeight, &topLeftImageData, coloredPixelPrecision) >=  overalImagePrecision) {
                 int barTopLeftX = x + 1;
                 int barTopLeftY = y + 1;
                 Minion* minion = new Minion();
@@ -41,8 +42,9 @@ public:
                 minion->bottomRight.y = barTopLeftY + 4;
                 minion->health = 0;
                 minion->detectedTopLeft = true;
+                minion->lowestPercentageMatch = percent;
                 return minion;
-        } else if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData->imageWidth, imageData->imageHeight, &bottomLeftImageData, coloredPixelPrecision) >=  overalImagePrecision) { // Look for bottom left corner
+        } else if (percent = getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData->imageWidth, imageData->imageHeight, &bottomLeftImageData, coloredPixelPrecision) >=  overalImagePrecision) { // Look for bottom left corner
             int barTopLeftX = x + 1;
             int barTopLeftY = y - 3;
             Minion* minion = new Minion();
@@ -56,6 +58,7 @@ public:
             minion->bottomRight.y = barTopLeftY + 4;
             minion->detectedBottomLeft = true;
             minion->health = 0;
+                minion->lowestPercentageMatch = percent;
             return minion;
         }
     }

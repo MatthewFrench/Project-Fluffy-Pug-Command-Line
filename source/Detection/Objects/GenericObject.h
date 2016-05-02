@@ -12,4 +12,5 @@ class GenericObject {
 public:
     GenericObject();
     Position topLeft, topRight, bottomLeft, bottomRight, center;
+    float lowestPercentageMatch;
 };

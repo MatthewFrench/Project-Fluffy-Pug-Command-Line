@@ -1,7 +1,7 @@
 TODO:
-	• Increase speed from 0.9 seconds to 0.05 seconds
-	• Parallelize it with OpenMP
 	• Fix self health bar not detecting
+	• Fix percentage match displaying
+	• Put it back in Xcode and run
 	• Make it run on Windows
 	• Add memory management code
 
@@ -79,6 +79,8 @@ Done:
 	• Make it draw all the output
 	• Make it output 2 result images, one with image highlighting objects it sees and the other black with only highlighting areas it sees
 	• Make it more accurate, it seems off
+	• Increase speed from 0.9 seconds to 0.05 seconds
+	• Parallelize it with OpenMP
 
 
 Detection times for functions:

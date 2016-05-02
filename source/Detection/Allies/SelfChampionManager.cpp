@@ -73,6 +73,8 @@ void SelfChampionManager::validateChampionBars(ImageData* imageData, std::vector
                     if (champ2->detectedBottomRight) champ->detectedBottomRight = true;
                     if (champ2->detectedTopLeft) champ->detectedTopLeft = true;
                     if (champ2->detectedTopRight) champ->detectedTopRight = true;
+                    if (champ2->lowestPercentageMatch < champ->lowestPercentageMatch) champ->lowestPercentageMatch = champ2->lowestPercentageMatch;
+
                     detectedCorners++;
                 }
             }
@@ -121,6 +123,7 @@ void SelfChampionManager::validateSelfHealthBars(ImageData* imageData, std::vect
                     j--;
                     if (healthBar2->detectedLeftSide) healthBar->detectedLeftSide = true;
                     if (healthBar2->detectedRightSide) healthBar->detectedRightSide = true;
+
                     detectedCorners++;
                 }
             }

@@ -33,6 +33,8 @@ void AllyChampionManager::validateChampionBars(ImageData* imageData, std::vector
                     if (champ2->detectedBottomRight) champ->detectedBottomRight = true;
                     if (champ2->detectedTopLeft) champ->detectedTopLeft = true;
                     if (champ2->detectedTopRight) champ->detectedTopRight = true;
+                    if (champ2->lowestPercentageMatch < champ->lowestPercentageMatch) champ->lowestPercentageMatch = champ2->lowestPercentageMatch;
+
                     detectedCorners++;
                 }
             }

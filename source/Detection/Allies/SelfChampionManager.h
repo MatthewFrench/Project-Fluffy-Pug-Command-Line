@@ -22,9 +22,11 @@ public:
     static SelfHealth* detectSelfHealthBarAtPixel(ImageData* imageData, uint8_t *pixel, int x, int y);
     static void validateSelfHealthBars(ImageData* imageData, std::vector<SelfHealth*>* detectedHealthBars);
 
-
+    static constexpr float coloredPixelPrecision = 0.9; //0.8
+    static constexpr float overalImagePrecision = 0.9; //0.8
     inline static Champion* detectChampionBarAtPixel(ImageData* imageData, uint8_t *pixel, int x, int y) {
-    if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData->imageWidth, imageData->imageHeight, &topLeftImageData, 0.85) >=  0.85) {
+    float percentage;
+    if (percentage = getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData->imageWidth, imageData->imageHeight, &topLeftImageData, coloredPixelPrecision) >=  overalImagePrecision) {
         int barTopLeftX = x + 3;
         int barTopLeftY = y + 3;
         Champion* champ = new Champion();
@@ -37,8 +39,9 @@ public:
         champ->bottomRight.x = barTopLeftX + 104;
         champ->bottomRight.y = barTopLeftY + 9;
         champ->detectedTopLeft = true;
+            champ->lowestPercentageMatch = percentage;
         return champ;
-    } else if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData->imageWidth, imageData->imageHeight, &bottomLeftImageData, 0.85) >=  0.85) { // Look for bottom left corner
+    } else if (percentage = getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData->imageWidth, imageData->imageHeight, &bottomLeftImageData, coloredPixelPrecision) >=  overalImagePrecision) { // Look for bottom left corner
         int barTopLeftX = x + 3;
         int barTopLeftY = y - 8;
         Champion* champ = new Champion();
@@ -51,8 +54,9 @@ public:
         champ->bottomRight.x = barTopLeftX + 104;
         champ->bottomRight.y = barTopLeftY + 9;
         champ->detectedBottomLeft = true;
+            champ->lowestPercentageMatch = percentage;
         return champ;
-    } else if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData->imageWidth, imageData->imageHeight, &topRightImageData, 0.85) >=  0.85) { // Look for top right corner
+    } else if (percentage = getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData->imageWidth, imageData->imageHeight, &topRightImageData, coloredPixelPrecision) >=  overalImagePrecision) { // Look for top right corner
         int barTopLeftX = x - 101 - 2;
         int barTopLeftY = y + 3;
         Champion* champ = new Champion();
@@ -65,8 +69,9 @@ public:
         champ->bottomRight.x = barTopLeftX + 104;
         champ->bottomRight.y = barTopLeftY + 9;
         champ->detectedTopRight = true;
+            champ->lowestPercentageMatch = percentage;
         return champ;
-    } else if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData->imageWidth, imageData->imageHeight, &bottomRightImageData, 0.85) >=  0.85) { // Look for bottom right corner
+    } else if (percentage = getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData->imageWidth, imageData->imageHeight, &bottomRightImageData, coloredPixelPrecision) >=  overalImagePrecision) { // Look for bottom right corner
         int barTopLeftX = x - 101 - 2;
         int barTopLeftY = y - 8;
         Champion* champ = new Champion();
@@ -79,6 +84,7 @@ public:
         champ->bottomRight.x = barTopLeftX + 104;
         champ->bottomRight.y = barTopLeftY + 9;
         champ->detectedBottomRight = true;
+            champ->lowestPercentageMatch = percentage;
         return champ;
     }
     return NULL;

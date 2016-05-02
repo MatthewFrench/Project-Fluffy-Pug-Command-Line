@@ -14,4 +14,5 @@ Champion::Champion () {
     detectedTopRight = false;
     detectedBottomRight = false;
     health = 0;
+    lowestPercentageMatch = 1.0;
 }

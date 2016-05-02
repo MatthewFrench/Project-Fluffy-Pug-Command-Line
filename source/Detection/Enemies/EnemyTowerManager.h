@@ -19,9 +19,11 @@ public:
 
 
 
-
+static constexpr float coloredPixelPrecision = 0.9; //0.7
+    static constexpr float overalImagePrecision = 0.9; //0.7
     inline static Tower* detectTowerBarAtPixel(ImageData* imageData, uint8_t *pixel, int x, int y) {
-        if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData->imageWidth, imageData->imageHeight, &topLeftImageData, 0.7) >=  0.7) {
+        float percent;
+        if (percent = getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData->imageWidth, imageData->imageHeight, &topLeftImageData, coloredPixelPrecision) >=  overalImagePrecision) {
             int barTopLeftX = x + 3;
             int barTopLeftY = y + 3;
             Tower* tower = new Tower();
@@ -34,8 +36,9 @@ public:
             tower->bottomRight.x = barTopLeftX + 126;
             tower->bottomRight.y = barTopLeftY + 8;
             tower->detectedTopLeft = true;
+            tower->lowestPercentageMatch = percent;
             return tower;
-    } else if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData->imageWidth, imageData->imageHeight, &bottomLeftImageData, 0.7) >=  0.7) { // Look for bottom left corner
+    } else if (percent = getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData->imageWidth, imageData->imageHeight, &bottomLeftImageData, coloredPixelPrecision) >=  overalImagePrecision) { // Look for bottom left corner
         int barTopLeftX = x + 3;
         int barTopLeftY = y - 7;
         Tower* tower = new Tower();
@@ -48,8 +51,9 @@ public:
         tower->bottomRight.x = barTopLeftX + 126;
         tower->bottomRight.y = barTopLeftY + 8;
         tower->detectedBottomLeft = true;
+            tower->lowestPercentageMatch = percent;
         return tower;
-    } else if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData->imageWidth, imageData->imageHeight, &topRightImageData, 0.7) >=  0.7) { // Look for top right corner
+    } else if (percent = getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData->imageWidth, imageData->imageHeight, &topRightImageData, coloredPixelPrecision) >=  overalImagePrecision) { // Look for top right corner
         int barTopLeftX = x - 126 + 1;
         int barTopLeftY = y + 3;
         Tower* tower = new Tower();
@@ -62,8 +66,9 @@ public:
         tower->bottomRight.x = barTopLeftX + 126;
         tower->bottomRight.y = barTopLeftY + 8;
         tower->detectedTopRight = true;
+            tower->lowestPercentageMatch = percent;
         return tower;
-    } else if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData->imageWidth, imageData->imageHeight, &bottomRightImageData, 0.7) >=  0.7) { // Look for bottom right corner
+    } else if (percent = getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData->imageWidth, imageData->imageHeight, &bottomRightImageData, coloredPixelPrecision) >=  overalImagePrecision) { // Look for bottom right corner
         int barTopLeftX = x - 126 + 1;
         int barTopLeftY = y - 7;
         Tower* tower = new Tower();
@@ -76,6 +81,7 @@ public:
         tower->bottomRight.x = barTopLeftX + 126;
         tower->bottomRight.y = barTopLeftY + 8;
         tower->detectedBottomRight = true;
+            tower->lowestPercentageMatch = percent;
         return tower;
     }
     return NULL;

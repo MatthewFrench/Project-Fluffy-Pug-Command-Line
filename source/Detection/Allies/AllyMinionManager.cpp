@@ -41,6 +41,7 @@ void AllyMinionManager::validateMinionBars(ImageData* imageData, std::vector<Min
                     if (minion2->detectedTopLeft) minion->detectedTopLeft = true;
                     if (minion2->detectedTopRight) minion->detectedTopRight = true;
                     if (minion2->health > minion->health) minion->health = minion2->health;
+                    if (minion2->lowestPercentageMatch < minion->lowestPercentageMatch) minion->lowestPercentageMatch = minion2->lowestPercentageMatch;
                     detectedCorners++;
                 }
             }

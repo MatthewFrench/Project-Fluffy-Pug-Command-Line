@@ -19,8 +19,11 @@ public:
     static GenericObject* detectBuyableItems(ImageData* imageData, uint8_t *pixel, int x, int y);
 };
 
+static constexpr float coloredPixelPrecision = 0.9; //0.4
+    static constexpr float overalImagePrecision = 0.89; //0.8
 inline GenericObject* ShopManager::detectShopTopLeftCorner(ImageData* imageData, uint8_t *pixel, int x, int y) {
-    if (getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData->imageWidth, imageData->imageHeight, &shopTopLeftCornerImageData, 0.4) >=  0.8) {
+    float percent = getImageAtPixelPercentageOptimizedExact(pixel, x, y, imageData->imageWidth, imageData->imageHeight, &shopTopLeftCornerImageData, coloredPixelPrecision);
+    if (percent >=  overalImagePrecision) {
         GenericObject* object = new GenericObject();
         object->topLeft.x = x;
         object->topLeft.y = y;
@@ -32,6 +35,7 @@ inline GenericObject* ShopManager::detectShopTopLeftCorner(ImageData* imageData,
         object->bottomRight.y = y + shopTopLeftCornerImageData.imageHeight;
         object->center.x = (object->topRight.x - object->topLeft.x) / 2 + object->topLeft.x;
         object->center.y = (object->bottomLeft.y - object->topLeft.y) / 2 + object->topLeft.y;
+        object->lowestPercentageMatch = percent;
         return object;
     }
     

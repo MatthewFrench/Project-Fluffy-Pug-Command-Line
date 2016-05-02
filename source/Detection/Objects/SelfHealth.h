@@ -14,4 +14,5 @@ public:
     Position topLeft, topRight, bottomLeft, bottomRight, characterCenter;
     bool detectedLeftSide, detectedRightSide;
     float health;
+    float lowestPercentageMatch;
 };

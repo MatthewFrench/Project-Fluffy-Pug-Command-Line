@@ -348,8 +348,6 @@ extern inline void detectExactImageToImageToRectangles(ImageData smallImage, Ima
             return 0.0;
         }
         
-        int perfectPixels = 0;
-        int nonPerfectPixels = 0;
         for (int y1 = 0; y1 < image->imageHeight; y1++) {
             for (int x1 = 0; x1 < image->imageWidth; x1++) {
                 if (pixel2[3] != 0) {
@@ -359,11 +357,6 @@ extern inline void detectExactImageToImageToRectangles(ImageData smallImage, Ima
                     percentage += p;
                     if (p < minimumPercentage) {
                         return percentage / maxPixelCount;
-                    }
-                    if (p == 1.0) {
-                        perfectPixels++;
-                    } else {
-                        nonPerfectPixels++;
                     }
                 } else {maxPixelCount--;}
                 pixel2 += 4;

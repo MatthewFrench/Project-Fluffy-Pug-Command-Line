@@ -8,4 +8,5 @@
 
 #include "GenericObject.h"
 
-GenericObject::GenericObject () {}
+GenericObject::GenericObject () {
+    lowestPercentageMatch=1.0;}

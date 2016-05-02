@@ -33,6 +33,8 @@ void EnemyTowerManager::validateTowerBars(ImageData* imageData, std::vector<Towe
                     if (tower2->detectedBottomRight) tower->detectedBottomRight = true;
                     if (tower2->detectedTopLeft) tower->detectedTopLeft = true;
                     if (tower2->detectedTopRight) tower->detectedTopRight = true;
+                    if (tower2->lowestPercentageMatch < tower->lowestPercentageMatch) tower->lowestPercentageMatch = tower2->lowestPercentageMatch;
+
                     detectedCorners++;
                 }
             }

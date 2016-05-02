@@ -482,21 +482,45 @@ void printDetected(DetectionManager* detection) {
 	printf("Detected: \n");
 	if (detection->getAllyMinions()->size() > 0) {
 		printf("\t%lu ally minions\n", detection->getAllyMinions()->size());
+		for (int i = 0; i < detection->getAllyMinions()->size(); i++) {
+			Minion* minion = (*(detection->getAllyMinions()))[i];
+			printf("\t\tMinion Percentage Match: %f\n", minion->lowestPercentageMatch);
+		}
 	}
 	if (detection->getAllyChampions()->size() > 0) {
 		printf("\t%lu ally champions\n", detection->getAllyChampions()->size());
+		for (int i = 0; i < detection->getAllyChampions()->size(); i++) {
+			Champion* champion = (*(detection->getAllyChampions()))[i];
+			printf("\t\tChampion Percentage Match: %f\n", champion->lowestPercentageMatch);
+		}
 	}
 	if (detection->getSelfChampions()->size() > 0) {
 		printf("\t%lu self champions\n", detection->getSelfChampions()->size());
+		for (int i = 0; i < detection->getSelfChampions()->size(); i++) {
+			Champion* champion = (*(detection->getSelfChampions()))[i];
+			printf("\t\tChampion Percentage Match: %f\n", champion->lowestPercentageMatch);
+		}
 	}
 	if (detection->getEnemyMinions()->size() > 0) {
 		printf("\t%lu enemy minions\n", detection->getEnemyMinions()->size());
+		for (int i = 0; i < detection->getEnemyMinions()->size(); i++) {
+			Minion* minion = (*(detection->getEnemyMinions()))[i];
+			printf("\t\tMinion Percentage Match: %f\n", minion->lowestPercentageMatch);
+		}
 	}
 	if (detection->getEnemyChampions()->size() > 0) {
 		printf("\t%lu enemy champions\n", detection->getEnemyChampions()->size());
+		for (int i = 0; i < detection->getEnemyChampions()->size(); i++) {
+			Champion* champion = (*(detection->getEnemyChampions()))[i];
+			printf("\t\tChampion Percentage Match: %f\n", champion->lowestPercentageMatch);
+		}
 	}
 	if (detection->getEnemyTowers()->size() > 0) {
 		printf("\t%lu enemy towers\n", detection->getEnemyTowers()->size());
+		for (int i = 0; i < detection->getEnemyTowers()->size(); i++) {
+			Tower* tower = (*(detection->getEnemyTowers()))[i];
+			printf("\t\tTower Percentage Match: %f\n", tower->lowestPercentageMatch);
+		}
 	}
 	if (detection->getSelfHealthBarVisible()) {
 		printf("\tCan see self health bar\n");
@@ -569,6 +593,8 @@ void printDetected(DetectionManager* detection) {
 	}
 	if (detection->getShopTopLeftCornerVisible()) {
 		printf("\tShop top left corner is visible\n");
+			GenericObject* object = detection->getShopTopLeftCorner();
+			printf("\t\tShop top left Percentage Match: %f\n", object->lowestPercentageMatch);
 	}
 	if (detection->getShopBottomLeftCornerVisible()) {
 		printf("\tShop bottom left corner is visible\n");

@@ -12,4 +12,5 @@ SelfHealth::SelfHealth () {
     detectedLeftSide = false;
     detectedRightSide = false;
     health = 0;
+    lowestPercentageMatch = 1.0;
 }
