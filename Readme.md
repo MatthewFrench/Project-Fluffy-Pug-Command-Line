@@ -18,3 +18,6 @@ Running and compiling
 
 
 The code is cross platform but we had trouble figuring out how to get libpng and imagemagick working in Visual Studio.
+
+
+https://github.com/MatthewFrench/Project-Fluffy-Pug-Command-Line
